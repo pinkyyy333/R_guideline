@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -314,9 +325,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="getting-started-with-r" class="section level1 hasAnchor" number="1">
 <h1><span class="header-section-number">1</span> Getting Started with R<a href="getting-started-with-r.html#getting-started-with-r" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>R 是一款專為統計分析和數據視覺化設計的強大且免費的軟件環境。<br>
+R 是一款專為統計分析和數據視覺化設計的強大且免費的軟件環境。<br>
 它融合了統計包的便利性和編程的靈活性，廣泛應用於數據分析、機器學習和科學研究。<br>
-R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數據操作和高質量的圖形輸出。<br></p>
+R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數據操作和高質量的圖形輸出。<br>
+以下列出 R 語言的特點：<br>
+<li>
+容易取得：R 軟體完全免費下載，免費使用。
+</li>
+<li>
+自由性：R 的程式語言與操作環境是非常自由的。
+</li>
+<li>
+功能性：應用廣泛且無疆界。R 的功能可以透過用戶撰寫的套件得到增強，使用者可以依照自己所需，下載相對應的套件，提高生產力。
+</li>
+<li>
+良好的線上文件說明：可以從” Help “中得到大量資訊，包含指令的使用方法、套件的使用說明…等。
+</li>
+<li>
+高階程式語言：其計算、分析的速度不亞於其他專業軟體。且對於學過 C、Java…等語言的使用者，很容易上手。
+</li>
+<li>
+繪圖能力：R 軟體擁有強大的繪圖能力，也可以透過不同的套件，增強圖形視覺化的程度，讓視覺化的圖形代替數字說話，增加說服力。
+</li>
 <div id="安裝與r語言入門" class="section level2 hasAnchor" number="1.1">
 <h2><span class="header-section-number">1.1</span> 1. 安裝與R語言入門<a href="getting-started-with-r.html#安裝與r語言入門" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>教學檔案.pdf <a href="https://drive.google.com/file/d/19KnlivREtSyZJWFhNvTUQkHfPrDvVnBn/view?usp=sharing">下載點</a></p>
@@ -330,6 +360,143 @@ R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數
 <span id="cb3-2"><a href="getting-started-with-r.html#cb3-2" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;D:/college information/R_statistics&quot;</span>)</span>
 <span id="cb3-3"><a href="getting-started-with-r.html#cb3-3" tabindex="-1"></a><span class="fu">getwd</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;D:/college information/R_statistics&quot;</code></pre>
+</div>
+<div id="基本操作" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> 3. 基本操作<a href="getting-started-with-r.html#基本操作" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>在<strong><a href="http://ccckmit.wikidot.com/r:main">免費電子書 – R 統計軟體</a></strong>有提供完整的向量、矩陣、函數等基本操作介紹，這裡舉幾個基本的例子</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="getting-started-with-r.html#cb5-1" tabindex="-1"></a><span class="co"># 定義向量 x 為 2 到 9</span></span>
+<span id="cb5-2"><a href="getting-started-with-r.html#cb5-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">9</span></span>
+<span id="cb5-3"><a href="getting-started-with-r.html#cb5-3" tabindex="-1"></a><span class="co"># 看看 x 長什麼樣子</span></span>
+<span id="cb5-4"><a href="getting-started-with-r.html#cb5-4" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] 2 3 4 5 6 7 8 9</code></pre>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="getting-started-with-r.html#cb7-1" tabindex="-1"></a><span class="co"># 向量每個元素 +1</span></span>
+<span id="cb7-2"><a href="getting-started-with-r.html#cb7-2" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">1</span></span></code></pre></div>
+<pre><code>## [1]  3  4  5  6  7  8  9 10</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="getting-started-with-r.html#cb9-1" tabindex="-1"></a><span class="co"># 向量每個元素 *5</span></span>
+<span id="cb9-2"><a href="getting-started-with-r.html#cb9-2" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 10 15 20 25 30 35 40 45</code></pre>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="getting-started-with-r.html#cb11-1" tabindex="-1"></a><span class="co"># 定義 y 為 x 的 2 倍</span></span>
+<span id="cb11-2"><a href="getting-started-with-r.html#cb11-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> x</span>
+<span id="cb11-3"><a href="getting-started-with-r.html#cb11-3" tabindex="-1"></a><span class="co"># 另一種建向量方式</span></span>
+<span id="cb11-4"><a href="getting-started-with-r.html#cb11-4" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="dv">4</span>)</span>
+<span id="cb11-5"><a href="getting-started-with-r.html#cb11-5" tabindex="-1"></a><span class="co"># 向量也可以放字串</span></span>
+<span id="cb11-6"><a href="getting-started-with-r.html#cb11-6" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="st">&quot;abc&quot;</span>, <span class="dv">4</span>)</span>
+<span id="cb11-7"><a href="getting-started-with-r.html#cb11-7" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] &quot;3&quot;   &quot;abc&quot; &quot;4&quot;</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="getting-started-with-r.html#cb13-1" tabindex="-1"></a><span class="co"># 再改回純數值向量</span></span>
+<span id="cb13-2"><a href="getting-started-with-r.html#cb13-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">3</span>, <span class="dv">5</span>, <span class="dv">9</span>)</span>
+<span id="cb13-3"><a href="getting-started-with-r.html#cb13-3" tabindex="-1"></a><span class="co"># 抓第 2 個元素</span></span>
+<span id="cb13-4"><a href="getting-started-with-r.html#cb13-4" tabindex="-1"></a>x[<span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 5</code></pre>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="getting-started-with-r.html#cb15-1" tabindex="-1"></a><span class="co"># 同時抓第 1 和第 3 個元素</span></span>
+<span id="cb15-2"><a href="getting-started-with-r.html#cb15-2" tabindex="-1"></a>x[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code></pre></div>
+<pre><code>## [1] 3 9</code></pre>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="getting-started-with-r.html#cb17-1" tabindex="-1"></a><span class="co"># 抓第 1 到第 2 個元素</span></span>
+<span id="cb17-2"><a href="getting-started-with-r.html#cb17-2" tabindex="-1"></a>x[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]</span></code></pre></div>
+<pre><code>## [1] 3 5</code></pre>
+</div>
+<div id="資料型態" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> 4. 資料型態<a href="getting-started-with-r.html#資料型態" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R 的資料型態可用 class() 或 str() 或 View() 查詢。以下介紹五種主要型態：</p>
+<div id="character文字字串" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> 4.1 Character：文字字串<a href="getting-started-with-r.html#character文字字串" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>文字字串必須用雙引號或單引號包起來。</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="getting-started-with-r.html#cb19-1" tabindex="-1"></a><span class="co"># 定義為字串</span></span>
+<span id="cb19-2"><a href="getting-started-with-r.html#cb19-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="st">&quot;Hello world.&quot;</span></span>
+<span id="cb19-3"><a href="getting-started-with-r.html#cb19-3" tabindex="-1"></a>x</span></code></pre></div>
+<pre><code>## [1] &quot;Hello world.&quot;</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="getting-started-with-r.html#cb21-1" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+</div>
+<div id="numeric數值型態" class="section level3 hasAnchor" number="1.4.2">
+<h3><span class="header-section-number">1.4.2</span> 4.2 Numeric：數值型態<a href="getting-started-with-r.html#numeric數值型態" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>Numeric 可以用於各種運算：加、減、乘、除、取餘數等。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="getting-started-with-r.html#cb23-1" tabindex="-1"></a><span class="co"># 定義 numeric</span></span>
+<span id="cb23-2"><a href="getting-started-with-r.html#cb23-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">100</span></span>
+<span id="cb23-3"><a href="getting-started-with-r.html#cb23-3" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;numeric&quot;</code></pre>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="getting-started-with-r.html#cb25-1" tabindex="-1"></a><span class="co"># 四則運算與餘數</span></span>
+<span id="cb25-2"><a href="getting-started-with-r.html#cb25-2" tabindex="-1"></a>x <span class="sc">+</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 105</code></pre>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="getting-started-with-r.html#cb27-1" tabindex="-1"></a>x <span class="sc">-</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 95</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="getting-started-with-r.html#cb29-1" tabindex="-1"></a>x <span class="sc">*</span> <span class="dv">5</span></span></code></pre></div>
+<pre><code>## [1] 500</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="getting-started-with-r.html#cb31-1" tabindex="-1"></a>x <span class="sc">/</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 33.33333</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="getting-started-with-r.html#cb33-1" tabindex="-1"></a>x <span class="sc">%%</span> <span class="dv">3</span></span></code></pre></div>
+<pre><code>## [1] 1</code></pre>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="getting-started-with-r.html#cb35-1" tabindex="-1"></a><span class="co"># sum() 可對向量求和</span></span>
+<span id="cb35-2"><a href="getting-started-with-r.html#cb35-2" tabindex="-1"></a>v <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">10</span>, <span class="dv">11</span>, <span class="dv">12</span>, <span class="dv">11</span>)</span>
+<span id="cb35-3"><a href="getting-started-with-r.html#cb35-3" tabindex="-1"></a><span class="fu">sum</span>(v)</span></code></pre></div>
+<pre><code>## [1] 44</code></pre>
+</div>
+<div id="integer整數型態" class="section level3 hasAnchor" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> 4.3 Integer：整數型態<a href="getting-started-with-r.html#integer整數型態" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>預設的數字是 numeric，若要指定為整數可用 as.integer()。</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="getting-started-with-r.html#cb37-1" tabindex="-1"></a><span class="co"># 定義為整數</span></span>
+<span id="cb37-2"><a href="getting-started-with-r.html#cb37-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">3</span>)</span>
+<span id="cb37-3"><a href="getting-started-with-r.html#cb37-3" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="getting-started-with-r.html#cb39-1" tabindex="-1"></a><span class="co"># 小數轉整數會捨去小數部分</span></span>
+<span id="cb39-2"><a href="getting-started-with-r.html#cb39-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fl">3.5</span>)</span>
+<span id="cb39-3"><a href="getting-started-with-r.html#cb39-3" tabindex="-1"></a>y</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="getting-started-with-r.html#cb41-1" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="complex複數型態" class="section level3 hasAnchor" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> 4.4 Complex：複數型態<a href="getting-started-with-r.html#complex複數型態" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>複數由實部與虛部組成，虛部以 i 表示。</p>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="getting-started-with-r.html#cb43-1" tabindex="-1"></a><span class="co"># 定義為整數</span></span>
+<span id="cb43-2"><a href="getting-started-with-r.html#cb43-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="dv">3</span>)</span>
+<span id="cb43-3"><a href="getting-started-with-r.html#cb43-3" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="getting-started-with-r.html#cb45-1" tabindex="-1"></a><span class="co"># 小數轉整數會捨去小數部分</span></span>
+<span id="cb45-2"><a href="getting-started-with-r.html#cb45-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(<span class="fl">3.5</span>)</span>
+<span id="cb45-3"><a href="getting-started-with-r.html#cb45-3" tabindex="-1"></a>y</span></code></pre></div>
+<pre><code>## [1] 3</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="getting-started-with-r.html#cb47-1" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;integer&quot;</code></pre>
+</div>
+<div id="logical邏輯值" class="section level3 hasAnchor" number="1.4.5">
+<h3><span class="header-section-number">1.4.5</span> 4.5 Logical：邏輯值<a href="getting-started-with-r.html#logical邏輯值" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>邏輯值只有 TRUE 或 FALSE，可簡寫為 T、F。</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="getting-started-with-r.html#cb49-1" tabindex="-1"></a><span class="co"># 定義邏輯值</span></span>
+<span id="cb49-2"><a href="getting-started-with-r.html#cb49-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb49-3"><a href="getting-started-with-r.html#cb49-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb49-4"><a href="getting-started-with-r.html#cb49-4" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="getting-started-with-r.html#cb51-1" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;logical&quot;</code></pre>
+</div>
+</div>
+<div id="資料型態的轉換" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> 5. 資料型態的轉換<a href="getting-started-with-r.html#資料型態的轉換" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>使用 Y &lt;- as.資料型態(X) 可以將 X 轉換成不同的資料型態，並將結果指派給 Y。</p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="getting-started-with-r.html#cb53-1" tabindex="-1"></a><span class="co"># 將 numeric 轉成 character</span></span>
+<span id="cb53-2"><a href="getting-started-with-r.html#cb53-2" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb53-3"><a href="getting-started-with-r.html#cb53-3" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">as.character</span>(x)</span>
+<span id="cb53-4"><a href="getting-started-with-r.html#cb53-4" tabindex="-1"></a><span class="fu">class</span>(x)</span></code></pre></div>
+<pre><code>## [1] &quot;character&quot;</code></pre>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="getting-started-with-r.html#cb55-1" tabindex="-1"></a><span class="co"># 將 numeric 轉成 factor</span></span>
+<span id="cb55-2"><a href="getting-started-with-r.html#cb55-2" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="dv">3</span></span>
+<span id="cb55-3"><a href="getting-started-with-r.html#cb55-3" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(y)</span>
+<span id="cb55-4"><a href="getting-started-with-r.html#cb55-4" tabindex="-1"></a><span class="fu">class</span>(y)</span></code></pre></div>
+<pre><code>## [1] &quot;factor&quot;</code></pre>
+</div>
+<div id="其他小功能" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> 6. 其他小功能<a href="getting-started-with-r.html#其他小功能" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<ol style="list-style-type: decimal">
+<li>可以善用註記功能：<strong>#</strong> ，程式不會編譯由 # 開頭的那一行</li>
+<li>help 查詢資訊</li>
+</ol>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="getting-started-with-r.html#cb57-1" tabindex="-1"></a><span class="co"># ?? 可以全文搜尋 ggplot 相關主題</span></span>
+<span id="cb57-2"><a href="getting-started-with-r.html#cb57-2" tabindex="-1"></a>??ggplot </span></code></pre></div>
+<pre><code>## 開啟 httpd 求助伺服器… 好了</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="getting-started-with-r.html#cb59-1" tabindex="-1"></a><span class="co"># ? 跟 help()，這兩個指令的作用相同可以查詢單一函式文件</span></span>
+<span id="cb59-2"><a href="getting-started-with-r.html#cb59-2" tabindex="-1"></a>?c</span>
+<span id="cb59-3"><a href="getting-started-with-r.html#cb59-3" tabindex="-1"></a><span class="fu">help</span>(c)</span></code></pre></div>
 </div>
 </div>
             </section>

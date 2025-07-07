@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -315,9 +326,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>使用 punif(x, a, b, lower.tail = FALSE or TRUE) 函數來計算連續均勻隨機變數 X 在區間 [a, b] 內取某個範圍值的機率</strong><br>
 <strong>其中 x 是我們希望評估機率的值，a 是連續均勻分布的下界，b 是上界</strong><br>
 <strong>對於函數中的最後一個參數，如果我們輸入 lower.tail = FALSE，則 R 返回 P(X&gt;x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)</strong></p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="chapter-6.html#cb47-1" tabindex="-1"></a><span class="co"># 課本範例6.1b</span></span>
-<span id="cb47-2"><a href="chapter-6.html#cb47-2" tabindex="-1"></a><span class="co"># 因為 X 是一個連續均勻隨機變數，且 a = 2500 和 b = 5000，我們可以通過輸入以下程式碼來找到 P(X&gt;4000)：</span></span>
-<span id="cb47-3"><a href="chapter-6.html#cb47-3" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">4000</span>, <span class="dv">2500</span>, <span class="dv">5000</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb102"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb102-1"><a href="chapter-6.html#cb102-1" tabindex="-1"></a><span class="co"># 課本範例6.1b</span></span>
+<span id="cb102-2"><a href="chapter-6.html#cb102-2" tabindex="-1"></a><span class="co"># 因為 X 是一個連續均勻隨機變數，且 a = 2500 和 b = 5000，我們可以通過輸入以下程式碼來找到 P(X&gt;4000)：</span></span>
+<span id="cb102-3"><a href="chapter-6.html#cb102-3" tabindex="-1"></a><span class="fu">punif</span>(<span class="dv">4000</span>, <span class="dv">2500</span>, <span class="dv">5000</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.4</code></pre>
 </div>
 <div id="常態分佈" class="section level2 hasAnchor" number="5.2">
@@ -325,17 +336,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>使用 pnorm(x, μ, σ, lower.tail = FALSE or TRUE) 函數來計算常態隨機變數 X 小於或等於 x 或大於 x 的機率</strong><br>
 <strong>其中 x 是我們希望評估機率的值，μ 是總體平均數，σ 是總體標準差</strong><br>
 <strong>對於函數中的最後一個參數，如果輸入 lower.tail = FALSE，則 R 返回 P(X&gt;x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)</strong></p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="chapter-6.html#cb49-1" tabindex="-1"></a><span class="co"># 課本範例6.8a</span></span>
-<span id="cb49-2"><a href="chapter-6.html#cb49-2" tabindex="-1"></a><span class="co"># 因為X 是一個正態隨機變數，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到 P(X&gt;20)</span></span>
-<span id="cb49-3"><a href="chapter-6.html#cb49-3" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">20</span>, <span class="dv">12</span>, <span class="fl">3.2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb104"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb104-1"><a href="chapter-6.html#cb104-1" tabindex="-1"></a><span class="co"># 課本範例6.8a</span></span>
+<span id="cb104-2"><a href="chapter-6.html#cb104-2" tabindex="-1"></a><span class="co"># 因為X 是一個正態隨機變數，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到 P(X&gt;20)</span></span>
+<span id="cb104-3"><a href="chapter-6.html#cb104-3" tabindex="-1"></a><span class="fu">pnorm</span>(<span class="dv">20</span>, <span class="dv">12</span>, <span class="fl">3.2</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.006209665</code></pre>
 <div id="逆轉換" class="section level3 hasAnchor" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> 逆轉換<a href="chapter-6.html#逆轉換" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>使用 qnorm(probability, μ, σ) 函數來找到對應於給定累積正態機率的特定 x 值</strong><br>
 <strong>其中 probability 是給定的累積機率，μ 是總體平均數，σ 是總體標準差</strong></p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="chapter-6.html#cb51-1" tabindex="-1"></a><span class="co"># 課本範例6.8c</span></span>
-<span id="cb51-2"><a href="chapter-6.html#cb51-2" tabindex="-1"></a><span class="co"># 希望找到 x 使得 P(X≤x)=0.90，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到該 x 值</span></span>
-<span id="cb51-3"><a href="chapter-6.html#cb51-3" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.90</span>, <span class="dv">12</span>, <span class="fl">3.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb106"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb106-1"><a href="chapter-6.html#cb106-1" tabindex="-1"></a><span class="co"># 課本範例6.8c</span></span>
+<span id="cb106-2"><a href="chapter-6.html#cb106-2" tabindex="-1"></a><span class="co"># 希望找到 x 使得 P(X≤x)=0.90，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到該 x 值</span></span>
+<span id="cb106-3"><a href="chapter-6.html#cb106-3" tabindex="-1"></a><span class="fu">qnorm</span>(<span class="fl">0.90</span>, <span class="dv">12</span>, <span class="fl">3.2</span>)</span></code></pre></div>
 <pre><code>## [1] 16.10097</code></pre>
 </div>
 </div>
@@ -344,26 +355,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><strong>使用 pexp(x, λ, lower.tail = FALSE or TRUE) 函數來計算指數隨機變數 X 小於或等於 x 或大於 x 的機率</strong><br>
 <strong>其中 x 是我們希望評估機率的值，λ 是速率參數</strong><br>
 <strong>對於函數中的最後一個參數如果我們輸入 lower.tail = FALSE，則 R 返回 P(X&gt;x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)</strong></p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="chapter-6.html#cb53-1" tabindex="-1"></a><span class="co"># 課本範例6.9b</span></span>
-<span id="cb53-2"><a href="chapter-6.html#cb53-2" tabindex="-1"></a><span class="co"># 因為 X 是一個指數隨機變數，且 λ = 1/25，我們可以通過輸入以下程式碼來找到 P(X&gt;60)</span></span>
-<span id="cb53-3"><a href="chapter-6.html#cb53-3" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">60</span>, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">25</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="chapter-6.html#cb108-1" tabindex="-1"></a><span class="co"># 課本範例6.9b</span></span>
+<span id="cb108-2"><a href="chapter-6.html#cb108-2" tabindex="-1"></a><span class="co"># 因為 X 是一個指數隨機變數，且 λ = 1/25，我們可以通過輸入以下程式碼來找到 P(X&gt;60)</span></span>
+<span id="cb108-3"><a href="chapter-6.html#cb108-3" tabindex="-1"></a><span class="fu">pexp</span>(<span class="dv">60</span>, <span class="at">rate =</span> <span class="dv">1</span><span class="sc">/</span><span class="dv">25</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
 <pre><code>## [1] 0.09071795</code></pre>
 </div>
 <div id="對數常態分布" class="section level2 hasAnchor" number="5.4">
 <h2><span class="header-section-number">5.4</span> 4.對數常態分布<a href="chapter-6.html#對數常態分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>使用 plnorm(y, μ, σ) 函數來計算對數常態隨機變數 Y 小於或等於 y 的機率</strong><br>
 <strong>其中 y 是我們希望評估機率的值，μ 是潛在正態分布的平均數，σ 是潛在正態分布的標準差</strong></p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="chapter-6.html#cb55-1" tabindex="-1"></a><span class="co"># 課本範例6.11a</span></span>
-<span id="cb55-2"><a href="chapter-6.html#cb55-2" tabindex="-1"></a><span class="co"># 因為 Y 是一個對數正態隨機變數，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到 P(Y≤200)</span></span>
-<span id="cb55-3"><a href="chapter-6.html#cb55-3" tabindex="-1"></a><span class="fu">plnorm</span>(<span class="dv">200</span>, <span class="dv">5</span>, <span class="fl">1.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb110"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb110-1"><a href="chapter-6.html#cb110-1" tabindex="-1"></a><span class="co"># 課本範例6.11a</span></span>
+<span id="cb110-2"><a href="chapter-6.html#cb110-2" tabindex="-1"></a><span class="co"># 因為 Y 是一個對數正態隨機變數，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到 P(Y≤200)</span></span>
+<span id="cb110-3"><a href="chapter-6.html#cb110-3" tabindex="-1"></a><span class="fu">plnorm</span>(<span class="dv">200</span>, <span class="dv">5</span>, <span class="fl">1.2</span>)</span></code></pre></div>
 <pre><code>## [1] 0.598164</code></pre>
 <div id="逆轉換-1" class="section level3 hasAnchor" number="5.4.1">
 <h3><span class="header-section-number">5.4.1</span> 逆轉換<a href="chapter-6.html#逆轉換-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><strong>使用 qlnorm(probability, μ, σ) 函數來找到對應於給定累積對數正態機率的特定 y 值</strong><br>
 <strong>其中 probability 是給定的累積機率，μ 是潛在正態分布的平均數，σ 是潛在正態分布的標準差</strong></p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="chapter-6.html#cb57-1" tabindex="-1"></a><span class="co"># 課本範例6.11b</span></span>
-<span id="cb57-2"><a href="chapter-6.html#cb57-2" tabindex="-1"></a><span class="co"># 因為我們希望找到 y 使得 P(Y≤y)=0.90，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到該 y 值</span></span>
-<span id="cb57-3"><a href="chapter-6.html#cb57-3" tabindex="-1"></a><span class="fu">qlnorm</span>(<span class="fl">0.90</span>, <span class="dv">5</span>, <span class="fl">1.2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="chapter-6.html#cb112-1" tabindex="-1"></a><span class="co"># 課本範例6.11b</span></span>
+<span id="cb112-2"><a href="chapter-6.html#cb112-2" tabindex="-1"></a><span class="co"># 因為我們希望找到 y 使得 P(Y≤y)=0.90，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到該 y 值</span></span>
+<span id="cb112-3"><a href="chapter-6.html#cb112-3" tabindex="-1"></a><span class="fu">qlnorm</span>(<span class="fl">0.90</span>, <span class="dv">5</span>, <span class="fl">1.2</span>)</span></code></pre></div>
 <pre><code>## [1] 690.808</code></pre>
 </div>
 </div>

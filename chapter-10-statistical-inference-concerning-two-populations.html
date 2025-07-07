@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,16 +324,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter10.xlsx <a href="https://docs.google.com/spreadsheets/d/1McirZ6yGPMRtXTL0bSDElsu5fHRfaMau/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-3" class="section level2 hasAnchor" number="9.1">
 <h2><span class="header-section-number">9.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-10-statistical-inference-concerning-two-populations.html#安裝載入套件讀檔-3" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb111"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb111-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb111-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-2" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb111-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-3" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter10.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb111-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-4" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Gold_Oil&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb111-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-5" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;Food_Calories&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb111-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-6" tabindex="-1"></a></span>
-<span id="cb111-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-7" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb111-8"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-8" tabindex="-1"></a>gold.oil.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb111-9"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb111-9" tabindex="-1"></a>food.calories.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb112-1" tabindex="-1"></a><span class="fu">head</span>(gold.oil.df)</span></code></pre></div>
+<div class="sourceCode" id="cb166"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb166-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb166-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-2" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb166-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-3" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter10.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb166-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-4" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Gold_Oil&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb166-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-5" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;Food_Calories&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb166-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-6" tabindex="-1"></a></span>
+<span id="cb166-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-7" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb166-8"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-8" tabindex="-1"></a>gold.oil.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb166-9"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb166-9" tabindex="-1"></a>food.calories.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb167-1" tabindex="-1"></a><span class="fu">head</span>(gold.oil.df)</span></code></pre></div>
 <pre><code>##   Gold Oil
 ## 1    6  -3
 ## 2   15  15
@@ -330,7 +341,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4   26  18
 ## 5    2  32
 ## 6   16  31</code></pre>
-<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb114-1" tabindex="-1"></a><span class="fu">head</span>(food.calories.df)</span></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb169-1" tabindex="-1"></a><span class="fu">head</span>(food.calories.df)</span></code></pre></div>
 <pre><code>##   Before After
 ## 1    395   378
 ## 2    404   392
@@ -352,13 +363,13 @@ H_A(對立假設) : μ1 - μ2 ≠ 0 （雙尾檢定）</code></pre>
 </div>
 <div id="iii.-計算-t-統計量" class="section level4 hasAnchor" number="9.2.0.3">
 <h4><span class="header-section-number">9.2.0.3</span> III. 計算 t 統計量<a href="chapter-10-statistical-inference-concerning-two-populations.html#iii.-計算-t-統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-1" tabindex="-1"></a><span class="co"># 範例 10.4</span></span>
-<span id="cb118-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-2" tabindex="-1"></a><span class="co"># 使用 gold.oil.df 數據文件來檢驗 Gold 和 Oil 兩個變數的均值是否存在顯著差異</span></span>
-<span id="cb118-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-3" tabindex="-1"></a><span class="co"># 使用 t.test() 函數進行雙尾 t 檢驗，假設樣本獨立且方差不相等</span></span>
-<span id="cb118-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-4" tabindex="-1"></a><span class="co"># 選取 gold.oil.df 數據框中的 Gold 列和 Oil 列進行比較</span></span>
-<span id="cb118-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-5" tabindex="-1"></a></span>
-<span id="cb118-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-6" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
-<span id="cb118-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb118-7" tabindex="-1"></a><span class="fu">t.test</span>(gold.oil.df[, <span class="st">&quot;Gold&quot;</span>], gold.oil.df[, <span class="st">&quot;Oil&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-1" tabindex="-1"></a><span class="co"># 範例 10.4</span></span>
+<span id="cb173-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-2" tabindex="-1"></a><span class="co"># 使用 gold.oil.df 數據文件來檢驗 Gold 和 Oil 兩個變數的均值是否存在顯著差異</span></span>
+<span id="cb173-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-3" tabindex="-1"></a><span class="co"># 使用 t.test() 函數進行雙尾 t 檢驗，假設樣本獨立且方差不相等</span></span>
+<span id="cb173-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-4" tabindex="-1"></a><span class="co"># 選取 gold.oil.df 數據框中的 Gold 列和 Oil 列進行比較</span></span>
+<span id="cb173-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-5" tabindex="-1"></a></span>
+<span id="cb173-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-6" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
+<span id="cb173-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb173-7" tabindex="-1"></a><span class="fu">t.test</span>(gold.oil.df[, <span class="st">&quot;Gold&quot;</span>], gold.oil.df[, <span class="st">&quot;Oil&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
 ## 
@@ -399,13 +410,13 @@ H_A(對立假設) : μ_0 &gt; 0 （右尾檢定）</code></pre>
 </div>
 <div id="iii.-計算-t-統計量-1" class="section level4 hasAnchor" number="9.3.0.3">
 <h4><span class="header-section-number">9.3.0.3</span> III. 計算 t 統計量<a href="chapter-10-statistical-inference-concerning-two-populations.html#iii.-計算-t-統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-1" tabindex="-1"></a><span class="co"># 使用範例 10.8 和 food.calories.df 數據文件來檢驗 Before 和 After 階段的均值差異是否大於零</span></span>
-<span id="cb124-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-2" tabindex="-1"></a><span class="co"># 使用 t.test() 函數進行配對樣本 t 檢驗</span></span>
-<span id="cb124-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-3" tabindex="-1"></a><span class="co"># 設置 paired = TRUE 表示配對樣本，alternative = &quot;greater&quot; 表示右尾檢驗</span></span>
-<span id="cb124-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-4" tabindex="-1"></a></span>
-<span id="cb124-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-5" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
-<span id="cb124-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-6" tabindex="-1"></a><span class="fu">t.test</span>(food.calories.df[, <span class="st">&quot;Before&quot;</span>], food.calories.df[, <span class="st">&quot;After&quot;</span>], </span>
-<span id="cb124-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb124-7" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb179-1"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-1" tabindex="-1"></a><span class="co"># 使用範例 10.8 和 food.calories.df 數據文件來檢驗 Before 和 After 階段的均值差異是否大於零</span></span>
+<span id="cb179-2"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-2" tabindex="-1"></a><span class="co"># 使用 t.test() 函數進行配對樣本 t 檢驗</span></span>
+<span id="cb179-3"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-3" tabindex="-1"></a><span class="co"># 設置 paired = TRUE 表示配對樣本，alternative = &quot;greater&quot; 表示右尾檢驗</span></span>
+<span id="cb179-4"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-4" tabindex="-1"></a></span>
+<span id="cb179-5"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-5" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
+<span id="cb179-6"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-6" tabindex="-1"></a><span class="fu">t.test</span>(food.calories.df[, <span class="st">&quot;Before&quot;</span>], food.calories.df[, <span class="st">&quot;After&quot;</span>], </span>
+<span id="cb179-7"><a href="chapter-10-statistical-inference-concerning-two-populations.html#cb179-7" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>, <span class="at">alternative =</span> <span class="st">&quot;greater&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  Paired t-test
 ## 

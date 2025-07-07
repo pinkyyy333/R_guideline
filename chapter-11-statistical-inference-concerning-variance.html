@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,8 +324,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter11.xlsx <a href="https://docs.google.com/spreadsheets/d/1BK8N8Ghh0gokco88COP-PzTWVTNFWP1-/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-4" class="section level2 hasAnchor" number="10.1">
 <h2><span class="header-section-number">10.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-11-statistical-inference-concerning-variance.html#安裝載入套件讀檔-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb128-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb128-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb128-2" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span></code></pre></div>
+<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb183-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-2" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span></code></pre></div>
 <pre><code>## 
 ## 載入套件：&#39;EnvStats&#39;</code></pre>
 <pre><code>## 下列物件被遮斷自 &#39;package:stats&#39;:
@@ -323,13 +334,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 下列物件被遮斷自 &#39;package:base&#39;:
 ## 
 ##     print.default</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb132-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter11.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb132-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Fund_Returns&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb132-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-4" tabindex="-1"></a></span>
-<span id="cb132-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb132-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-6" tabindex="-1"></a>fund.returns.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb132-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb132-7" tabindex="-1"></a><span class="fu">head</span>(fund.returns.df)</span></code></pre></div>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb187-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter11.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb187-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Fund_Returns&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb187-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-4" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb187-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-6" tabindex="-1"></a>fund.returns.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb187-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-7" tabindex="-1"></a><span class="fu">head</span>(fund.returns.df)</span></code></pre></div>
 <pre><code>##   Year Metals Income
 ## 1 2000  -7.34   4.07
 ## 2 2001  18.33   6.52
@@ -341,8 +352,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="σ²-的信賴區間" class="section level2 hasAnchor" number="10.2">
 <h2><span class="header-section-number">10.2</span> 2. σ² 的信賴區間<a href="chapter-11-statistical-inference-concerning-variance.html#σ²-的信賴區間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>使用 varTest() 函數來計算變異數的信賴區間：</p>
-<div class="sourceCode" id="cb134"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb134-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb134-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Metals&quot;</span>])</span>
-<span id="cb134-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb134-2" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Metals&quot;</span>])</span>
+<span id="cb189-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-2" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <pre><code>## 
 ## Results of Hypothesis Test
 ## --------------------------
@@ -395,12 +406,12 @@ H_A(對立假設) : σ² ≠ 72.25 （雙尾檢定）</code></pre>
 </div>
 <div id="iii.-計算檢驗統計量" class="section level4 hasAnchor" number="10.3.0.3">
 <h4><span class="header-section-number">10.3.0.3</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-1" tabindex="-1"></a><span class="co"># 使用範例 11.4 和 fund.returns.df 數據文件中的 &quot;Income&quot; 變量進行變異數檢驗</span></span>
-<span id="cb139-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-2" tabindex="-1"></a><span class="co"># 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25</span></span>
-<span id="cb139-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-3" tabindex="-1"></a></span>
-<span id="cb139-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-4" tabindex="-1"></a><span class="co"># 執行變異數檢驗</span></span>
-<span id="cb139-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Income&quot;</span>], <span class="at">sigma.squared =</span> <span class="fl">72.25</span>)</span>
-<span id="cb139-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb139-6" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-1" tabindex="-1"></a><span class="co"># 使用範例 11.4 和 fund.returns.df 數據文件中的 &quot;Income&quot; 變量進行變異數檢驗</span></span>
+<span id="cb194-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-2" tabindex="-1"></a><span class="co"># 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25</span></span>
+<span id="cb194-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-3" tabindex="-1"></a></span>
+<span id="cb194-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-4" tabindex="-1"></a><span class="co"># 執行變異數檢驗</span></span>
+<span id="cb194-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Income&quot;</span>], <span class="at">sigma.squared =</span> <span class="fl">72.25</span>)</span>
+<span id="cb194-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-6" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
 <pre><code>## 
 ## Results of Hypothesis Test
 ## --------------------------
@@ -437,23 +448,23 @@ p 值 ≥ 0.05，無法拒絕 H_0</code></pre>
 <div id="變異數比值的信賴區間計算" class="section level2 hasAnchor" number="10.4">
 <h2><span class="header-section-number">10.4</span> 4.變異數比值的信賴區間計算<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值的信賴區間計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>我們使用範例 11.6 和 fund.returns.df 數據文件來構造兩個母體之間的變異數比值的信賴區間。<br></p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-1" tabindex="-1"></a><span class="co"># 計算樣本方差比值</span></span>
-<span id="cb143-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-2" tabindex="-1"></a>prop.var <span class="ot">&lt;-</span> <span class="fl">182.25</span> <span class="sc">/</span> <span class="fl">457.96</span></span>
-<span id="cb143-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-3" tabindex="-1"></a></span>
-<span id="cb143-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-4" tabindex="-1"></a><span class="co"># 計算自由度</span></span>
-<span id="cb143-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-5" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb143-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-6" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb143-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-7" tabindex="-1"></a></span>
-<span id="cb143-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-8" tabindex="-1"></a><span class="co"># 計算信賴區間的下限</span></span>
-<span id="cb143-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-9" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> prop.var <span class="sc">/</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
-<span id="cb143-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-10" tabindex="-1"></a></span>
-<span id="cb143-11"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-11" tabindex="-1"></a><span class="co"># 計算信賴區間的上限</span></span>
-<span id="cb143-12"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-12" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> prop.var <span class="sc">*</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df2, df1)</span>
-<span id="cb143-13"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-13" tabindex="-1"></a></span>
-<span id="cb143-14"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-14" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb143-15"><a href="chapter-11-statistical-inference-concerning-variance.html#cb143-15" tabindex="-1"></a><span class="fu">print</span>(lower.bound)</span></code></pre></div>
+<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-1" tabindex="-1"></a><span class="co"># 計算樣本方差比值</span></span>
+<span id="cb198-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-2" tabindex="-1"></a>prop.var <span class="ot">&lt;-</span> <span class="fl">182.25</span> <span class="sc">/</span> <span class="fl">457.96</span></span>
+<span id="cb198-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-3" tabindex="-1"></a></span>
+<span id="cb198-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-4" tabindex="-1"></a><span class="co"># 計算自由度</span></span>
+<span id="cb198-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-5" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb198-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-6" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">-</span> <span class="dv">1</span></span>
+<span id="cb198-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-7" tabindex="-1"></a></span>
+<span id="cb198-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-8" tabindex="-1"></a><span class="co"># 計算信賴區間的下限</span></span>
+<span id="cb198-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-9" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> prop.var <span class="sc">/</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
+<span id="cb198-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-10" tabindex="-1"></a></span>
+<span id="cb198-11"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-11" tabindex="-1"></a><span class="co"># 計算信賴區間的上限</span></span>
+<span id="cb198-12"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-12" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> prop.var <span class="sc">*</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df2, df1)</span>
+<span id="cb198-13"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-13" tabindex="-1"></a></span>
+<span id="cb198-14"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-14" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
+<span id="cb198-15"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-15" tabindex="-1"></a><span class="fu">print</span>(lower.bound)</span></code></pre></div>
 <pre><code>## [1] 0.1300441</code></pre>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb145-1" tabindex="-1"></a><span class="fu">print</span>(upper.bound)</span></code></pre></div>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb200-1" tabindex="-1"></a><span class="fu">print</span>(upper.bound)</span></code></pre></div>
 <pre><code>## [1] 1.401487</code></pre>
 </div>
 <div id="變異數比值檢驗" class="section level2 hasAnchor" number="10.5">
@@ -467,24 +478,24 @@ p 值 ≥ 0.05，無法拒絕 H_0</code></pre>
 </div>
 <div id="iii.-計算檢驗統計量-1" class="section level4 hasAnchor" number="10.5.0.2">
 <h4><span class="header-section-number">10.5.0.2</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb148-1" tabindex="-1"></a><span class="co"># 計算樣本 F 統計量，它是兩個樣本變異數的比值</span></span>
-<span id="cb148-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb148-2" tabindex="-1"></a>sample.F <span class="ot">&lt;-</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Metals&quot;</span>]) <span class="sc">/</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Income&quot;</span>])</span>
-<span id="cb148-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb148-3" tabindex="-1"></a></span>
-<span id="cb148-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb148-4" tabindex="-1"></a><span class="co"># 顯示樣本 F 統計量</span></span>
-<span id="cb148-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb148-5" tabindex="-1"></a><span class="fu">print</span>(sample.F)</span></code></pre></div>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-1" tabindex="-1"></a><span class="co"># 計算樣本 F 統計量，它是兩個樣本變異數的比值</span></span>
+<span id="cb203-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-2" tabindex="-1"></a>sample.F <span class="ot">&lt;-</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Metals&quot;</span>]) <span class="sc">/</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Income&quot;</span>])</span>
+<span id="cb203-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-3" tabindex="-1"></a></span>
+<span id="cb203-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-4" tabindex="-1"></a><span class="co"># 顯示樣本 F 統計量</span></span>
+<span id="cb203-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-5" tabindex="-1"></a><span class="fu">print</span>(sample.F)</span></code></pre></div>
 <pre><code>## [1] 11.25539</code></pre>
 <div id="計算-p-值" class="section level5 hasAnchor" number="10.5.0.2.1">
 <h5><span class="header-section-number">10.5.0.2.1</span> 計算 p 值<a href="chapter-11-statistical-inference-concerning-variance.html#計算-p-值" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb150-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-1" tabindex="-1"></a><span class="co"># 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值</span></span>
-<span id="cb150-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-2" tabindex="-1"></a><span class="co"># lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。</span></span>
-<span id="cb150-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-3" tabindex="-1"></a><span class="co"># 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。</span></span>
-<span id="cb150-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-4" tabindex="-1"></a><span class="co"># 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2</span></span>
-<span id="cb150-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-5" tabindex="-1"></a></span>
-<span id="cb150-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-6" tabindex="-1"></a><span class="co"># 計算 p 值</span></span>
-<span id="cb150-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-7" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pf</span>(sample.F, <span class="dv">9</span>, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb150-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-8" tabindex="-1"></a></span>
-<span id="cb150-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-9" tabindex="-1"></a><span class="co"># 顯示 p 值</span></span>
-<span id="cb150-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb150-10" tabindex="-1"></a><span class="fu">print</span>(pvalue)</span></code></pre></div>
+<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-1" tabindex="-1"></a><span class="co"># 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值</span></span>
+<span id="cb205-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-2" tabindex="-1"></a><span class="co"># lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。</span></span>
+<span id="cb205-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-3" tabindex="-1"></a><span class="co"># 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。</span></span>
+<span id="cb205-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-4" tabindex="-1"></a><span class="co"># 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2</span></span>
+<span id="cb205-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-5" tabindex="-1"></a></span>
+<span id="cb205-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-6" tabindex="-1"></a><span class="co"># 計算 p 值</span></span>
+<span id="cb205-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-7" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pf</span>(sample.F, <span class="dv">9</span>, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb205-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-8" tabindex="-1"></a></span>
+<span id="cb205-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-9" tabindex="-1"></a><span class="co"># 顯示 p 值</span></span>
+<span id="cb205-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-10" tabindex="-1"></a><span class="fu">print</span>(pvalue)</span></code></pre></div>
 <pre><code>## [1] 0.001317916</code></pre>
 </div>
 </div>

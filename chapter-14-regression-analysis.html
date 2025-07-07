@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,17 +324,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter14.xlsx <a href="https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-6" class="section level2 hasAnchor" number="12.1">
 <h2><span class="header-section-number">12.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-14-regression-analysis.html#安裝載入套件讀檔-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-14-regression-analysis.html#cb187-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
-<span id="cb187-2"><a href="chapter-14-regression-analysis.html#cb187-2" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb187-3"><a href="chapter-14-regression-analysis.html#cb187-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb187-4"><a href="chapter-14-regression-analysis.html#cb187-4" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="chapter-14-regression-analysis.html#cb187-5" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb187-6"><a href="chapter-14-regression-analysis.html#cb187-6" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter14.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb187-7"><a href="chapter-14-regression-analysis.html#cb187-7" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Debt_Payments&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb187-8"><a href="chapter-14-regression-analysis.html#cb187-8" tabindex="-1"></a></span>
-<span id="cb187-9"><a href="chapter-14-regression-analysis.html#cb187-9" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb187-10"><a href="chapter-14-regression-analysis.html#cb187-10" tabindex="-1"></a>debt.payments.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb187-11"><a href="chapter-14-regression-analysis.html#cb187-11" tabindex="-1"></a><span class="fu">head</span>(debt.payments.df)</span></code></pre></div>
+<div class="sourceCode" id="cb242"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb242-1"><a href="chapter-14-regression-analysis.html#cb242-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb242-2"><a href="chapter-14-regression-analysis.html#cb242-2" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb242-3"><a href="chapter-14-regression-analysis.html#cb242-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb242-4"><a href="chapter-14-regression-analysis.html#cb242-4" tabindex="-1"></a></span>
+<span id="cb242-5"><a href="chapter-14-regression-analysis.html#cb242-5" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb242-6"><a href="chapter-14-regression-analysis.html#cb242-6" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter14.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb242-7"><a href="chapter-14-regression-analysis.html#cb242-7" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Debt_Payments&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb242-8"><a href="chapter-14-regression-analysis.html#cb242-8" tabindex="-1"></a></span>
+<span id="cb242-9"><a href="chapter-14-regression-analysis.html#cb242-9" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb242-10"><a href="chapter-14-regression-analysis.html#cb242-10" tabindex="-1"></a>debt.payments.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb242-11"><a href="chapter-14-regression-analysis.html#cb242-11" tabindex="-1"></a><span class="fu">head</span>(debt.payments.df)</span></code></pre></div>
 <pre><code>##   Metropolitan.area Debt Income Unemployment
 ## 1  Washington, D.C. 1285  103.5          6.3
 ## 2           Seattle 1135   81.7          8.5
@@ -346,14 +357,14 @@ H_A(對立假設) : 自變量 (Income) 對應變量 (Debt) 有顯著影響</code
 </div>
 <div id="iii.-輸入數據並構建線性迴歸模型" class="section level4 hasAnchor" number="12.2.0.3">
 <h4><span class="header-section-number">12.2.0.3</span> III. 輸入數據並構建線性迴歸模型<a href="chapter-14-regression-analysis.html#iii.-輸入數據並構建線性迴歸模型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="chapter-14-regression-analysis.html#cb191-1" tabindex="-1"></a><span class="co"># 構建線性迴歸模型</span></span>
-<span id="cb191-2"><a href="chapter-14-regression-analysis.html#cb191-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個線性模型對象。這個模型將債務 (Debt) 作為應變量，收入 (Income) 作為自變量。</span></span>
-<span id="cb191-3"><a href="chapter-14-regression-analysis.html#cb191-3" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span></code></pre></div>
+<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="chapter-14-regression-analysis.html#cb246-1" tabindex="-1"></a><span class="co"># 構建線性迴歸模型</span></span>
+<span id="cb246-2"><a href="chapter-14-regression-analysis.html#cb246-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個線性模型對象。這個模型將債務 (Debt) 作為應變量，收入 (Income) 作為自變量。</span></span>
+<span id="cb246-3"><a href="chapter-14-regression-analysis.html#cb246-3" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span></code></pre></div>
 </div>
 <div id="iv.-獲取回歸模型摘要" class="section level4 hasAnchor" number="12.2.0.4">
 <h4><span class="header-section-number">12.2.0.4</span> IV. 獲取回歸模型摘要<a href="chapter-14-regression-analysis.html#iv.-獲取回歸模型摘要" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="chapter-14-regression-analysis.html#cb192-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和顯著性水平等信息。</span></span>
-<span id="cb192-2"><a href="chapter-14-regression-analysis.html#cb192-2" tabindex="-1"></a><span class="fu">summary</span>(debt.income.lm)</span></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="chapter-14-regression-analysis.html#cb247-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和顯著性水平等信息。</span></span>
+<span id="cb247-2"><a href="chapter-14-regression-analysis.html#cb247-2" tabindex="-1"></a><span class="fu">summary</span>(debt.income.lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Debt ~ Income, data = debt.payments.df)
@@ -375,8 +386,8 @@ H_A(對立假設) : 自變量 (Income) 對應變量 (Debt) 有顯著影響</code
 </div>
 <div id="v.-進行-anova-分析" class="section level4 hasAnchor" number="12.2.0.5">
 <h4><span class="header-section-number">12.2.0.5</span> V. 進行 ANOVA 分析<a href="chapter-14-regression-analysis.html#v.-進行-anova-分析" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-14-regression-analysis.html#cb194-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數來生成 ANOVA 表，以檢查模型的總體顯著性</span></span>
-<span id="cb194-2"><a href="chapter-14-regression-analysis.html#cb194-2" tabindex="-1"></a><span class="fu">anova</span>(debt.income.lm)</span></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="chapter-14-regression-analysis.html#cb249-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數來生成 ANOVA 表，以檢查模型的總體顯著性</span></span>
+<span id="cb249-2"><a href="chapter-14-regression-analysis.html#cb249-2" tabindex="-1"></a><span class="fu">anova</span>(debt.income.lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Debt
@@ -420,15 +431,15 @@ H_A (對立假設): 收入和/或失業率對債務有顯著影響。</code></pr
 </div>
 <div id="iii.-輸入數據並構建多元線性迴歸模型" class="section level4 hasAnchor" number="12.3.0.3">
 <h4><span class="header-section-number">12.3.0.3</span> III. 輸入數據並構建多元線性迴歸模型<a href="chapter-14-regression-analysis.html#iii.-輸入數據並構建多元線性迴歸模型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-14-regression-analysis.html#cb200-1" tabindex="-1"></a><span class="co"># 構建多元線性迴歸模型</span></span>
-<span id="cb200-2"><a href="chapter-14-regression-analysis.html#cb200-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來創建一個多元線性模型對象，將債務 (Debt) 作為應變量，收入 (Income) 和失業率 (Unemployment) 作為自變量。</span></span>
-<span id="cb200-3"><a href="chapter-14-regression-analysis.html#cb200-3" tabindex="-1"></a>debt.multiple.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income <span class="sc">+</span> Unemployment, <span class="at">data =</span> debt.payments.df)</span>
-<span id="cb200-4"><a href="chapter-14-regression-analysis.html#cb200-4" tabindex="-1"></a><span class="co"># 注意：lm() 函數執行後不會立即輸出結果，您需要使用其他函數來查看結果。</span></span></code></pre></div>
+<div class="sourceCode" id="cb255"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb255-1"><a href="chapter-14-regression-analysis.html#cb255-1" tabindex="-1"></a><span class="co"># 構建多元線性迴歸模型</span></span>
+<span id="cb255-2"><a href="chapter-14-regression-analysis.html#cb255-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來創建一個多元線性模型對象，將債務 (Debt) 作為應變量，收入 (Income) 和失業率 (Unemployment) 作為自變量。</span></span>
+<span id="cb255-3"><a href="chapter-14-regression-analysis.html#cb255-3" tabindex="-1"></a>debt.multiple.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income <span class="sc">+</span> Unemployment, <span class="at">data =</span> debt.payments.df)</span>
+<span id="cb255-4"><a href="chapter-14-regression-analysis.html#cb255-4" tabindex="-1"></a><span class="co"># 注意：lm() 函數執行後不會立即輸出結果，您需要使用其他函數來查看結果。</span></span></code></pre></div>
 </div>
 <div id="iv.-獲取回歸模型摘要-1" class="section level4 hasAnchor" number="12.3.0.4">
 <h4><span class="header-section-number">12.3.0.4</span> IV. 獲取回歸模型摘要<a href="chapter-14-regression-analysis.html#iv.-獲取回歸模型摘要-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="chapter-14-regression-analysis.html#cb201-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和 p 值等信息。</span></span>
-<span id="cb201-2"><a href="chapter-14-regression-analysis.html#cb201-2" tabindex="-1"></a><span class="fu">summary</span>(debt.multiple.lm)</span></code></pre></div>
+<div class="sourceCode" id="cb256"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb256-1"><a href="chapter-14-regression-analysis.html#cb256-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和 p 值等信息。</span></span>
+<span id="cb256-2"><a href="chapter-14-regression-analysis.html#cb256-2" tabindex="-1"></a><span class="fu">summary</span>(debt.multiple.lm)</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = Debt ~ Income + Unemployment, data = debt.payments.df)
@@ -451,8 +462,8 @@ H_A (對立假設): 收入和/或失業率對債務有顯著影響。</code></pr
 </div>
 <div id="v.-進行-anova-分析-1" class="section level4 hasAnchor" number="12.3.0.5">
 <h4><span class="header-section-number">12.3.0.5</span> V. 進行 ANOVA 分析<a href="chapter-14-regression-analysis.html#v.-進行-anova-分析-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-14-regression-analysis.html#cb203-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數生成 ANOVA 表，以評估模型的整體顯著性。</span></span>
-<span id="cb203-2"><a href="chapter-14-regression-analysis.html#cb203-2" tabindex="-1"></a><span class="fu">anova</span>(debt.multiple.lm)</span></code></pre></div>
+<div class="sourceCode" id="cb258"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb258-1"><a href="chapter-14-regression-analysis.html#cb258-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數生成 ANOVA 表，以評估模型的整體顯著性。</span></span>
+<span id="cb258-2"><a href="chapter-14-regression-analysis.html#cb258-2" tabindex="-1"></a><span class="fu">anova</span>(debt.multiple.lm)</span></code></pre></div>
 <pre><code>## Analysis of Variance Table
 ## 
 ## Response: Debt
@@ -489,38 +500,38 @@ H_A (對立假設): 收入和/或失業率對債務有顯著影響。</code></pr
 <h2><span class="header-section-number">12.4</span> 4. 構建帶有趨勢線的散佈圖<a href="chapter-14-regression-analysis.html#構建帶有趨勢線的散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="i.-使用-plot-函數構建散佈圖" class="section level3 hasAnchor" number="12.4.1">
 <h3><span class="header-section-number">12.4.1</span> I. 使用 plot() 函數構建散佈圖<a href="chapter-14-regression-analysis.html#i.-使用-plot-函數構建散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter-14-regression-analysis.html#cb207-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
-<span id="cb207-2"><a href="chapter-14-regression-analysis.html#cb207-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
-<span id="cb207-3"><a href="chapter-14-regression-analysis.html#cb207-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
-<span id="cb207-4"><a href="chapter-14-regression-analysis.html#cb207-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb262"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb262-1"><a href="chapter-14-regression-analysis.html#cb262-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
+<span id="cb262-2"><a href="chapter-14-regression-analysis.html#cb262-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
+<span id="cb262-3"><a href="chapter-14-regression-analysis.html#cb262-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
+<span id="cb262-4"><a href="chapter-14-regression-analysis.html#cb262-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/14-4-1-1.png" width="672" /></p>
 </div>
 <div id="ii.-添加趨勢線" class="section level3 hasAnchor" number="12.4.2">
 <h3><span class="header-section-number">12.4.2</span> II. 添加趨勢線<a href="chapter-14-regression-analysis.html#ii.-添加趨勢線" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter-14-regression-analysis.html#cb208-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
-<span id="cb208-2"><a href="chapter-14-regression-analysis.html#cb208-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
-<span id="cb208-3"><a href="chapter-14-regression-analysis.html#cb208-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
-<span id="cb208-4"><a href="chapter-14-regression-analysis.html#cb208-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span>
-<span id="cb208-5"><a href="chapter-14-regression-analysis.html#cb208-5" tabindex="-1"></a></span>
-<span id="cb208-6"><a href="chapter-14-regression-analysis.html#cb208-6" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個簡單的線性回歸模型</span></span>
-<span id="cb208-7"><a href="chapter-14-regression-analysis.html#cb208-7" tabindex="-1"></a><span class="co"># 然後使用 abline() 函數將趨勢線添加到散佈圖中</span></span>
-<span id="cb208-8"><a href="chapter-14-regression-analysis.html#cb208-8" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span>
-<span id="cb208-9"><a href="chapter-14-regression-analysis.html#cb208-9" tabindex="-1"></a><span class="fu">abline</span>(debt.income.lm)</span></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="chapter-14-regression-analysis.html#cb263-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
+<span id="cb263-2"><a href="chapter-14-regression-analysis.html#cb263-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
+<span id="cb263-3"><a href="chapter-14-regression-analysis.html#cb263-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
+<span id="cb263-4"><a href="chapter-14-regression-analysis.html#cb263-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span>
+<span id="cb263-5"><a href="chapter-14-regression-analysis.html#cb263-5" tabindex="-1"></a></span>
+<span id="cb263-6"><a href="chapter-14-regression-analysis.html#cb263-6" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個簡單的線性回歸模型</span></span>
+<span id="cb263-7"><a href="chapter-14-regression-analysis.html#cb263-7" tabindex="-1"></a><span class="co"># 然後使用 abline() 函數將趨勢線添加到散佈圖中</span></span>
+<span id="cb263-8"><a href="chapter-14-regression-analysis.html#cb263-8" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span>
+<span id="cb263-9"><a href="chapter-14-regression-analysis.html#cb263-9" tabindex="-1"></a><span class="fu">abline</span>(debt.income.lm)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/14-4-2-1.png" width="672" /></p>
 </div>
 <div id="iii.-使用-ggplot2-函數構建更精美的散佈圖" class="section level3 hasAnchor" number="12.4.3">
 <h3><span class="header-section-number">12.4.3</span> III. 使用 ggplot2 函數構建更精美的散佈圖<a href="chapter-14-regression-analysis.html#iii.-使用-ggplot2-函數構建更精美的散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter-14-regression-analysis.html#cb209-1" tabindex="-1"></a><span class="co"># 載入 ggplot2</span></span>
-<span id="cb209-2"><a href="chapter-14-regression-analysis.html#cb209-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb209-3"><a href="chapter-14-regression-analysis.html#cb209-3" tabindex="-1"></a></span>
-<span id="cb209-4"><a href="chapter-14-regression-analysis.html#cb209-4" tabindex="-1"></a><span class="co"># 使用 ggplot2 創建帶有趨勢線的散佈圖</span></span>
-<span id="cb209-5"><a href="chapter-14-regression-analysis.html#cb209-5" tabindex="-1"></a>debt.income.plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(debt.payments.df, <span class="fu">aes</span>(Income, Debt)) <span class="sc">+</span></span>
-<span id="cb209-6"><a href="chapter-14-regression-analysis.html#cb209-6" tabindex="-1"></a>                    <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># 添加數據點</span></span>
-<span id="cb209-7"><a href="chapter-14-regression-analysis.html#cb209-7" tabindex="-1"></a>                    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span>  <span class="co"># 添加趨勢線</span></span>
-<span id="cb209-8"><a href="chapter-14-regression-analysis.html#cb209-8" tabindex="-1"></a>                    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;債務支付 ($)&quot;</span>)  <span class="co"># 添加自定義標籤</span></span>
-<span id="cb209-9"><a href="chapter-14-regression-analysis.html#cb209-9" tabindex="-1"></a></span>
-<span id="cb209-10"><a href="chapter-14-regression-analysis.html#cb209-10" tabindex="-1"></a><span class="co"># 顯示圖表</span></span>
-<span id="cb209-11"><a href="chapter-14-regression-analysis.html#cb209-11" tabindex="-1"></a><span class="fu">print</span>(debt.income.plot)</span></code></pre></div>
+<div class="sourceCode" id="cb264"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb264-1"><a href="chapter-14-regression-analysis.html#cb264-1" tabindex="-1"></a><span class="co"># 載入 ggplot2</span></span>
+<span id="cb264-2"><a href="chapter-14-regression-analysis.html#cb264-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb264-3"><a href="chapter-14-regression-analysis.html#cb264-3" tabindex="-1"></a></span>
+<span id="cb264-4"><a href="chapter-14-regression-analysis.html#cb264-4" tabindex="-1"></a><span class="co"># 使用 ggplot2 創建帶有趨勢線的散佈圖</span></span>
+<span id="cb264-5"><a href="chapter-14-regression-analysis.html#cb264-5" tabindex="-1"></a>debt.income.plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(debt.payments.df, <span class="fu">aes</span>(Income, Debt)) <span class="sc">+</span></span>
+<span id="cb264-6"><a href="chapter-14-regression-analysis.html#cb264-6" tabindex="-1"></a>                    <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># 添加數據點</span></span>
+<span id="cb264-7"><a href="chapter-14-regression-analysis.html#cb264-7" tabindex="-1"></a>                    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span>  <span class="co"># 添加趨勢線</span></span>
+<span id="cb264-8"><a href="chapter-14-regression-analysis.html#cb264-8" tabindex="-1"></a>                    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;債務支付 ($)&quot;</span>)  <span class="co"># 添加自定義標籤</span></span>
+<span id="cb264-9"><a href="chapter-14-regression-analysis.html#cb264-9" tabindex="-1"></a></span>
+<span id="cb264-10"><a href="chapter-14-regression-analysis.html#cb264-10" tabindex="-1"></a><span class="co"># 顯示圖表</span></span>
+<span id="cb264-11"><a href="chapter-14-regression-analysis.html#cb264-11" tabindex="-1"></a><span class="fu">print</span>(debt.income.plot)</span></code></pre></div>
 <pre><code>## $data
 ##    Metropolitan.area Debt Income Unemployment
 ## 1   Washington, D.C. 1285  103.5          6.3

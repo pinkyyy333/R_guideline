@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,30 +324,30 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter 2 - R markdown檔案 <a href="https://drive.google.com/file/d/1JJa5F2DwkJ8Szw5mhVzfSns4wEOGj2JE/view?usp=sharing">下載點</a></p>
 <div id="安裝並載入套件讀檔" class="section level2 hasAnchor" number="2.1">
 <h2><span class="header-section-number">2.1</span> 1. 安裝並載入套件&amp;讀檔<a href="chapter-2.html#安裝並載入套件讀檔" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="chapter-2.html#cb5-1" tabindex="-1"></a><span class="co"># 安裝openxlsx套件--套件只要安裝過一次即可</span></span>
-<span id="cb5-2"><a href="chapter-2.html#cb5-2" tabindex="-1"></a><span class="co"># install.packages(&quot;openxlsx&quot;)</span></span>
-<span id="cb5-3"><a href="chapter-2.html#cb5-3" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="chapter-2.html#cb5-4" tabindex="-1"></a><span class="co"># 載入套件</span></span>
-<span id="cb5-5"><a href="chapter-2.html#cb5-5" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="chapter-2.html#cb60-1" tabindex="-1"></a><span class="co"># 安裝openxlsx套件--套件只要安裝過一次即可</span></span>
+<span id="cb60-2"><a href="chapter-2.html#cb60-2" tabindex="-1"></a><span class="co"># install.packages(&quot;openxlsx&quot;)</span></span>
+<span id="cb60-3"><a href="chapter-2.html#cb60-3" tabindex="-1"></a></span>
+<span id="cb60-4"><a href="chapter-2.html#cb60-4" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb60-5"><a href="chapter-2.html#cb60-5" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span></code></pre></div>
 <div id="將xlsx檔案讀入為dataframe" class="section level3 hasAnchor" number="2.1.1">
 <h3><span class="header-section-number">2.1.1</span> 將xlsx檔案讀入為dataframe<a href="chapter-2.html#將xlsx檔案讀入為dataframe" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>Chapter2.xlsx <a href="https://docs.google.com/spreadsheets/d/16s-_ftmfIGnKEoCx1QC34F1N7DUQSILk/edit?usp=sharing&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="chapter-2.html#cb6-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb6-2"><a href="chapter-2.html#cb6-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter2.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb6-3"><a href="chapter-2.html#cb6-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Marital_Status&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb6-4"><a href="chapter-2.html#cb6-4" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;MV_Houses&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb6-5"><a href="chapter-2.html#cb6-5" tabindex="-1"></a></span>
-<span id="cb6-6"><a href="chapter-2.html#cb6-6" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb6-7"><a href="chapter-2.html#cb6-7" tabindex="-1"></a>marital.status.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb6-8"><a href="chapter-2.html#cb6-8" tabindex="-1"></a>mv.houses.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="chapter-2.html#cb7-1" tabindex="-1"></a><span class="co"># 顯示讀取的數據</span></span>
-<span id="cb7-2"><a href="chapter-2.html#cb7-2" tabindex="-1"></a><span class="fu">print</span>(marital.status.df)</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="chapter-2.html#cb61-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb61-2"><a href="chapter-2.html#cb61-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter2.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb61-3"><a href="chapter-2.html#cb61-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Marital_Status&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb61-4"><a href="chapter-2.html#cb61-4" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;MV_Houses&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb61-5"><a href="chapter-2.html#cb61-5" tabindex="-1"></a></span>
+<span id="cb61-6"><a href="chapter-2.html#cb61-6" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb61-7"><a href="chapter-2.html#cb61-7" tabindex="-1"></a>marital.status.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb61-8"><a href="chapter-2.html#cb61-8" tabindex="-1"></a>mv.houses.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="chapter-2.html#cb62-1" tabindex="-1"></a><span class="co"># 顯示讀取的數據</span></span>
+<span id="cb62-2"><a href="chapter-2.html#cb62-2" tabindex="-1"></a><span class="fu">print</span>(marital.status.df)</span></code></pre></div>
 <pre><code>##   Marital.Status 1960 2010
 ## 1        Married 0.71 0.52
 ## 2         Single 0.15 0.28
 ## 3       Divorced 0.05 0.14
 ## 4        Widowed 0.09 0.06</code></pre>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="chapter-2.html#cb9-1" tabindex="-1"></a><span class="fu">print</span>(mv.houses.df)</span></code></pre></div>
+<div class="sourceCode" id="cb64"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb64-1"><a href="chapter-2.html#cb64-1" tabindex="-1"></a><span class="fu">print</span>(mv.houses.df)</span></code></pre></div>
 <pre><code>##    House.Price
 ## 1          430
 ## 2          520
@@ -380,135 +391,135 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">2.2</span> 2. 繪製圓餅圖(Pie Chart)<a href="chapter-2.html#繪製圓餅圖pie-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="繪製1960年婚姻狀態圓餅圖" class="section level3 hasAnchor" number="2.2.1">
 <h3><span class="header-section-number">2.2.1</span> 繪製1960年婚姻狀態圓餅圖<a href="chapter-2.html#繪製1960年婚姻狀態圓餅圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="chapter-2.html#cb11-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- pie()函數</span></span>
-<span id="cb11-2"><a href="chapter-2.html#cb11-2" tabindex="-1"></a><span class="fu">pie</span>(marital.status.df[, <span class="st">&quot;1960&quot;</span>], <span class="co"># 選擇使用marital.status.df中1960年的資料繪製圓餅圖</span></span>
-<span id="cb11-3"><a href="chapter-2.html#cb11-3" tabindex="-1"></a>    <span class="at">labels =</span> marital.status.df[, <span class="st">&quot;Marital.Status&quot;</span>], <span class="co"># 選擇用來分類的feature為婚姻狀況(Marital.Status)</span></span>
-<span id="cb11-4"><a href="chapter-2.html#cb11-4" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="co"># 設定圓餅圖的標題</span></span></code></pre></div>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="chapter-2.html#cb66-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- pie()函數</span></span>
+<span id="cb66-2"><a href="chapter-2.html#cb66-2" tabindex="-1"></a><span class="fu">pie</span>(marital.status.df[, <span class="st">&quot;1960&quot;</span>], <span class="co"># 選擇使用marital.status.df中1960年的資料繪製圓餅圖</span></span>
+<span id="cb66-3"><a href="chapter-2.html#cb66-3" tabindex="-1"></a>    <span class="at">labels =</span> marital.status.df[, <span class="st">&quot;Marital.Status&quot;</span>], <span class="co"># 選擇用來分類的feature為婚姻狀況(Marital.Status)</span></span>
+<span id="cb66-4"><a href="chapter-2.html#cb66-4" tabindex="-1"></a>    <span class="at">main =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="co"># 設定圓餅圖的標題</span></span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/pie_chart-1.png" width="672" /></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="chapter-2.html#cb12-1" tabindex="-1"></a><span class="co"># ggplot2套件繪圖功能</span></span>
-<span id="cb12-2"><a href="chapter-2.html#cb12-2" tabindex="-1"></a><span class="co"># 載入ggplot2套件</span></span>
-<span id="cb12-3"><a href="chapter-2.html#cb12-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="chapter-2.html#cb67-1" tabindex="-1"></a><span class="co"># ggplot2套件繪圖功能</span></span>
+<span id="cb67-2"><a href="chapter-2.html#cb67-2" tabindex="-1"></a><span class="co"># 載入ggplot2套件</span></span>
+<span id="cb67-3"><a href="chapter-2.html#cb67-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span></code></pre></div>
 <pre><code>## Warning: 套件 &#39;ggplot2&#39; 是用 R 版本 4.3.3 來建造的</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="chapter-2.html#cb14-1" tabindex="-1"></a><span class="co"># 設置圓餅圖的顏色</span></span>
-<span id="cb14-2"><a href="chapter-2.html#cb14-2" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#EAD7D7&quot;</span>, <span class="st">&quot;#C4A0A0&quot;</span>, <span class="st">&quot;#A69291&quot;</span>, <span class="st">&quot;#6B6363&quot;</span>)</span>
-<span id="cb14-3"><a href="chapter-2.html#cb14-3" tabindex="-1"></a></span>
-<span id="cb14-4"><a href="chapter-2.html#cb14-4" tabindex="-1"></a><span class="co"># 使用 ggplot() 函數，設置資料來源為 marital.status.df，aes() 函數設置x與y變數，以及對應到不同顏色變量的屬性</span></span>
-<span id="cb14-5"><a href="chapter-2.html#cb14-5" tabindex="-1"></a><span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">1960</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb14-6"><a href="chapter-2.html#cb14-6" tabindex="-1"></a>  <span class="co"># 使用 geom_bar() 函數繪製長條圖，設置寬度為1，stat = &quot;identity&quot; 表示使用資料的實際值</span></span>
-<span id="cb14-7"><a href="chapter-2.html#cb14-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-8"><a href="chapter-2.html#cb14-8" tabindex="-1"></a>  <span class="co"># 使用 coord_polar() 函數將長條圖轉換為圓餅圖，theta = &quot;y&quot; 表示以 y 軸為角度</span></span>
-<span id="cb14-9"><a href="chapter-2.html#cb14-9" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-10"><a href="chapter-2.html#cb14-10" tabindex="-1"></a>  <span class="co"># 使用 scale_fill_manual() 函數設置填充顏色</span></span>
-<span id="cb14-11"><a href="chapter-2.html#cb14-11" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
-<span id="cb14-12"><a href="chapter-2.html#cb14-12" tabindex="-1"></a>  <span class="co"># 設值圓餅圖標題</span></span>
-<span id="cb14-13"><a href="chapter-2.html#cb14-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="sc">+</span></span>
-<span id="cb14-14"><a href="chapter-2.html#cb14-14" tabindex="-1"></a>  <span class="co"># 將背景設定為空白</span></span>
-<span id="cb14-15"><a href="chapter-2.html#cb14-15" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb14-16"><a href="chapter-2.html#cb14-16" tabindex="-1"></a>  <span class="co"># 將圖例設置在右側</span></span>
-<span id="cb14-17"><a href="chapter-2.html#cb14-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="chapter-2.html#cb69-1" tabindex="-1"></a><span class="co"># 設置圓餅圖的顏色</span></span>
+<span id="cb69-2"><a href="chapter-2.html#cb69-2" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#EAD7D7&quot;</span>, <span class="st">&quot;#C4A0A0&quot;</span>, <span class="st">&quot;#A69291&quot;</span>, <span class="st">&quot;#6B6363&quot;</span>)</span>
+<span id="cb69-3"><a href="chapter-2.html#cb69-3" tabindex="-1"></a></span>
+<span id="cb69-4"><a href="chapter-2.html#cb69-4" tabindex="-1"></a><span class="co"># 使用 ggplot() 函數，設置資料來源為 marital.status.df，aes() 函數設置x與y變數，以及對應到不同顏色變量的屬性</span></span>
+<span id="cb69-5"><a href="chapter-2.html#cb69-5" tabindex="-1"></a><span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">1960</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb69-6"><a href="chapter-2.html#cb69-6" tabindex="-1"></a>  <span class="co"># 使用 geom_bar() 函數繪製長條圖，設置寬度為1，stat = &quot;identity&quot; 表示使用資料的實際值</span></span>
+<span id="cb69-7"><a href="chapter-2.html#cb69-7" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-8"><a href="chapter-2.html#cb69-8" tabindex="-1"></a>  <span class="co"># 使用 coord_polar() 函數將長條圖轉換為圓餅圖，theta = &quot;y&quot; 表示以 y 軸為角度</span></span>
+<span id="cb69-9"><a href="chapter-2.html#cb69-9" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-10"><a href="chapter-2.html#cb69-10" tabindex="-1"></a>  <span class="co"># 使用 scale_fill_manual() 函數設置填充顏色</span></span>
+<span id="cb69-11"><a href="chapter-2.html#cb69-11" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
+<span id="cb69-12"><a href="chapter-2.html#cb69-12" tabindex="-1"></a>  <span class="co"># 設值圓餅圖標題</span></span>
+<span id="cb69-13"><a href="chapter-2.html#cb69-13" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="sc">+</span></span>
+<span id="cb69-14"><a href="chapter-2.html#cb69-14" tabindex="-1"></a>  <span class="co"># 將背景設定為空白</span></span>
+<span id="cb69-15"><a href="chapter-2.html#cb69-15" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb69-16"><a href="chapter-2.html#cb69-16" tabindex="-1"></a>  <span class="co"># 將圖例設置在右側</span></span>
+<span id="cb69-17"><a href="chapter-2.html#cb69-17" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/pie_chart_ggplot2-1.png" width="672" /></p>
 </div>
 <div id="將兩個圓餅圖放在一起比較" class="section level3 hasAnchor" number="2.2.2">
 <h3><span class="header-section-number">2.2.2</span> 將兩個圓餅圖放在一起比較！<a href="chapter-2.html#將兩個圓餅圖放在一起比較" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="chapter-2.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
-<span id="cb15-2"><a href="chapter-2.html#cb15-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="chapter-2.html#cb70-1" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb70-2"><a href="chapter-2.html#cb70-2" tabindex="-1"></a><span class="fu">library</span>(gridExtra)</span></code></pre></div>
 <pre><code>## Warning: 套件 &#39;gridExtra&#39; 是用 R 版本 4.3.2 來建造的</code></pre>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="chapter-2.html#cb17-1" tabindex="-1"></a><span class="co"># 設置圓餅圖的顏色</span></span>
-<span id="cb17-2"><a href="chapter-2.html#cb17-2" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#F0C9C9&quot;</span>, <span class="st">&quot;#E5A5A5&quot;</span>, <span class="st">&quot;#D18E8E&quot;</span>, <span class="st">&quot;#8C7E7E&quot;</span>)</span>
-<span id="cb17-3"><a href="chapter-2.html#cb17-3" tabindex="-1"></a></span>
-<span id="cb17-4"><a href="chapter-2.html#cb17-4" tabindex="-1"></a><span class="co"># 繪製1960年的圓餅圖</span></span>
-<span id="cb17-5"><a href="chapter-2.html#cb17-5" tabindex="-1"></a>plot_1960 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">1960</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb17-6"><a href="chapter-2.html#cb17-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-7"><a href="chapter-2.html#cb17-7" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-8"><a href="chapter-2.html#cb17-8" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
-<span id="cb17-9"><a href="chapter-2.html#cb17-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-10"><a href="chapter-2.html#cb17-10" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb17-11"><a href="chapter-2.html#cb17-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span>
-<span id="cb17-12"><a href="chapter-2.html#cb17-12" tabindex="-1"></a></span>
-<span id="cb17-13"><a href="chapter-2.html#cb17-13" tabindex="-1"></a><span class="co"># 繪製2010年的圓餅圖</span></span>
-<span id="cb17-14"><a href="chapter-2.html#cb17-14" tabindex="-1"></a>plot_2010 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">2010</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
-<span id="cb17-15"><a href="chapter-2.html#cb17-15" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-16"><a href="chapter-2.html#cb17-16" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-17"><a href="chapter-2.html#cb17-17" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
-<span id="cb17-18"><a href="chapter-2.html#cb17-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 2010&quot;</span>) <span class="sc">+</span></span>
-<span id="cb17-19"><a href="chapter-2.html#cb17-19" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
-<span id="cb17-20"><a href="chapter-2.html#cb17-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span>
-<span id="cb17-21"><a href="chapter-2.html#cb17-21" tabindex="-1"></a></span>
-<span id="cb17-22"><a href="chapter-2.html#cb17-22" tabindex="-1"></a><span class="co"># 使用 gridExtra 將兩個圓餅圖合再一起</span></span>
-<span id="cb17-23"><a href="chapter-2.html#cb17-23" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(plot_1960, plot_2010, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="chapter-2.html#cb72-1" tabindex="-1"></a><span class="co"># 設置圓餅圖的顏色</span></span>
+<span id="cb72-2"><a href="chapter-2.html#cb72-2" tabindex="-1"></a>colors <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;#F0C9C9&quot;</span>, <span class="st">&quot;#E5A5A5&quot;</span>, <span class="st">&quot;#D18E8E&quot;</span>, <span class="st">&quot;#8C7E7E&quot;</span>)</span>
+<span id="cb72-3"><a href="chapter-2.html#cb72-3" tabindex="-1"></a></span>
+<span id="cb72-4"><a href="chapter-2.html#cb72-4" tabindex="-1"></a><span class="co"># 繪製1960年的圓餅圖</span></span>
+<span id="cb72-5"><a href="chapter-2.html#cb72-5" tabindex="-1"></a>plot_1960 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">1960</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb72-6"><a href="chapter-2.html#cb72-6" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-7"><a href="chapter-2.html#cb72-7" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-8"><a href="chapter-2.html#cb72-8" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
+<span id="cb72-9"><a href="chapter-2.html#cb72-9" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 1960&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-10"><a href="chapter-2.html#cb72-10" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb72-11"><a href="chapter-2.html#cb72-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb72-12"><a href="chapter-2.html#cb72-12" tabindex="-1"></a></span>
+<span id="cb72-13"><a href="chapter-2.html#cb72-13" tabindex="-1"></a><span class="co"># 繪製2010年的圓餅圖</span></span>
+<span id="cb72-14"><a href="chapter-2.html#cb72-14" tabindex="-1"></a>plot_2010 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(marital.status.df, <span class="fu">aes</span>(<span class="at">x =</span> <span class="st">&quot;&quot;</span>, <span class="at">y =</span> <span class="st">`</span><span class="at">2010</span><span class="st">`</span>, <span class="at">fill =</span> <span class="st">`</span><span class="at">Marital.Status</span><span class="st">`</span>)) <span class="sc">+</span></span>
+<span id="cb72-15"><a href="chapter-2.html#cb72-15" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">width =</span> <span class="dv">1</span>, <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-16"><a href="chapter-2.html#cb72-16" tabindex="-1"></a>  <span class="fu">coord_polar</span>(<span class="at">theta =</span> <span class="st">&quot;y&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-17"><a href="chapter-2.html#cb72-17" tabindex="-1"></a>  <span class="fu">scale_fill_manual</span>(<span class="at">values =</span> colors) <span class="sc">+</span></span>
+<span id="cb72-18"><a href="chapter-2.html#cb72-18" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">&quot;Marital Status, 2010&quot;</span>) <span class="sc">+</span></span>
+<span id="cb72-19"><a href="chapter-2.html#cb72-19" tabindex="-1"></a>  <span class="fu">theme_void</span>() <span class="sc">+</span></span>
+<span id="cb72-20"><a href="chapter-2.html#cb72-20" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;right&quot;</span>)</span>
+<span id="cb72-21"><a href="chapter-2.html#cb72-21" tabindex="-1"></a></span>
+<span id="cb72-22"><a href="chapter-2.html#cb72-22" tabindex="-1"></a><span class="co"># 使用 gridExtra 將兩個圓餅圖合再一起</span></span>
+<span id="cb72-23"><a href="chapter-2.html#cb72-23" tabindex="-1"></a>combined_plot <span class="ot">&lt;-</span> <span class="fu">grid.arrange</span>(plot_1960, plot_2010, <span class="at">ncol =</span> <span class="dv">2</span>)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/pie_chart_advance-1.png" width="672" /></p>
 </div>
 </div>
 <div id="繪製長條圖bar-chart" class="section level2 hasAnchor" number="2.3">
 <h2><span class="header-section-number">2.3</span> 3. 繪製長條圖(Bar Chart)<a href="chapter-2.html#繪製長條圖bar-chart" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="chapter-2.html#cb18-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- barplot()</span></span>
-<span id="cb18-2"><a href="chapter-2.html#cb18-2" tabindex="-1"></a><span class="co"># 取出我們感興趣的第二列和第三列數據，使用as.matrix()函數將這些數值保存為列形式，然後使用轉置函數t()將列轉換為行</span></span>
-<span id="cb18-3"><a href="chapter-2.html#cb18-3" tabindex="-1"></a>marital.status.matrix.t <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.matrix</span>(marital.status.df[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]))</span>
-<span id="cb18-4"><a href="chapter-2.html#cb18-4" tabindex="-1"></a></span>
-<span id="cb18-5"><a href="chapter-2.html#cb18-5" tabindex="-1"></a><span class="co"># 顯示轉置後的數據</span></span>
-<span id="cb18-6"><a href="chapter-2.html#cb18-6" tabindex="-1"></a><span class="fu">print</span>(marital.status.matrix.t)</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="chapter-2.html#cb73-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- barplot()</span></span>
+<span id="cb73-2"><a href="chapter-2.html#cb73-2" tabindex="-1"></a><span class="co"># 取出我們感興趣的第二列和第三列數據，使用as.matrix()函數將這些數值保存為列形式，然後使用轉置函數t()將列轉換為行</span></span>
+<span id="cb73-3"><a href="chapter-2.html#cb73-3" tabindex="-1"></a>marital.status.matrix.t <span class="ot">&lt;-</span> <span class="fu">t</span>(<span class="fu">as.matrix</span>(marital.status.df[, <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>]))</span>
+<span id="cb73-4"><a href="chapter-2.html#cb73-4" tabindex="-1"></a></span>
+<span id="cb73-5"><a href="chapter-2.html#cb73-5" tabindex="-1"></a><span class="co"># 顯示轉置後的數據</span></span>
+<span id="cb73-6"><a href="chapter-2.html#cb73-6" tabindex="-1"></a><span class="fu">print</span>(marital.status.matrix.t)</span></code></pre></div>
 <pre><code>##         1    2    3    4
 ## 1960 0.71 0.15 0.05 0.09
 ## 2010 0.52 0.28 0.14 0.06</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="chapter-2.html#cb20-1" tabindex="-1"></a><span class="co"># 使用colnames()函數為轉置後的矩陣中的每一列命名列名</span></span>
-<span id="cb20-2"><a href="chapter-2.html#cb20-2" tabindex="-1"></a><span class="fu">colnames</span>(marital.status.matrix.t) <span class="ot">&lt;-</span> marital.status.df[, <span class="st">&#39;Marital.Status&#39;</span>]</span>
-<span id="cb20-3"><a href="chapter-2.html#cb20-3" tabindex="-1"></a></span>
-<span id="cb20-4"><a href="chapter-2.html#cb20-4" tabindex="-1"></a><span class="co"># 這樣轉置後的矩陣就有列名了</span></span>
-<span id="cb20-5"><a href="chapter-2.html#cb20-5" tabindex="-1"></a><span class="fu">print</span>(marital.status.matrix.t)</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="chapter-2.html#cb75-1" tabindex="-1"></a><span class="co"># 使用colnames()函數為轉置後的矩陣中的每一列命名列名</span></span>
+<span id="cb75-2"><a href="chapter-2.html#cb75-2" tabindex="-1"></a><span class="fu">colnames</span>(marital.status.matrix.t) <span class="ot">&lt;-</span> marital.status.df[, <span class="st">&#39;Marital.Status&#39;</span>]</span>
+<span id="cb75-3"><a href="chapter-2.html#cb75-3" tabindex="-1"></a></span>
+<span id="cb75-4"><a href="chapter-2.html#cb75-4" tabindex="-1"></a><span class="co"># 這樣轉置後的矩陣就有列名了</span></span>
+<span id="cb75-5"><a href="chapter-2.html#cb75-5" tabindex="-1"></a><span class="fu">print</span>(marital.status.matrix.t)</span></code></pre></div>
 <pre><code>##      Married Single Divorced Widowed
 ## 1960    0.71   0.15     0.05    0.09
 ## 2010    0.52   0.28     0.14    0.06</code></pre>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="chapter-2.html#cb22-1" tabindex="-1"></a><span class="co"># 使用 barplot() 函數創建一個長條圖</span></span>
-<span id="cb22-2"><a href="chapter-2.html#cb22-2" tabindex="-1"></a><span class="fu">barplot</span>(marital.status.matrix.t, <span class="co"># 傳入的數據</span></span>
-<span id="cb22-3"><a href="chapter-2.html#cb22-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="co"># 指定條形圖是並列顯示，而不是堆疊顯示</span></span>
-<span id="cb22-4"><a href="chapter-2.html#cb22-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Proportions&#39;</span>, <span class="co"># 設定y軸標籤</span></span>
-<span id="cb22-5"><a href="chapter-2.html#cb22-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;slateblue4&#39;</span>, <span class="st">&#39;red3&#39;</span>)) <span class="co"># 設定不同類別的顏色，此處共設定兩種顏色</span></span>
-<span id="cb22-6"><a href="chapter-2.html#cb22-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>) <span class="co"># 在當前的圖形中添加一條水平於 y=0 的直線（也就是x軸）</span></span>
-<span id="cb22-7"><a href="chapter-2.html#cb22-7" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;1960&quot;</span>,<span class="st">&quot;2010&quot;</span>), <span class="at">pch=</span><span class="dv">15</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;slateblue4&quot;</span>,<span class="st">&quot;red3&quot;</span>)) <span class="co"># 設置圖例位置、標籤、字體大小與顏色</span></span></code></pre></div>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="chapter-2.html#cb77-1" tabindex="-1"></a><span class="co"># 使用 barplot() 函數創建一個長條圖</span></span>
+<span id="cb77-2"><a href="chapter-2.html#cb77-2" tabindex="-1"></a><span class="fu">barplot</span>(marital.status.matrix.t, <span class="co"># 傳入的數據</span></span>
+<span id="cb77-3"><a href="chapter-2.html#cb77-3" tabindex="-1"></a>        <span class="at">beside =</span> <span class="cn">TRUE</span>, <span class="co"># 指定條形圖是並列顯示，而不是堆疊顯示</span></span>
+<span id="cb77-4"><a href="chapter-2.html#cb77-4" tabindex="-1"></a>        <span class="at">ylab =</span> <span class="st">&#39;Proportions&#39;</span>, <span class="co"># 設定y軸標籤</span></span>
+<span id="cb77-5"><a href="chapter-2.html#cb77-5" tabindex="-1"></a>        <span class="at">col =</span> <span class="fu">c</span>(<span class="st">&#39;slateblue4&#39;</span>, <span class="st">&#39;red3&#39;</span>)) <span class="co"># 設定不同類別的顏色，此處共設定兩種顏色</span></span>
+<span id="cb77-6"><a href="chapter-2.html#cb77-6" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">h=</span><span class="dv">0</span>) <span class="co"># 在當前的圖形中添加一條水平於 y=0 的直線（也就是x軸）</span></span>
+<span id="cb77-7"><a href="chapter-2.html#cb77-7" tabindex="-1"></a><span class="fu">legend</span>(<span class="st">&quot;topright&quot;</span>, <span class="fu">c</span>(<span class="st">&quot;1960&quot;</span>,<span class="st">&quot;2010&quot;</span>), <span class="at">pch=</span><span class="dv">15</span>, <span class="at">col=</span><span class="fu">c</span>(<span class="st">&quot;slateblue4&quot;</span>,<span class="st">&quot;red3&quot;</span>)) <span class="co"># 設置圖例位置、標籤、字體大小與顏色</span></span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/bar_chart-1.png" width="672" /></p>
 </div>
 <div id="繪製直方圖histogram" class="section level2 hasAnchor" number="2.4">
 <h2><span class="header-section-number">2.4</span> 4. 繪製直方圖(Histogram)<a href="chapter-2.html#繪製直方圖histogram" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="chapter-2.html#cb23-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- hist() 函數</span></span>
-<span id="cb23-2"><a href="chapter-2.html#cb23-2" tabindex="-1"></a><span class="fu">hist</span>(mv.houses.df[, <span class="st">&quot;House.Price&quot;</span>], <span class="co"># 使用mv.houses.df 的 House.Price 欄位作為輸入資料</span></span>
-<span id="cb23-3"><a href="chapter-2.html#cb23-3" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">5</span>, <span class="co"># 指定直方圖中的分組數量</span></span>
-<span id="cb23-4"><a href="chapter-2.html#cb23-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>, <span class="co"># 設置 x 軸的標籤</span></span>
-<span id="cb23-5"><a href="chapter-2.html#cb23-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="cn">NULL</span>) <span class="co"># 設置圖表的標題，這裡並無設置，因此為NULL</span></span></code></pre></div>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="chapter-2.html#cb78-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- hist() 函數</span></span>
+<span id="cb78-2"><a href="chapter-2.html#cb78-2" tabindex="-1"></a><span class="fu">hist</span>(mv.houses.df[, <span class="st">&quot;House.Price&quot;</span>], <span class="co"># 使用mv.houses.df 的 House.Price 欄位作為輸入資料</span></span>
+<span id="cb78-3"><a href="chapter-2.html#cb78-3" tabindex="-1"></a>     <span class="at">breaks =</span> <span class="dv">5</span>, <span class="co"># 指定直方圖中的分組數量</span></span>
+<span id="cb78-4"><a href="chapter-2.html#cb78-4" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>, <span class="co"># 設置 x 軸的標籤</span></span>
+<span id="cb78-5"><a href="chapter-2.html#cb78-5" tabindex="-1"></a>     <span class="at">main =</span> <span class="cn">NULL</span>) <span class="co"># 設置圖表的標題，這裡並無設置，因此為NULL</span></span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/histogram-1.png" width="672" /></p>
 </div>
 <div id="繪製次數多邊圖polygon" class="section level2 hasAnchor" number="2.5">
 <h2><span class="header-section-number">2.5</span> 5. 繪製次數多邊圖(Polygon)<a href="chapter-2.html#繪製次數多邊圖polygon" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="chapter-2.html#cb24-1" tabindex="-1"></a><span class="co"># 輸入中點向量和相對頻率數據</span></span>
-<span id="cb24-2"><a href="chapter-2.html#cb24-2" tabindex="-1"></a>midpoint <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">250</span>, <span class="at">to =</span> <span class="dv">850</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
-<span id="cb24-3"><a href="chapter-2.html#cb24-3" tabindex="-1"></a>relative.frequency <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.11</span>, <span class="fl">0.31</span>, <span class="fl">0.39</span>, <span class="fl">0.14</span>, <span class="fl">0.06</span>, <span class="dv">0</span>)</span>
-<span id="cb24-4"><a href="chapter-2.html#cb24-4" tabindex="-1"></a></span>
-<span id="cb24-5"><a href="chapter-2.html#cb24-5" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
-<span id="cb24-6"><a href="chapter-2.html#cb24-6" tabindex="-1"></a><span class="fu">plot</span>(relative.frequency <span class="sc">~</span> midpoint, <span class="co"># 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係</span></span>
-<span id="cb24-7"><a href="chapter-2.html#cb24-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Relative Frequency&quot;</span>,  <span class="co"># 設置了 y 軸的標籤為 &quot;Relative Frequency&quot;</span></span>
-<span id="cb24-8"><a href="chapter-2.html#cb24-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>) <span class="co"># 設置 x 軸的標籤為 &quot;House Prices (in $1000s)&quot;</span></span>
-<span id="cb24-9"><a href="chapter-2.html#cb24-9" tabindex="-1"></a><span class="fu">lines</span>(relative.frequency <span class="sc">~</span> midpoint) <span class="co"># 將繪製的點進行連線</span></span></code></pre></div>
+<div class="sourceCode" id="cb79"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb79-1"><a href="chapter-2.html#cb79-1" tabindex="-1"></a><span class="co"># 輸入中點向量和相對頻率數據</span></span>
+<span id="cb79-2"><a href="chapter-2.html#cb79-2" tabindex="-1"></a>midpoint <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">250</span>, <span class="at">to =</span> <span class="dv">850</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
+<span id="cb79-3"><a href="chapter-2.html#cb79-3" tabindex="-1"></a>relative.frequency <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.11</span>, <span class="fl">0.31</span>, <span class="fl">0.39</span>, <span class="fl">0.14</span>, <span class="fl">0.06</span>, <span class="dv">0</span>)</span>
+<span id="cb79-4"><a href="chapter-2.html#cb79-4" tabindex="-1"></a></span>
+<span id="cb79-5"><a href="chapter-2.html#cb79-5" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
+<span id="cb79-6"><a href="chapter-2.html#cb79-6" tabindex="-1"></a><span class="fu">plot</span>(relative.frequency <span class="sc">~</span> midpoint, <span class="co"># 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係</span></span>
+<span id="cb79-7"><a href="chapter-2.html#cb79-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Relative Frequency&quot;</span>,  <span class="co"># 設置了 y 軸的標籤為 &quot;Relative Frequency&quot;</span></span>
+<span id="cb79-8"><a href="chapter-2.html#cb79-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>) <span class="co"># 設置 x 軸的標籤為 &quot;House Prices (in $1000s)&quot;</span></span>
+<span id="cb79-9"><a href="chapter-2.html#cb79-9" tabindex="-1"></a><span class="fu">lines</span>(relative.frequency <span class="sc">~</span> midpoint) <span class="co"># 將繪製的點進行連線</span></span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/polygon-1.png" width="672" /></p>
 </div>
 <div id="繪製累積百分比曲線圖ogive" class="section level2 hasAnchor" number="2.6">
 <h2><span class="header-section-number">2.6</span> 6. 繪製累積百分比曲線圖(Ogive)<a href="chapter-2.html#繪製累積百分比曲線圖ogive" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="chapter-2.html#cb25-1" tabindex="-1"></a><span class="co"># 輸入房屋價格區間與相對頻率有關的資料</span></span>
-<span id="cb25-2"><a href="chapter-2.html#cb25-2" tabindex="-1"></a>midpoint <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">300</span>, <span class="at">to =</span> <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
-<span id="cb25-3"><a href="chapter-2.html#cb25-3" tabindex="-1"></a>relative.frequency <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.11</span>, <span class="fl">0.42</span>, <span class="fl">0.81</span>, <span class="fl">0.95</span>, <span class="dv">1</span>) <span class="co"># 定義成一個向量</span></span>
-<span id="cb25-4"><a href="chapter-2.html#cb25-4" tabindex="-1"></a></span>
-<span id="cb25-5"><a href="chapter-2.html#cb25-5" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
-<span id="cb25-6"><a href="chapter-2.html#cb25-6" tabindex="-1"></a><span class="fu">plot</span>(relative.frequency <span class="sc">~</span> midpoint, <span class="co"># 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係</span></span>
-<span id="cb25-7"><a href="chapter-2.html#cb25-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Relative Frequency&quot;</span>, <span class="co"># 設置了 y 軸的標籤為 &quot;Relative Frequency&quot;</span></span>
-<span id="cb25-8"><a href="chapter-2.html#cb25-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>) <span class="co"># 設置 x 軸的標籤為 &quot;House Prices (in $1000s)&quot;</span></span>
-<span id="cb25-9"><a href="chapter-2.html#cb25-9" tabindex="-1"></a><span class="fu">lines</span>(relative.frequency <span class="sc">~</span> midpoint)  <span class="co"># 將繪製的點進行連線</span></span></code></pre></div>
-<p><img src="R_guideline_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="chapter-2.html#cb80-1" tabindex="-1"></a><span class="co"># 輸入房屋價格區間與相對頻率有關的資料</span></span>
+<span id="cb80-2"><a href="chapter-2.html#cb80-2" tabindex="-1"></a>midpoint <span class="ot">&lt;-</span> <span class="fu">seq</span>(<span class="at">from =</span> <span class="dv">300</span>, <span class="at">to =</span> <span class="dv">800</span>, <span class="at">by =</span> <span class="dv">100</span>)</span>
+<span id="cb80-3"><a href="chapter-2.html#cb80-3" tabindex="-1"></a>relative.frequency <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="fl">0.11</span>, <span class="fl">0.42</span>, <span class="fl">0.81</span>, <span class="fl">0.95</span>, <span class="dv">1</span>) <span class="co"># 定義成一個向量</span></span>
+<span id="cb80-4"><a href="chapter-2.html#cb80-4" tabindex="-1"></a></span>
+<span id="cb80-5"><a href="chapter-2.html#cb80-5" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
+<span id="cb80-6"><a href="chapter-2.html#cb80-6" tabindex="-1"></a><span class="fu">plot</span>(relative.frequency <span class="sc">~</span> midpoint, <span class="co"># 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係</span></span>
+<span id="cb80-7"><a href="chapter-2.html#cb80-7" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Relative Frequency&quot;</span>, <span class="co"># 設置了 y 軸的標籤為 &quot;Relative Frequency&quot;</span></span>
+<span id="cb80-8"><a href="chapter-2.html#cb80-8" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;House Prices (in $1000s)&quot;</span>) <span class="co"># 設置 x 軸的標籤為 &quot;House Prices (in $1000s)&quot;</span></span>
+<span id="cb80-9"><a href="chapter-2.html#cb80-9" tabindex="-1"></a><span class="fu">lines</span>(relative.frequency <span class="sc">~</span> midpoint)  <span class="co"># 將繪製的點進行連線</span></span></code></pre></div>
+<p><img src="R_guideline_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 </div>
 <div id="繪製散佈圖scatterplot" class="section level2 hasAnchor" number="2.7">
 <h2><span class="header-section-number">2.7</span> 7. 繪製散佈圖(Scatterplot)<a href="chapter-2.html#繪製散佈圖scatterplot" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="chapter-2.html#cb26-1" tabindex="-1"></a><span class="co"># 輸入並且設定資料</span></span>
-<span id="cb26-2"><a href="chapter-2.html#cb26-2" tabindex="-1"></a>edinc.matrix <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">45</span>),<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">56</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">85</span>), <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">35</span>),</span>
-<span id="cb26-3"><a href="chapter-2.html#cb26-3" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">55</span>),<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">48</span>), <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">100</span>), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">38</span>))</span>
-<span id="cb26-4"><a href="chapter-2.html#cb26-4" tabindex="-1"></a><span class="fu">colnames</span>(edinc.matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;income&quot;</span>)</span>
-<span id="cb26-5"><a href="chapter-2.html#cb26-5" tabindex="-1"></a>edinc.matrix</span></code></pre></div>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="chapter-2.html#cb81-1" tabindex="-1"></a><span class="co"># 輸入並且設定資料</span></span>
+<span id="cb81-2"><a href="chapter-2.html#cb81-2" tabindex="-1"></a>edinc.matrix <span class="ot">&lt;-</span> <span class="fu">rbind</span>(<span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">45</span>),<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">56</span>), <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">85</span>), <span class="fu">c</span>(<span class="dv">2</span>,<span class="dv">35</span>),</span>
+<span id="cb81-3"><a href="chapter-2.html#cb81-3" tabindex="-1"></a>                      <span class="fu">c</span>(<span class="dv">5</span>,<span class="dv">55</span>),<span class="fu">c</span>(<span class="dv">4</span>,<span class="dv">48</span>), <span class="fu">c</span>(<span class="dv">8</span>,<span class="dv">100</span>), <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">38</span>))</span>
+<span id="cb81-4"><a href="chapter-2.html#cb81-4" tabindex="-1"></a><span class="fu">colnames</span>(edinc.matrix) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;education&quot;</span>, <span class="st">&quot;income&quot;</span>)</span>
+<span id="cb81-5"><a href="chapter-2.html#cb81-5" tabindex="-1"></a>edinc.matrix</span></code></pre></div>
 <pre><code>##      education income
 ## [1,]         3     45
 ## [2,]         4     56
@@ -518,8 +529,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## [6,]         4     48
 ## [7,]         8    100
 ## [8,]         0     38</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="chapter-2.html#cb28-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
-<span id="cb28-2"><a href="chapter-2.html#cb28-2" tabindex="-1"></a><span class="fu">plot</span>(edinc.matrix, <span class="at">ylab =</span> <span class="st">&quot;Income&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Education&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb83"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb83-1"><a href="chapter-2.html#cb83-1" tabindex="-1"></a><span class="co"># R語言的基本繪圖功能 -- plot()</span></span>
+<span id="cb83-2"><a href="chapter-2.html#cb83-2" tabindex="-1"></a><span class="fu">plot</span>(edinc.matrix, <span class="at">ylab =</span> <span class="st">&quot;Income&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;Education&quot;</span>)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/scatterplot-1.png" width="672" /></p>
 </div>
 </div>

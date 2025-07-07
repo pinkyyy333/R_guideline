@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,11 +324,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter13.xlsx <a href="https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-7" class="section level2 hasAnchor" number="13.1">
 <h2><span class="header-section-number">13.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-13.html#安裝載入套件讀檔-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb211"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb211-1"><a href="chapter-13.html#cb211-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
-<span id="cb211-2"><a href="chapter-13.html#cb211-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;reshape2&quot;, &quot;agricolae&quot;))</span></span>
-<span id="cb211-3"><a href="chapter-13.html#cb211-3" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb211-4"><a href="chapter-13.html#cb211-4" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb211-5"><a href="chapter-13.html#cb211-5" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span></code></pre></div>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="chapter-13.html#cb266-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb266-2"><a href="chapter-13.html#cb266-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;reshape2&quot;, &quot;agricolae&quot;))</span></span>
+<span id="cb266-3"><a href="chapter-13.html#cb266-3" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb266-4"><a href="chapter-13.html#cb266-4" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb266-5"><a href="chapter-13.html#cb266-5" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span></code></pre></div>
 <pre><code>## Warning: 套件 &#39;agricolae&#39; 是用 R 版本 4.3.3 來建造的</code></pre>
 <pre><code>## 
 ## 載入套件：&#39;agricolae&#39;</code></pre>
@@ -327,19 +338,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## 下列物件被遮斷自 &#39;package:EnvStats&#39;:
 ## 
 ##     kurtosis, skewness</code></pre>
-<div class="sourceCode" id="cb216"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb216-1"><a href="chapter-13.html#cb216-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb216-2"><a href="chapter-13.html#cb216-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter13.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb216-3"><a href="chapter-13.html#cb216-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Public_Transportation&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb216-4"><a href="chapter-13.html#cb216-4" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;TwoFactor_Income&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb216-5"><a href="chapter-13.html#cb216-5" tabindex="-1"></a>sheet_name_3 <span class="ot">&lt;-</span> <span class="st">&quot;Income_Interaction&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb216-6"><a href="chapter-13.html#cb216-6" tabindex="-1"></a></span>
-<span id="cb216-7"><a href="chapter-13.html#cb216-7" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb216-8"><a href="chapter-13.html#cb216-8" tabindex="-1"></a>public.transportation.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb216-9"><a href="chapter-13.html#cb216-9" tabindex="-1"></a>two.factor.income.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span>
-<span id="cb216-10"><a href="chapter-13.html#cb216-10" tabindex="-1"></a>income.interaction.df<span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_3)</span>
-<span id="cb216-11"><a href="chapter-13.html#cb216-11" tabindex="-1"></a></span>
-<span id="cb216-12"><a href="chapter-13.html#cb216-12" tabindex="-1"></a><span class="co"># head</span></span>
-<span id="cb216-13"><a href="chapter-13.html#cb216-13" tabindex="-1"></a><span class="fu">head</span>(public.transportation.df)</span></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="chapter-13.html#cb271-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb271-2"><a href="chapter-13.html#cb271-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter13.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb271-3"><a href="chapter-13.html#cb271-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Public_Transportation&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-4"><a href="chapter-13.html#cb271-4" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;TwoFactor_Income&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-5"><a href="chapter-13.html#cb271-5" tabindex="-1"></a>sheet_name_3 <span class="ot">&lt;-</span> <span class="st">&quot;Income_Interaction&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-6"><a href="chapter-13.html#cb271-6" tabindex="-1"></a></span>
+<span id="cb271-7"><a href="chapter-13.html#cb271-7" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb271-8"><a href="chapter-13.html#cb271-8" tabindex="-1"></a>public.transportation.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb271-9"><a href="chapter-13.html#cb271-9" tabindex="-1"></a>two.factor.income.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span>
+<span id="cb271-10"><a href="chapter-13.html#cb271-10" tabindex="-1"></a>income.interaction.df<span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_3)</span>
+<span id="cb271-11"><a href="chapter-13.html#cb271-11" tabindex="-1"></a></span>
+<span id="cb271-12"><a href="chapter-13.html#cb271-12" tabindex="-1"></a><span class="co"># head</span></span>
+<span id="cb271-13"><a href="chapter-13.html#cb271-13" tabindex="-1"></a><span class="fu">head</span>(public.transportation.df)</span></code></pre></div>
 <pre><code>##   Boston    NY    SF Chicago
 ## 1  12500 12450 11800   10595
 ## 2  12640 12500 11745   10740
@@ -347,13 +358,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4  12625 12605 11800   10725
 ## 5  12745 12650 11700   10740
 ## 6     NA 12620 11575      NA</code></pre>
-<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="chapter-13.html#cb218-1" tabindex="-1"></a><span class="fu">head</span>(two.factor.income.df)</span></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="chapter-13.html#cb273-1" tabindex="-1"></a><span class="fu">head</span>(two.factor.income.df)</span></code></pre></div>
 <pre><code>##            X1 Educational.Services Financial.Services Medical.Services
 ## 1 High School                   18                 25               26
 ## 2  Bachelor’s                   35                 45               43
 ## 3    Master’s                   46                 58               62
 ## 4       Ph.D.                   75                 90              110</code></pre>
-<div class="sourceCode" id="cb220"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb220-1"><a href="chapter-13.html#cb220-1" tabindex="-1"></a><span class="fu">head</span>(income.interaction.df)</span></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="chapter-13.html#cb275-1" tabindex="-1"></a><span class="fu">head</span>(income.interaction.df)</span></code></pre></div>
 <pre><code>##            X1 Educational Financial Medical
 ## 1 High School          20        27      26
 ## 2        &lt;NA&gt;          25        25      24
@@ -368,17 +379,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="a.-數據準備" class="section level3 hasAnchor" number="13.2.1">
 <h3><span class="header-section-number">13.2.1</span> A. 數據準備<a href="chapter-13.html#a.-數據準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>首先，我們需要將城市名稱和成本數值進行堆疊。為此，我們使用 reshape2 包中的 melt() 函數來重新配置數據，並將結果儲存為 melted.df。這裡 melt() 函數將數據堆疊成兩列：一列表示城市名稱（City），另一列表示相應的交通成本（Cost）。</code></pre>
-<div class="sourceCode" id="cb223"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb223-1"><a href="chapter-13.html#cb223-1" tabindex="-1"></a><span class="co"># 加載reshape2包</span></span>
-<span id="cb223-2"><a href="chapter-13.html#cb223-2" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
-<span id="cb223-3"><a href="chapter-13.html#cb223-3" tabindex="-1"></a></span>
-<span id="cb223-4"><a href="chapter-13.html#cb223-4" tabindex="-1"></a><span class="co"># 堆疊城市名稱和成本數據</span></span>
-<span id="cb223-5"><a href="chapter-13.html#cb223-5" tabindex="-1"></a>melted.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(public.transportation.df)</span></code></pre></div>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="chapter-13.html#cb278-1" tabindex="-1"></a><span class="co"># 加載reshape2包</span></span>
+<span id="cb278-2"><a href="chapter-13.html#cb278-2" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb278-3"><a href="chapter-13.html#cb278-3" tabindex="-1"></a></span>
+<span id="cb278-4"><a href="chapter-13.html#cb278-4" tabindex="-1"></a><span class="co"># 堆疊城市名稱和成本數據</span></span>
+<span id="cb278-5"><a href="chapter-13.html#cb278-5" tabindex="-1"></a>melted.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(public.transportation.df)</span></code></pre></div>
 <pre><code>## No id variables; using all as measure variables</code></pre>
-<div class="sourceCode" id="cb225"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb225-1"><a href="chapter-13.html#cb225-1" tabindex="-1"></a><span class="co"># 將堆疊後的數據列命名</span></span>
-<span id="cb225-2"><a href="chapter-13.html#cb225-2" tabindex="-1"></a><span class="fu">colnames</span>(melted.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;City&quot;</span>, <span class="st">&quot;Cost&quot;</span>)</span>
-<span id="cb225-3"><a href="chapter-13.html#cb225-3" tabindex="-1"></a></span>
-<span id="cb225-4"><a href="chapter-13.html#cb225-4" tabindex="-1"></a><span class="co"># 查看堆疊後的數據</span></span>
-<span id="cb225-5"><a href="chapter-13.html#cb225-5" tabindex="-1"></a><span class="fu">print</span>(melted.df)</span></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="chapter-13.html#cb280-1" tabindex="-1"></a><span class="co"># 將堆疊後的數據列命名</span></span>
+<span id="cb280-2"><a href="chapter-13.html#cb280-2" tabindex="-1"></a><span class="fu">colnames</span>(melted.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;City&quot;</span>, <span class="st">&quot;Cost&quot;</span>)</span>
+<span id="cb280-3"><a href="chapter-13.html#cb280-3" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="chapter-13.html#cb280-4" tabindex="-1"></a><span class="co"># 查看堆疊後的數據</span></span>
+<span id="cb280-5"><a href="chapter-13.html#cb280-5" tabindex="-1"></a><span class="fu">print</span>(melted.df)</span></code></pre></div>
 <pre><code>##       City  Cost
 ## 1   Boston 12500
 ## 2   Boston 12640
@@ -417,14 +428,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.2.2</span> B. 建立變異數分析模型(variance model)<a href="chapter-13.html#b.-建立變異數分析模型variance-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>我們使用 aov() 函數來構建一個變異數分析模型(variance model)，並將該模型儲存為 transit.aov。
 這個模型將交通成本 (Cost) 作為應變量，城市 (City) 作為自變量。</code></pre>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="chapter-13.html#cb228-1" tabindex="-1"></a><span class="co"># 建立變異數分析模型</span></span>
-<span id="cb228-2"><a href="chapter-13.html#cb228-2" tabindex="-1"></a>transit.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Cost <span class="sc">~</span> City, <span class="at">data =</span> melted.df)</span></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="chapter-13.html#cb283-1" tabindex="-1"></a><span class="co"># 建立變異數分析模型</span></span>
+<span id="cb283-2"><a href="chapter-13.html#cb283-2" tabindex="-1"></a>transit.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Cost <span class="sc">~</span> City, <span class="at">data =</span> melted.df)</span></code></pre></div>
 </div>
 <div id="c.-生成-anova-表" class="section level3 hasAnchor" number="13.2.3">
 <h3><span class="header-section-number">13.2.3</span> C. 生成 ANOVA 表<a href="chapter-13.html#c.-生成-anova-表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="chapter-13.html#cb229-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
-<span id="cb229-2"><a href="chapter-13.html#cb229-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(transit.aov)</span>
-<span id="cb229-3"><a href="chapter-13.html#cb229-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="chapter-13.html#cb284-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb284-2"><a href="chapter-13.html#cb284-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(transit.aov)</span>
+<span id="cb284-3"><a href="chapter-13.html#cb284-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
 <pre><code>##           Df   Sum Sq Mean Sq  F value       Pr(&gt;F)
 ## City       3 13204720 4401573 610.5664 7.955557e-20
 ## Residuals 20   144180    7209       NA           NA</code></pre>
@@ -436,9 +447,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="d.-使用-tukeyhsd-進行多重比較檢驗" class="section level3 hasAnchor" number="13.2.4">
 <h3><span class="header-section-number">13.2.4</span> D. 使用 TukeyHSD 進行多重比較檢驗<a href="chapter-13.html#d.-使用-tukeyhsd-進行多重比較檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>我們使用 TukeyHSD() 函數來進行 Tukey HSD 檢驗，這是一種多重比較方法，用於比較多個組別之間的均值差異。我們將置信水平（conf.level）設為 95%。</code></pre>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="chapter-13.html#cb233-1" tabindex="-1"></a><span class="co"># 進行 Tukey 檢驗</span></span>
-<span id="cb233-2"><a href="chapter-13.html#cb233-2" tabindex="-1"></a>tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(transit.aov, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
-<span id="cb233-3"><a href="chapter-13.html#cb233-3" tabindex="-1"></a><span class="fu">print</span>(tukey_result)</span></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="chapter-13.html#cb288-1" tabindex="-1"></a><span class="co"># 進行 Tukey 檢驗</span></span>
+<span id="cb288-2"><a href="chapter-13.html#cb288-2" tabindex="-1"></a>tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(transit.aov, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb288-3"><a href="chapter-13.html#cb288-3" tabindex="-1"></a><span class="fu">print</span>(tukey_result)</span></code></pre></div>
 <pre><code>## $City
 ##                 diff        lwr         upr        p adj
 ## NY-Boston        -37  -172.4791    98.47906 8.694226e-01
@@ -461,12 +472,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">13.2.5</span> E. 使用 LSD.test 進行 Fisher 檢驗<a href="chapter-13.html#e.-使用-lsd.test-進行-fisher-檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>R 中沒有直接計算 Fisher 置信區間的函數，
 但我們可以使用 argicolae 包中的 LSD.test() 函數來計算 Fisher 的 LSD 檢驗所需的所有值。</code></pre>
-<div class="sourceCode" id="cb236"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb236-1"><a href="chapter-13.html#cb236-1" tabindex="-1"></a><span class="co"># 加載 agricolae 包</span></span>
-<span id="cb236-2"><a href="chapter-13.html#cb236-2" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
-<span id="cb236-3"><a href="chapter-13.html#cb236-3" tabindex="-1"></a></span>
-<span id="cb236-4"><a href="chapter-13.html#cb236-4" tabindex="-1"></a><span class="co"># 進行 Fisher 檢驗</span></span>
-<span id="cb236-5"><a href="chapter-13.html#cb236-5" tabindex="-1"></a>fisher.lsd <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(transit.aov, <span class="st">&quot;City&quot;</span>)</span>
-<span id="cb236-6"><a href="chapter-13.html#cb236-6" tabindex="-1"></a><span class="fu">print</span>(fisher.lsd)</span></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="chapter-13.html#cb291-1" tabindex="-1"></a><span class="co"># 加載 agricolae 包</span></span>
+<span id="cb291-2"><a href="chapter-13.html#cb291-2" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb291-3"><a href="chapter-13.html#cb291-3" tabindex="-1"></a></span>
+<span id="cb291-4"><a href="chapter-13.html#cb291-4" tabindex="-1"></a><span class="co"># 進行 Fisher 檢驗</span></span>
+<span id="cb291-5"><a href="chapter-13.html#cb291-5" tabindex="-1"></a>fisher.lsd <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(transit.aov, <span class="st">&quot;City&quot;</span>)</span>
+<span id="cb291-6"><a href="chapter-13.html#cb291-6" tabindex="-1"></a><span class="fu">print</span>(fisher.lsd)</span></code></pre></div>
 <pre><code>## $statistics
 ##   MSerror Df  Mean        CV
 ##      7209 20 11990 0.7081387
@@ -506,23 +517,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>(Replicating Table 13.14)</p>
 <div id="a.-重新配置數據" class="section level3 hasAnchor" number="13.3.1">
 <h3><span class="header-section-number">13.3.1</span> A. 重新配置數據<a href="chapter-13.html#a.-重新配置數據" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter-13.html#cb238-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據</span></span>
-<span id="cb238-2"><a href="chapter-13.html#cb238-2" tabindex="-1"></a>melted2.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(two.factor.income.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
-<span id="cb238-3"><a href="chapter-13.html#cb238-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
-<span id="cb238-4"><a href="chapter-13.html#cb238-4" tabindex="-1"></a><span class="fu">colnames</span>(melted2.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="chapter-13.html#cb293-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據</span></span>
+<span id="cb293-2"><a href="chapter-13.html#cb293-2" tabindex="-1"></a>melted2.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(two.factor.income.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
+<span id="cb293-3"><a href="chapter-13.html#cb293-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
+<span id="cb293-4"><a href="chapter-13.html#cb293-4" tabindex="-1"></a><span class="fu">colnames</span>(melted2.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
 </div>
 <div id="b.-建立變異數分析模型variance-model-1" class="section level3 hasAnchor" number="13.3.2">
 <h3><span class="header-section-number">13.3.2</span> B. 建立變異數分析模型(variance model)<a href="chapter-13.html#b.-建立變異數分析模型variance-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>接著，我們使用 aov() 函數來構建一個加法模型（即沒有交互作用的模型），並將該模型儲存為 income.aov。
 這個模型將薪資 (Salary) 作為應變量，教育程度 (Education) 和專業領域 (Field) 作為自變量。</code></pre>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="chapter-13.html#cb240-1" tabindex="-1"></a><span class="co"># 建立雙因子變異數分析模型</span></span>
-<span id="cb240-2"><a href="chapter-13.html#cb240-2" tabindex="-1"></a>income.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">+</span> Field, <span class="at">data =</span> melted2.df)</span></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="chapter-13.html#cb295-1" tabindex="-1"></a><span class="co"># 建立雙因子變異數分析模型</span></span>
+<span id="cb295-2"><a href="chapter-13.html#cb295-2" tabindex="-1"></a>income.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">+</span> Field, <span class="at">data =</span> melted2.df)</span></code></pre></div>
 </div>
 <div id="c.-生成-anova-表-1" class="section level3 hasAnchor" number="13.3.3">
 <h3><span class="header-section-number">13.3.3</span> C. 生成 ANOVA 表<a href="chapter-13.html#c.-生成-anova-表-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="chapter-13.html#cb241-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
-<span id="cb241-2"><a href="chapter-13.html#cb241-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income.aov)</span>
-<span id="cb241-3"><a href="chapter-13.html#cb241-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="chapter-13.html#cb296-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb296-2"><a href="chapter-13.html#cb296-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income.aov)</span>
+<span id="cb296-3"><a href="chapter-13.html#cb296-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
 <pre><code>##           Df    Sum Sq    Mean Sq   F value       Pr(&gt;F)
 ## Education  3 7632.9167 2544.30556 56.575046 8.595367e-05
 ## Field      2  579.5000  289.75000  6.442866 3.206655e-02
@@ -541,31 +552,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>首先，我們需要清理數據。由於原始數據框 income.interaction.df 的第一列中某些欄位缺少資料，
 因此我們使用 c() 和 rep() 函數來創建一個新的列，並替換原始的第一列。
 這樣做可以確保每個教育程度的名稱正確地對應於每組數據。</code></pre>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="chapter-13.html#cb245-1" tabindex="-1"></a><span class="co"># 清理數據，替換第一列</span></span>
-<span id="cb245-2"><a href="chapter-13.html#cb245-2" tabindex="-1"></a>income.interaction.df[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High School&quot;</span>, <span class="dv">3</span>),</span>
-<span id="cb245-3"><a href="chapter-13.html#cb245-3" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Bachelor&#39;s&quot;</span>, <span class="dv">3</span>),</span>
-<span id="cb245-4"><a href="chapter-13.html#cb245-4" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Master&#39;s&quot;</span>, <span class="dv">3</span>),</span>
-<span id="cb245-5"><a href="chapter-13.html#cb245-5" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Ph.D.&quot;</span>, <span class="dv">3</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="chapter-13.html#cb300-1" tabindex="-1"></a><span class="co"># 清理數據，替換第一列</span></span>
+<span id="cb300-2"><a href="chapter-13.html#cb300-2" tabindex="-1"></a>income.interaction.df[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High School&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-3"><a href="chapter-13.html#cb300-3" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Bachelor&#39;s&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-4"><a href="chapter-13.html#cb300-4" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Master&#39;s&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-5"><a href="chapter-13.html#cb300-5" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Ph.D.&quot;</span>, <span class="dv">3</span>))</span></code></pre></div>
 </div>
 <div id="b.-重新配置數據" class="section level3 hasAnchor" number="13.4.2">
 <h3><span class="header-section-number">13.4.2</span> B. 重新配置數據<a href="chapter-13.html#b.-重新配置數據" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb246"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb246-1"><a href="chapter-13.html#cb246-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據，將教育程度、專業領域和薪資值堆疊在一起。</span></span>
-<span id="cb246-2"><a href="chapter-13.html#cb246-2" tabindex="-1"></a>melted3.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(income.interaction.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
-<span id="cb246-3"><a href="chapter-13.html#cb246-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
-<span id="cb246-4"><a href="chapter-13.html#cb246-4" tabindex="-1"></a><span class="fu">colnames</span>(melted3.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="chapter-13.html#cb301-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據，將教育程度、專業領域和薪資值堆疊在一起。</span></span>
+<span id="cb301-2"><a href="chapter-13.html#cb301-2" tabindex="-1"></a>melted3.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(income.interaction.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
+<span id="cb301-3"><a href="chapter-13.html#cb301-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
+<span id="cb301-4"><a href="chapter-13.html#cb301-4" tabindex="-1"></a><span class="fu">colnames</span>(melted3.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
 </div>
 <div id="c.-建立基於交互作用的變異數分析模型" class="section level3 hasAnchor" number="13.4.3">
 <h3><span class="header-section-number">13.4.3</span> C. 建立基於交互作用的變異數分析模型<a href="chapter-13.html#c.-建立基於交互作用的變異數分析模型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <pre><code>接著，我們使用 aov() 函數來構建一個有交互作用的模型，並將該模型儲存為 income2.aov。
 這個模型將薪資 (Salary) 作為應變量，並考慮教育程度 (Education)、專業領域 (Field) 及其交互作用。</code></pre>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="chapter-13.html#cb248-1" tabindex="-1"></a><span class="co"># 構建基於交互作用的方差分析模型</span></span>
-<span id="cb248-2"><a href="chapter-13.html#cb248-2" tabindex="-1"></a>income2.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">*</span> Field, <span class="at">data =</span> melted3.df)</span></code></pre></div>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="chapter-13.html#cb303-1" tabindex="-1"></a><span class="co"># 構建基於交互作用的方差分析模型</span></span>
+<span id="cb303-2"><a href="chapter-13.html#cb303-2" tabindex="-1"></a>income2.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">*</span> Field, <span class="at">data =</span> melted3.df)</span></code></pre></div>
 </div>
 <div id="d.-生成-anova-表" class="section level3 hasAnchor" number="13.4.4">
 <h3><span class="header-section-number">13.4.4</span> D. 生成 ANOVA 表<a href="chapter-13.html#d.-生成-anova-表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="chapter-13.html#cb249-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
-<span id="cb249-2"><a href="chapter-13.html#cb249-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income2.aov)</span>
-<span id="cb249-3"><a href="chapter-13.html#cb249-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter-13.html#cb304-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb304-2"><a href="chapter-13.html#cb304-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income2.aov)</span>
+<span id="cb304-3"><a href="chapter-13.html#cb304-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
 <pre><code>##                 Df     Sum Sq    Mean Sq    F value       Pr(&gt;F)
 ## Education        3 20523.8889 6841.29630 658.520499 3.582203e-23
 ## Field            2   916.2222  458.11111  44.096257 9.182657e-09

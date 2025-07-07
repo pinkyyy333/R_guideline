@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,20 +324,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter7.xlsx <a href="https://docs.google.com/spreadsheets/d/1jitup-4jbbFoG0NeH8cqt6HqMdsfd0WC/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔" class="section level2 hasAnchor" number="6.1">
 <h2><span class="header-section-number">6.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-7.html#安裝載入套件讀檔" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="chapter-7.html#cb59-1" tabindex="-1"></a><span class="do">## 安裝套件</span></span>
-<span id="cb59-2"><a href="chapter-7.html#cb59-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;qcc&quot;))</span></span>
-<span id="cb59-3"><a href="chapter-7.html#cb59-3" tabindex="-1"></a><span class="do">## 載入套件</span></span>
-<span id="cb59-4"><a href="chapter-7.html#cb59-4" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb59-5"><a href="chapter-7.html#cb59-5" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
-<span id="cb59-6"><a href="chapter-7.html#cb59-6" tabindex="-1"></a></span>
-<span id="cb59-7"><a href="chapter-7.html#cb59-7" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb59-8"><a href="chapter-7.html#cb59-8" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter7.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb59-9"><a href="chapter-7.html#cb59-9" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Lux_Hotel&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb59-10"><a href="chapter-7.html#cb59-10" tabindex="-1"></a></span>
-<span id="cb59-11"><a href="chapter-7.html#cb59-11" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb59-12"><a href="chapter-7.html#cb59-12" tabindex="-1"></a>lux.hotel.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb59-13"><a href="chapter-7.html#cb59-13" tabindex="-1"></a></span>
-<span id="cb59-14"><a href="chapter-7.html#cb59-14" tabindex="-1"></a><span class="fu">print</span>(lux.hotel.df)</span></code></pre></div>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter-7.html#cb114-1" tabindex="-1"></a><span class="do">## 安裝套件</span></span>
+<span id="cb114-2"><a href="chapter-7.html#cb114-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;qcc&quot;))</span></span>
+<span id="cb114-3"><a href="chapter-7.html#cb114-3" tabindex="-1"></a><span class="do">## 載入套件</span></span>
+<span id="cb114-4"><a href="chapter-7.html#cb114-4" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb114-5"><a href="chapter-7.html#cb114-5" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
+<span id="cb114-6"><a href="chapter-7.html#cb114-6" tabindex="-1"></a></span>
+<span id="cb114-7"><a href="chapter-7.html#cb114-7" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb114-8"><a href="chapter-7.html#cb114-8" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter7.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb114-9"><a href="chapter-7.html#cb114-9" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Lux_Hotel&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb114-10"><a href="chapter-7.html#cb114-10" tabindex="-1"></a></span>
+<span id="cb114-11"><a href="chapter-7.html#cb114-11" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb114-12"><a href="chapter-7.html#cb114-12" tabindex="-1"></a>lux.hotel.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb114-13"><a href="chapter-7.html#cb114-13" tabindex="-1"></a></span>
+<span id="cb114-14"><a href="chapter-7.html#cb114-14" tabindex="-1"></a><span class="fu">print</span>(lux.hotel.df)</span></code></pre></div>
 <pre><code>##               Shift Sample Wait.Time.(in.seconds)  X4  X5  X6 Sample.Mean
 ## 1              &lt;NA&gt;      1                     67  48  52  71          60
 ## 2              &lt;NA&gt;      2                     57  68  60  66          63
@@ -360,69 +371,69 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">6.2.1</span> 使用抽樣<a href="chapter-7.html#使用抽樣" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="a.-使用-sample-函數" class="section level4 hasAnchor" number="6.2.1.1">
 <h4><span class="header-section-number">6.2.1.1</span> A. 使用 sample() 函數<a href="chapter-7.html#a.-使用-sample-函數" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="chapter-7.html#cb61-1" tabindex="-1"></a><span class="co"># 從 20,000 名學生中隨機選擇 100 名學生</span></span>
-<span id="cb61-2"><a href="chapter-7.html#cb61-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>##   [1]  2312 14547 16953  6900  4844 15839 15230 19375 12256  4029 14496 18165
-##  [13] 13601  2843  7611 18187  7809  5411  7198  3031  1232  2063 18085  3732
-##  [25] 13673  3410  4747  8255 15492  5104 11311  4588  4394 18994  7877 19090
-##  [37] 17086 16499  8426 14192  7338 19059  9733  7977  3035  8310  8206  8905
-##  [49]  7314 19213 13191 17880 12463   640 13803 19610 19010 19257 19423  4640
-##  [61]  1949 10548 14852 16792  6131 10720  7353  4371  7252 11090 12534 19442
-##  [73]  4966  6236  1955 16589 17469  8899  4795  8488 14228 15216 11910  5776
-##  [85]  3980 15706  2774 16051 14869  7742 14448  8963 16262 11908  3641 16305
-##  [97] 11918  5726 14280  1107</code></pre>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chapter-7.html#cb116-1" tabindex="-1"></a><span class="co"># 從 20,000 名學生中隨機選擇 100 名學生</span></span>
+<span id="cb116-2"><a href="chapter-7.html#cb116-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##   [1]  5903 13667 17732  6897 12711  3369 15652  9657  7684 12751 18728  5972
+##  [13] 14527 14855  8013 13517  1632  3765  2046 18057  8498  9691  6792 11719
+##  [25] 10323  3610  9454 11766 16290 17713 18942  8449  3694  3078  6158  9991
+##  [37]  3772 11373 17211  2769  8820 12506  7707  5042 16495  8711  1065  4747
+##  [49]  9703  9156  8085 16002  2846  6282  9219  3469 19730  4208  7356  9127
+##  [61]  1132  4447 17284 11872  2796  7732   421 13200  4687  5523 16919  8941
+##  [73] 12513 17743 15387 16733 17805   437  9540 10774 12964  3731 12389 12817
+##  [85] 12230  5810 10537 12245 11283  4772  5660 14983  9174  5275  3205 19534
+##  [97]  5546 19192 10711 15837</code></pre>
 </div>
 <div id="b.-使用-sample.int-函數" class="section level4 hasAnchor" number="6.2.1.2">
 <h4><span class="header-section-number">6.2.1.2</span> B. 使用 sample.int() 函數<a href="chapter-7.html#b.-使用-sample.int-函數" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="chapter-7.html#cb63-1" tabindex="-1"></a><span class="co"># 使用 replace = FALSE 因為我們希望不放回抽樣</span></span>
-<span id="cb63-2"><a href="chapter-7.html#cb63-2" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
-<pre><code>##   [1]  8647 19804  7150  8746 19018  4598   247  8428  8404 18336 16126 13052
-##  [13] 16114  2958 12204 10598  1693 17242 13594 18677  1934  1838 17698 11738
-##  [25] 17957 10451  3618  7703  1740 15233 18782  1708 13730  4621  8970  7892
-##  [37]  4053 17260  6155  7756  1577  6976   662 13526  4704  7657 14385  3574
-##  [49] 10980  2143  1122  7677 19108 13071  1717  4369  7227 19042 11726 17596
-##  [61] 13739 16219 15025 14453 11955 18710  9348 16879 13957  5009 18798  1915
-##  [73]  1976  3934 15732  4095  3045  4284  4813 11458 11366  8063   394  3251
-##  [85] 19978  9130 12203 10715  6394 18981  4169  5752 10259 17157  3158  4743
-##  [97] 11903  2029 17574 10039</code></pre>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter-7.html#cb118-1" tabindex="-1"></a><span class="co"># 使用 replace = FALSE 因為我們希望不放回抽樣</span></span>
+<span id="cb118-2"><a href="chapter-7.html#cb118-2" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##   [1] 10081  9546  8618  5171  7552  8086  4019 17020 19528  9191 14336 16853
+##  [13] 11435 15942 18706  9247 18956 14013 16623 18312  4792 11457  9043  6069
+##  [25] 13534  7700  6424 17226 13288  9843  9322 12482  9709 16716 13474  4305
+##  [37] 14371  8227 18127  8951  5220 16620 12195 10349 12198  7453  5918 12777
+##  [49]  4250  2020  5695 13013  9930 13193 16417  8205 11216 15102  2687 14628
+##  [61] 11156  7593 17532  6733 15503 12961 10978  1207 10244 17288 17154 18749
+##  [73]  7171  1180  9088 12466 12852 15200 10402 19899  6905 10332 17649  1806
+##  [85] 14133  8012 17827 19198  7455 17655  4264 12086 16944  7737 14117  2040
+##  [97]  2844 18962  5117 18630</code></pre>
 </div>
 </div>
 <div id="從分布中生成樣本" class="section level3 hasAnchor" number="6.2.2">
 <h3><span class="header-section-number">6.2.2</span> 從分布中生成樣本<a href="chapter-7.html#從分布中生成樣本" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <div id="a.-使用-runif-函數從均勻分布中生成樣本" class="section level4 hasAnchor" number="6.2.2.1">
 <h4><span class="header-section-number">6.2.2.1</span> A. 使用 runif() 函數從均勻分布中生成樣本<a href="chapter-7.html#a.-使用-runif-函數從均勻分布中生成樣本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="chapter-7.html#cb65-1" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="dv">20000</span>)</span>
-<span id="cb65-2"><a href="chapter-7.html#cb65-2" tabindex="-1"></a>values</span></code></pre></div>
-<pre><code>##   [1]  7404.2036 10495.3147  1924.8012   539.4373  1633.3196  5695.2885
-##   [7] 10572.8037  4224.5738 14721.7597  5110.8814  8252.5288   216.1162
-##  [13] 15466.6100  3944.1305  2284.1824 16570.1442 17322.0161 16085.8415
-##  [19] 14304.4331  5492.1685   374.2546 19557.8722  7274.8140  2903.2178
-##  [25]  3938.5437 16171.1979  3351.2643 17132.3334 17459.7318  6295.6410
-##  [31]   437.9260 18808.2915  4639.7445  6436.3427  4073.5737 12489.1983
-##  [37]  5752.2106  2573.7598 17957.8109 19708.3018  7775.4655 19716.0830
-##  [43]  5979.7824  5415.4490 18096.2897 14041.6205  9826.8391  1007.0461
-##  [49] 18151.7004  9402.8213 13436.8009  9716.6408 11649.6117  4576.4830
-##  [55]  4272.1164 18148.0389  2202.5304  4235.6556 11635.9244 18967.9132
-##  [61] 10779.5607  8287.6284  1280.9255  6095.5153 19165.5905 10655.4995
-##  [67] 17320.5452 11949.4228 17272.8500 17006.5837  1019.9203  1233.5212
-##  [73] 13984.2033  7468.2865  5763.3248  7226.1586 13206.6895  3669.2980
-##  [79]  4336.6575  8799.3441 16521.7796 12274.2674   678.2303  5055.3854
-##  [85] 13587.3876  6714.0494  8423.5658  8372.8132  3877.0150  1355.2183
-##  [91]  4486.5530 15108.4492 12888.0748  1580.1604 14139.2273 16622.1929
-##  [97]  9858.7525 19026.6070  8177.7282  7961.0884</code></pre>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="chapter-7.html#cb120-1" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="dv">20000</span>)</span>
+<span id="cb120-2"><a href="chapter-7.html#cb120-2" tabindex="-1"></a>values</span></code></pre></div>
+<pre><code>##   [1] 18984.0231 12472.0467  3061.7716  9002.7087 16271.2444  7963.0601
+##   [7]  6822.8164 10540.7239  2521.1087 12344.7618 18808.7882 17361.6923
+##  [13] 18103.1218  1486.5390 15049.4532  5876.2529  5513.4754  8241.8183
+##  [19] 18388.7715  8782.8406  3723.8479  6759.3274   173.2841 11149.9112
+##  [25] 18117.8764 14142.7378  2940.2148  1756.2053  1470.5515 15284.8336
+##  [31]  8948.0654  6784.5937 15254.3476  7435.5725  3769.1724 18872.6977
+##  [37]  7758.3804  7054.8322  8137.2544  4544.4164 13691.0729 15205.0293
+##  [43]  7623.2861  9235.0156 13932.3978  7632.0515  5487.0687  3805.3944
+##  [49]  4254.1683 14850.4417 16283.6070  2264.8881 13356.5108  4360.5686
+##  [55] 19199.2562 10843.8989  4340.2652 15745.4586 11841.7070 17541.9128
+##  [61] 15981.4284 18045.8046 15133.4527 19009.9485 17258.4094  3006.6667
+##  [67]  3587.1623  8690.7266  1725.4211 11476.7713  5190.1272 16320.3503
+##  [73] 15990.1536 14230.2924 13643.5008 12238.3623 15176.7666  8883.6303
+##  [79] 18815.6838 17170.7996  2217.6563  9230.5043 13745.2975 11304.8403
+##  [85] 16656.3139 10679.3709 16675.0579 11431.6460 10608.3962  6644.4211
+##  [91]  8645.6446  9381.1233 15474.2572 13473.6840  7683.5001  9122.0225
+##  [97]  5876.9298 15776.4356  3985.7429 17706.8507</code></pre>
 </div>
 <div id="b.-將生成的值四捨五入到整數獲得隨機整數樣本" class="section level4 hasAnchor" number="6.2.2.2">
 <h4><span class="header-section-number">6.2.2.2</span> B. 將生成的值四捨五入到整數，獲得隨機整數樣本<a href="chapter-7.html#b.-將生成的值四捨五入到整數獲得隨機整數樣本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="chapter-7.html#cb67-1" tabindex="-1"></a><span class="fu">round</span>(values, <span class="dv">0</span>)</span></code></pre></div>
-<pre><code>##   [1]  7404 10495  1925   539  1633  5695 10573  4225 14722  5111  8253   216
-##  [13] 15467  3944  2284 16570 17322 16086 14304  5492   374 19558  7275  2903
-##  [25]  3939 16171  3351 17132 17460  6296   438 18808  4640  6436  4074 12489
-##  [37]  5752  2574 17958 19708  7775 19716  5980  5415 18096 14042  9827  1007
-##  [49] 18152  9403 13437  9717 11650  4576  4272 18148  2203  4236 11636 18968
-##  [61] 10780  8288  1281  6096 19166 10655 17321 11949 17273 17007  1020  1234
-##  [73] 13984  7468  5763  7226 13207  3669  4337  8799 16522 12274   678  5055
-##  [85] 13587  6714  8424  8373  3877  1355  4487 15108 12888  1580 14139 16622
-##  [97]  9859 19027  8178  7961</code></pre>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="chapter-7.html#cb122-1" tabindex="-1"></a><span class="fu">round</span>(values, <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>##   [1] 18984 12472  3062  9003 16271  7963  6823 10541  2521 12345 18809 17362
+##  [13] 18103  1487 15049  5876  5513  8242 18389  8783  3724  6759   173 11150
+##  [25] 18118 14143  2940  1756  1471 15285  8948  6785 15254  7436  3769 18873
+##  [37]  7758  7055  8137  4544 13691 15205  7623  9235 13932  7632  5487  3805
+##  [49]  4254 14850 16284  2265 13357  4361 19199 10844  4340 15745 11842 17542
+##  [61] 15981 18046 15133 19010 17258  3007  3587  8691  1725 11477  5190 16320
+##  [73] 15990 14230 13644 12238 15177  8884 18816 17171  2218  9231 13745 11305
+##  [85] 16656 10679 16675 11432 10608  6644  8646  9381 15474 13474  7684  9122
+##  [97]  5877 15776  3986 17707</code></pre>
 </div>
 </div>
 </div>
@@ -430,8 +441,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> 3.構建 x̄ 圖<a href="chapter-7.html#構建-x-圖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <div id="a.-從-lux.hotel.df-數據文件中提取等待時間的列" class="section level3 hasAnchor" number="6.3.1">
 <h3><span class="header-section-number">6.3.1</span> A. 從 lux.hotel.df 數據文件中提取等待時間的列<a href="chapter-7.html#a.-從-lux.hotel.df-數據文件中提取等待時間的列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="chapter-7.html#cb69-1" tabindex="-1"></a>wait.times <span class="ot">&lt;-</span> lux.hotel.df[, <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>]</span>
-<span id="cb69-2"><a href="chapter-7.html#cb69-2" tabindex="-1"></a><span class="fu">head</span>(wait.times)</span></code></pre></div>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter-7.html#cb124-1" tabindex="-1"></a>wait.times <span class="ot">&lt;-</span> lux.hotel.df[, <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb124-2"><a href="chapter-7.html#cb124-2" tabindex="-1"></a><span class="fu">head</span>(wait.times)</span></code></pre></div>
 <pre><code>##   Wait.Time.(in.seconds) X4 X5 X6
 ## 1                     67 48 52 71
 ## 2                     57 68 60 66
@@ -442,8 +453,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <div id="b.-使用-qcc-函數創建-x-圖" class="section level3 hasAnchor" number="6.3.2">
 <h3><span class="header-section-number">6.3.2</span> B. 使用 qcc 函數創建 x̄ 圖<a href="chapter-7.html#b.-使用-qcc-函數創建-x-圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="chapter-7.html#cb71-1" tabindex="-1"></a><span class="co"># 創建 x̄ 圖</span></span>
-<span id="cb71-2"><a href="chapter-7.html#cb71-2" tabindex="-1"></a><span class="fu">qcc</span>(wait.times, <span class="at">type =</span> <span class="st">&quot;xbar&quot;</span>, <span class="at">center =</span> <span class="dv">60</span>, <span class="at">std.dev =</span> <span class="dv">30</span>, <span class="at">nsigmas =</span> <span class="dv">3</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter-7.html#cb126-1" tabindex="-1"></a><span class="co"># 創建 x̄ 圖</span></span>
+<span id="cb126-2"><a href="chapter-7.html#cb126-2" tabindex="-1"></a><span class="fu">qcc</span>(wait.times, <span class="at">type =</span> <span class="st">&quot;xbar&quot;</span>, <span class="at">center =</span> <span class="dv">60</span>, <span class="at">std.dev =</span> <span class="dv">30</span>, <span class="at">nsigmas =</span> <span class="dv">3</span>)</span></code></pre></div>
 <p><img src="R_guideline_files/figure-html/graph-1.png" width="672" /></p>
 <pre><code>## List of 11
 ##  $ call      : language qcc(data = wait.times, type = &quot;xbar&quot;, center = 60, std.dev = 30, nsigmas = 3)

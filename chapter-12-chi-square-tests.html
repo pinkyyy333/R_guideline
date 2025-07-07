@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,22 +324,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter12.xlsx <a href="https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-5" class="section level2 hasAnchor" number="11.1">
 <h2><span class="header-section-number">11.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-12-chi-square-tests.html#安裝載入套件讀檔-5" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb154-1"><a href="chapter-12-chi-square-tests.html#cb154-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb154-2"><a href="chapter-12-chi-square-tests.html#cb154-2" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
-<span id="cb154-3"><a href="chapter-12-chi-square-tests.html#cb154-3" tabindex="-1"></a><span class="fu">library</span>(fBasics)</span></code></pre></div>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter-12-chi-square-tests.html#cb209-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb209-2"><a href="chapter-12-chi-square-tests.html#cb209-2" tabindex="-1"></a><span class="fu">library</span>(nortest)</span>
+<span id="cb209-3"><a href="chapter-12-chi-square-tests.html#cb209-3" tabindex="-1"></a><span class="fu">library</span>(fBasics)</span></code></pre></div>
 <pre><code>## Warning: 套件 &#39;fBasics&#39; 是用 R 版本 4.3.3 來建造的</code></pre>
 <pre><code>## 
 ## 載入套件：&#39;fBasics&#39;</code></pre>
 <pre><code>## 下列物件被遮斷自 &#39;package:EnvStats&#39;:
 ## 
 ##     kurtosis, skewness</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="chapter-12-chi-square-tests.html#cb158-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb158-2"><a href="chapter-12-chi-square-tests.html#cb158-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter12.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb158-3"><a href="chapter-12-chi-square-tests.html#cb158-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Household_Income&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb158-4"><a href="chapter-12-chi-square-tests.html#cb158-4" tabindex="-1"></a></span>
-<span id="cb158-5"><a href="chapter-12-chi-square-tests.html#cb158-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb158-6"><a href="chapter-12-chi-square-tests.html#cb158-6" tabindex="-1"></a>household.income.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb158-7"><a href="chapter-12-chi-square-tests.html#cb158-7" tabindex="-1"></a><span class="fu">head</span>(household.income.df)</span></code></pre></div>
+<div class="sourceCode" id="cb213"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb213-1"><a href="chapter-12-chi-square-tests.html#cb213-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb213-2"><a href="chapter-12-chi-square-tests.html#cb213-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter12.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb213-3"><a href="chapter-12-chi-square-tests.html#cb213-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Household_Income&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb213-4"><a href="chapter-12-chi-square-tests.html#cb213-4" tabindex="-1"></a></span>
+<span id="cb213-5"><a href="chapter-12-chi-square-tests.html#cb213-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb213-6"><a href="chapter-12-chi-square-tests.html#cb213-6" tabindex="-1"></a>household.income.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb213-7"><a href="chapter-12-chi-square-tests.html#cb213-7" tabindex="-1"></a><span class="fu">head</span>(household.income.df)</span></code></pre></div>
 <pre><code>##   Household.Income
 ## 1               90
 ## 2               15
@@ -342,11 +353,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>使用範例 12.1 來進行適配度檢驗，檢查觀察到的數據是否符合假設的分布。<br/></p>
 <div id="i.-輸入數據假設" class="section level4 hasAnchor" number="11.2.0.1">
 <h4><span class="header-section-number">11.2.0.1</span> I. 輸入數據、假設<a href="chapter-12-chi-square-tests.html#i.-輸入數據假設" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="chapter-12-chi-square-tests.html#cb160-1" tabindex="-1"></a><span class="co"># 輸入觀察到的客戶數量</span></span>
-<span id="cb160-2"><a href="chapter-12-chi-square-tests.html#cb160-2" tabindex="-1"></a>number.customers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">60</span>, <span class="dv">54</span>, <span class="dv">16</span>)</span>
-<span id="cb160-3"><a href="chapter-12-chi-square-tests.html#cb160-3" tabindex="-1"></a></span>
-<span id="cb160-4"><a href="chapter-12-chi-square-tests.html#cb160-4" tabindex="-1"></a><span class="co"># 輸入市場份額分布</span></span>
-<span id="cb160-5"><a href="chapter-12-chi-square-tests.html#cb160-5" tabindex="-1"></a>market.share <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.32</span>, <span class="fl">0.24</span>, <span class="fl">0.04</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb215"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb215-1"><a href="chapter-12-chi-square-tests.html#cb215-1" tabindex="-1"></a><span class="co"># 輸入觀察到的客戶數量</span></span>
+<span id="cb215-2"><a href="chapter-12-chi-square-tests.html#cb215-2" tabindex="-1"></a>number.customers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">70</span>, <span class="dv">60</span>, <span class="dv">54</span>, <span class="dv">16</span>)</span>
+<span id="cb215-3"><a href="chapter-12-chi-square-tests.html#cb215-3" tabindex="-1"></a></span>
+<span id="cb215-4"><a href="chapter-12-chi-square-tests.html#cb215-4" tabindex="-1"></a><span class="co"># 輸入市場份額分布</span></span>
+<span id="cb215-5"><a href="chapter-12-chi-square-tests.html#cb215-5" tabindex="-1"></a>market.share <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fl">0.40</span>, <span class="fl">0.32</span>, <span class="fl">0.24</span>, <span class="fl">0.04</span>)</span></code></pre></div>
 <pre><code>H_0: p_1 = 0.40, p_2 = 0.32, p_3 = 0.24, p_4 = 0.04
 H_A: At least one p_i differs from its hypothesized value.</code></pre>
 </div>
@@ -359,11 +370,11 @@ H_A: At least one p_i differs from its hypothesized value.</code></pre>
 <li>準備數據: 我們已經在上一部分中準備好了 number.customers 和 market.share 兩個向量。<br></li>
 <li>運行檢驗: 在這裡，我們將 number.customers 作為第一個參數，並將 p 設置為 market.share，這樣 R 會將這些預期概率用於檢驗。<br></li>
 </ol>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="chapter-12-chi-square-tests.html#cb163-1" tabindex="-1"></a><span class="co"># 進行卡方適配度檢驗</span></span>
-<span id="cb163-2"><a href="chapter-12-chi-square-tests.html#cb163-2" tabindex="-1"></a>chisq.test.result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(number.customers, <span class="at">p =</span> market.share)</span>
-<span id="cb163-3"><a href="chapter-12-chi-square-tests.html#cb163-3" tabindex="-1"></a></span>
-<span id="cb163-4"><a href="chapter-12-chi-square-tests.html#cb163-4" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb163-5"><a href="chapter-12-chi-square-tests.html#cb163-5" tabindex="-1"></a><span class="fu">print</span>(chisq.test.result)</span></code></pre></div>
+<div class="sourceCode" id="cb218"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb218-1"><a href="chapter-12-chi-square-tests.html#cb218-1" tabindex="-1"></a><span class="co"># 進行卡方適配度檢驗</span></span>
+<span id="cb218-2"><a href="chapter-12-chi-square-tests.html#cb218-2" tabindex="-1"></a>chisq.test.result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(number.customers, <span class="at">p =</span> market.share)</span>
+<span id="cb218-3"><a href="chapter-12-chi-square-tests.html#cb218-3" tabindex="-1"></a></span>
+<span id="cb218-4"><a href="chapter-12-chi-square-tests.html#cb218-4" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
+<span id="cb218-5"><a href="chapter-12-chi-square-tests.html#cb218-5" tabindex="-1"></a><span class="fu">print</span>(chisq.test.result)</span></code></pre></div>
 <pre><code>## 
 ## Results of Hypothesis Test
 ## --------------------------
@@ -396,18 +407,18 @@ p 值 &lt; 0.05，拒絕 H_0</code></pre>
 <p>基於表 12.8 中的數據，使用卡方檢驗來檢查性別和車輛類型之間是否存在獨立性。<br></p>
 <div id="i.-構建列聯表contingency-table假設" class="section level4 hasAnchor" number="11.3.0.1">
 <h4><span class="header-section-number">11.3.0.1</span> I. 構建列聯表(contingency table)、假設<a href="chapter-12-chi-square-tests.html#i.-構建列聯表contingency-table假設" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="chapter-12-chi-square-tests.html#cb167-1" tabindex="-1"></a><span class="co"># 輸入數據</span></span>
-<span id="cb167-2"><a href="chapter-12-chi-square-tests.html#cb167-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>)</span>
-<span id="cb167-3"><a href="chapter-12-chi-square-tests.html#cb167-3" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">170</span>)</span>
-<span id="cb167-4"><a href="chapter-12-chi-square-tests.html#cb167-4" tabindex="-1"></a></span>
-<span id="cb167-5"><a href="chapter-12-chi-square-tests.html#cb167-5" tabindex="-1"></a><span class="co"># 創建列聯表(contingency table)</span></span>
-<span id="cb167-6"><a href="chapter-12-chi-square-tests.html#cb167-6" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(female, male)</span>
-<span id="cb167-7"><a href="chapter-12-chi-square-tests.html#cb167-7" tabindex="-1"></a></span>
-<span id="cb167-8"><a href="chapter-12-chi-square-tests.html#cb167-8" tabindex="-1"></a><span class="co"># 為列聯表命名列</span></span>
-<span id="cb167-9"><a href="chapter-12-chi-square-tests.html#cb167-9" tabindex="-1"></a><span class="fu">colnames</span>(table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;economy.car&quot;</span>, <span class="st">&quot;noneconomy.car&quot;</span>)</span>
-<span id="cb167-10"><a href="chapter-12-chi-square-tests.html#cb167-10" tabindex="-1"></a></span>
-<span id="cb167-11"><a href="chapter-12-chi-square-tests.html#cb167-11" tabindex="-1"></a><span class="co"># 顯示列聯表</span></span>
-<span id="cb167-12"><a href="chapter-12-chi-square-tests.html#cb167-12" tabindex="-1"></a><span class="fu">print</span>(table)</span></code></pre></div>
+<div class="sourceCode" id="cb222"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb222-1"><a href="chapter-12-chi-square-tests.html#cb222-1" tabindex="-1"></a><span class="co"># 輸入數據</span></span>
+<span id="cb222-2"><a href="chapter-12-chi-square-tests.html#cb222-2" tabindex="-1"></a>female <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">60</span>)</span>
+<span id="cb222-3"><a href="chapter-12-chi-square-tests.html#cb222-3" tabindex="-1"></a>male <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">120</span>, <span class="dv">170</span>)</span>
+<span id="cb222-4"><a href="chapter-12-chi-square-tests.html#cb222-4" tabindex="-1"></a></span>
+<span id="cb222-5"><a href="chapter-12-chi-square-tests.html#cb222-5" tabindex="-1"></a><span class="co"># 創建列聯表(contingency table)</span></span>
+<span id="cb222-6"><a href="chapter-12-chi-square-tests.html#cb222-6" tabindex="-1"></a>table <span class="ot">&lt;-</span> <span class="fu">rbind</span>(female, male)</span>
+<span id="cb222-7"><a href="chapter-12-chi-square-tests.html#cb222-7" tabindex="-1"></a></span>
+<span id="cb222-8"><a href="chapter-12-chi-square-tests.html#cb222-8" tabindex="-1"></a><span class="co"># 為列聯表命名列</span></span>
+<span id="cb222-9"><a href="chapter-12-chi-square-tests.html#cb222-9" tabindex="-1"></a><span class="fu">colnames</span>(table) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;economy.car&quot;</span>, <span class="st">&quot;noneconomy.car&quot;</span>)</span>
+<span id="cb222-10"><a href="chapter-12-chi-square-tests.html#cb222-10" tabindex="-1"></a></span>
+<span id="cb222-11"><a href="chapter-12-chi-square-tests.html#cb222-11" tabindex="-1"></a><span class="co"># 顯示列聯表</span></span>
+<span id="cb222-12"><a href="chapter-12-chi-square-tests.html#cb222-12" tabindex="-1"></a><span class="fu">print</span>(table)</span></code></pre></div>
 <pre><code>##        economy.car noneconomy.car
 ## female          50             60
 ## male           120            170</code></pre>
@@ -420,11 +431,11 @@ H_A(對立假設) : 性別和車輛類型之間存在關聯（即不獨立）</c
 </div>
 <div id="iii.-進行卡方獨立性檢驗" class="section level4 hasAnchor" number="11.3.0.3">
 <h4><span class="header-section-number">11.3.0.3</span> III. 進行卡方獨立性檢驗<a href="chapter-12-chi-square-tests.html#iii.-進行卡方獨立性檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="chapter-12-chi-square-tests.html#cb171-1" tabindex="-1"></a><span class="co"># 進行卡方獨立性檢驗</span></span>
-<span id="cb171-2"><a href="chapter-12-chi-square-tests.html#cb171-2" tabindex="-1"></a>chisq.test.result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(table, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb171-3"><a href="chapter-12-chi-square-tests.html#cb171-3" tabindex="-1"></a></span>
-<span id="cb171-4"><a href="chapter-12-chi-square-tests.html#cb171-4" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb171-5"><a href="chapter-12-chi-square-tests.html#cb171-5" tabindex="-1"></a><span class="fu">print</span>(chisq.test.result)</span></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="chapter-12-chi-square-tests.html#cb226-1" tabindex="-1"></a><span class="co"># 進行卡方獨立性檢驗</span></span>
+<span id="cb226-2"><a href="chapter-12-chi-square-tests.html#cb226-2" tabindex="-1"></a>chisq.test.result <span class="ot">&lt;-</span> <span class="fu">chisq.test</span>(table, <span class="at">correct =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb226-3"><a href="chapter-12-chi-square-tests.html#cb226-3" tabindex="-1"></a></span>
+<span id="cb226-4"><a href="chapter-12-chi-square-tests.html#cb226-4" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
+<span id="cb226-5"><a href="chapter-12-chi-square-tests.html#cb226-5" tabindex="-1"></a><span class="fu">print</span>(chisq.test.result)</span></code></pre></div>
 <pre><code>## 
 ## Results of Hypothesis Test
 ## --------------------------
@@ -464,8 +475,8 @@ H_A(對立假設) : 數據不服從常態分布</code></pre>
 </div>
 <div id="iii.-使用-pearson-卡方檢驗進行常態性檢驗" class="section level4 hasAnchor" number="11.4.0.3">
 <h4><span class="header-section-number">11.4.0.3</span> III. 使用 Pearson 卡方檢驗進行常態性檢驗<a href="chapter-12-chi-square-tests.html#iii.-使用-pearson-卡方檢驗進行常態性檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb177-1"><a href="chapter-12-chi-square-tests.html#cb177-1" tabindex="-1"></a><span class="co"># 使用 nortest 包中的 pearson.test() 函數來進行常態性檢驗</span></span>
-<span id="cb177-2"><a href="chapter-12-chi-square-tests.html#cb177-2" tabindex="-1"></a><span class="fu">pearson.test</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb232"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb232-1"><a href="chapter-12-chi-square-tests.html#cb232-1" tabindex="-1"></a><span class="co"># 使用 nortest 包中的 pearson.test() 函數來進行常態性檢驗</span></span>
+<span id="cb232-2"><a href="chapter-12-chi-square-tests.html#cb232-2" tabindex="-1"></a><span class="fu">pearson.test</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Pearson chi-square normality test
 ## 
@@ -482,8 +493,8 @@ p 值: 0.002540414
 </div>
 <div id="iv.-使用-jarque-bera-檢驗進行常態性檢驗" class="section level4 hasAnchor" number="11.4.0.4">
 <h4><span class="header-section-number">11.4.0.4</span> IV. 使用 Jarque-Bera 檢驗進行常態性檢驗<a href="chapter-12-chi-square-tests.html#iv.-使用-jarque-bera-檢驗進行常態性檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb180"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb180-1"><a href="chapter-12-chi-square-tests.html#cb180-1" tabindex="-1"></a><span class="co"># 使用 fBasics 包中的 jarqueberaTest() 函數來進行常態性檢驗</span></span>
-<span id="cb180-2"><a href="chapter-12-chi-square-tests.html#cb180-2" tabindex="-1"></a><span class="fu">jarqueberaTest</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="chapter-12-chi-square-tests.html#cb235-1" tabindex="-1"></a><span class="co"># 使用 fBasics 包中的 jarqueberaTest() 函數來進行常態性檢驗</span></span>
+<span id="cb235-2"><a href="chapter-12-chi-square-tests.html#cb235-2" tabindex="-1"></a><span class="fu">jarqueberaTest</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ## Title:
 ##  Jarque-Bera Normality Test
@@ -504,8 +515,8 @@ p 值: &lt; 2.2e-16
 </div>
 <div id="v.-使用-anderson-darling-檢驗進行常態性檢驗" class="section level4 hasAnchor" number="11.4.0.5">
 <h4><span class="header-section-number">11.4.0.5</span> V. 使用 Anderson-Darling 檢驗進行常態性檢驗<a href="chapter-12-chi-square-tests.html#v.-使用-anderson-darling-檢驗進行常態性檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter-12-chi-square-tests.html#cb183-1" tabindex="-1"></a><span class="co"># 使用 nortest 包中的 ad.test() 函數來進行常態性檢驗</span></span>
-<span id="cb183-2"><a href="chapter-12-chi-square-tests.html#cb183-2" tabindex="-1"></a><span class="fu">ad.test</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="chapter-12-chi-square-tests.html#cb238-1" tabindex="-1"></a><span class="co"># 使用 nortest 包中的 ad.test() 函數來進行常態性檢驗</span></span>
+<span id="cb238-2"><a href="chapter-12-chi-square-tests.html#cb238-2" tabindex="-1"></a><span class="fu">ad.test</span>(household.income.df[, <span class="st">&quot;Household.Income&quot;</span>])</span></code></pre></div>
 <pre><code>## 
 ##  Anderson-Darling normality test
 ## 

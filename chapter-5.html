@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -315,27 +326,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> 1.二項分布<a href="chapter-5.html#二項分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>使用 dbinom(x, n, p) 函數來計算二項隨機變數 X 取特定值 x 的機率</strong> <br>
 <strong>其中 x 是成功次數，n 是試驗次數，p 是成功的機率</strong></p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="chapter-5.html#cb41-1" tabindex="-1"></a><span class="co"># 課本範例5.9a</span></span>
-<span id="cb41-2"><a href="chapter-5.html#cb41-2" tabindex="-1"></a><span class="co"># 因為 X 是一個二項隨機變數，且 n = 100，p = 0.047，我們可以通過輸入以下程式碼來找到 P(X = 5):</span></span>
-<span id="cb41-3"><a href="chapter-5.html#cb41-3" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="fl">0.047</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="chapter-5.html#cb96-1" tabindex="-1"></a><span class="co"># 課本範例5.9a</span></span>
+<span id="cb96-2"><a href="chapter-5.html#cb96-2" tabindex="-1"></a><span class="co"># 因為 X 是一個二項隨機變數，且 n = 100，p = 0.047，我們可以通過輸入以下程式碼來找到 P(X = 5):</span></span>
+<span id="cb96-3"><a href="chapter-5.html#cb96-3" tabindex="-1"></a><span class="fu">dbinom</span>(<span class="dv">5</span>, <span class="dv">100</span>, <span class="fl">0.047</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1782534</code></pre>
 </div>
 <div id="卜瓦松分布" class="section level2 hasAnchor" number="4.2">
 <h2><span class="header-section-number">4.2</span> 2.卜瓦松分布<a href="chapter-5.html#卜瓦松分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>使用 dpois(x, μ) 函數來計算泊松隨機變數 X 取特定值 x 的機率</strong><br>
 <strong>其中 x 是在某個區間內的成功次數，μ 是該區間內的平均值</strong></p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="chapter-5.html#cb43-1" tabindex="-1"></a><span class="co"># 課本範例5.11a</span></span>
-<span id="cb43-2"><a href="chapter-5.html#cb43-2" tabindex="-1"></a><span class="co"># 因為 X 是一個泊松隨機變數，且 μ = 114，我們可以通過輸入以下程式碼來找到 P(X ≤ 100):</span></span>
-<span id="cb43-3"><a href="chapter-5.html#cb43-3" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">100</span>, <span class="dv">114</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="chapter-5.html#cb98-1" tabindex="-1"></a><span class="co"># 課本範例5.11a</span></span>
+<span id="cb98-2"><a href="chapter-5.html#cb98-2" tabindex="-1"></a><span class="co"># 因為 X 是一個泊松隨機變數，且 μ = 114，我們可以通過輸入以下程式碼來找到 P(X ≤ 100):</span></span>
+<span id="cb98-3"><a href="chapter-5.html#cb98-3" tabindex="-1"></a><span class="fu">ppois</span>(<span class="dv">100</span>, <span class="dv">114</span>)</span></code></pre></div>
 <pre><code>## [1] 0.1012059</code></pre>
 </div>
 <div id="超幾何分布" class="section level2 hasAnchor" number="4.3">
 <h2><span class="header-section-number">4.3</span> 3.超幾何分布<a href="chapter-5.html#超幾何分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><strong>使用 dhyper(x, S, N − S, n) 函數來計算超幾何隨機變數 X 取特定值 x 的機率</strong><br>
 <strong>其中 x 是樣本中的成功次數，S 是總體中的成功次數，N 是總體大小（所以 N − S 是失敗次數），n 是樣本大小</strong></p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="chapter-5.html#cb45-1" tabindex="-1"></a><span class="co"># 課本範例5.12a</span></span>
-<span id="cb45-2"><a href="chapter-5.html#cb45-2" tabindex="-1"></a><span class="co"># 因為 X 是一個超幾何隨機變數，且 S = 2，N = 20（所以 20 − 2 = 18），以及 n = 5，我們可以通過輸入以下程式碼來找到 P(X = 1)：</span></span>
-<span id="cb45-3"><a href="chapter-5.html#cb45-3" tabindex="-1"></a><span class="fu">dhyper</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">18</span>, <span class="dv">5</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="chapter-5.html#cb100-1" tabindex="-1"></a><span class="co"># 課本範例5.12a</span></span>
+<span id="cb100-2"><a href="chapter-5.html#cb100-2" tabindex="-1"></a><span class="co"># 因為 X 是一個超幾何隨機變數，且 S = 2，N = 20（所以 20 − 2 = 18），以及 n = 5，我們可以通過輸入以下程式碼來找到 P(X = 1)：</span></span>
+<span id="cb100-3"><a href="chapter-5.html#cb100-3" tabindex="-1"></a><span class="fu">dhyper</span>(<span class="dv">1</span>, <span class="dv">2</span>, <span class="dv">18</span>, <span class="dv">5</span>)</span></code></pre></div>
 <pre><code>## [1] 0.3947368</code></pre>
 </div>
 </div>

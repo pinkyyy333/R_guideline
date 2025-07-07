@@ -140,6 +140,17 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
 <li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+<li class="chapter" data-level="1.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#基本操作"><i class="fa fa-check"></i><b>1.3</b> 3. 基本操作</a></li>
+<li class="chapter" data-level="1.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態"><i class="fa fa-check"></i><b>1.4</b> 4. 資料型態</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#character文字字串"><i class="fa fa-check"></i><b>1.4.1</b> 4.1 Character：文字字串</a></li>
+<li class="chapter" data-level="1.4.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#numeric數值型態"><i class="fa fa-check"></i><b>1.4.2</b> 4.2 Numeric：數值型態</a></li>
+<li class="chapter" data-level="1.4.3" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#integer整數型態"><i class="fa fa-check"></i><b>1.4.3</b> 4.3 Integer：整數型態</a></li>
+<li class="chapter" data-level="1.4.4" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#complex複數型態"><i class="fa fa-check"></i><b>1.4.4</b> 4.4 Complex：複數型態</a></li>
+<li class="chapter" data-level="1.4.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#logical邏輯值"><i class="fa fa-check"></i><b>1.4.5</b> 4.5 Logical：邏輯值</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#資料型態的轉換"><i class="fa fa-check"></i><b>1.5</b> 5. 資料型態的轉換</a></li>
+<li class="chapter" data-level="1.6" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#其他小功能"><i class="fa fa-check"></i><b>1.6</b> 6. 其他小功能</a></li>
 </ul></li>
 <li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
 <ul>
@@ -313,24 +324,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Chapter9.xlsx <a href="https://docs.google.com/spreadsheets/d/1KyHUSv7p4YvgKpVaQGBZrQhVcQZd0Xyh/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
 <div id="安裝載入套件讀檔-2" class="section level2 hasAnchor" number="8.1">
 <h2><span class="header-section-number">8.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-9-hypothesis-testing.html#安裝載入套件讀檔-2" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="chapter-9-hypothesis-testing.html#cb90-1" tabindex="-1"></a><span class="co"># 安裝套件</span></span>
-<span id="cb90-2"><a href="chapter-9-hypothesis-testing.html#cb90-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;BSDA&quot;))</span></span>
-<span id="cb90-3"><a href="chapter-9-hypothesis-testing.html#cb90-3" tabindex="-1"></a></span>
-<span id="cb90-4"><a href="chapter-9-hypothesis-testing.html#cb90-4" tabindex="-1"></a><span class="co"># 載入套件</span></span>
-<span id="cb90-5"><a href="chapter-9-hypothesis-testing.html#cb90-5" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb90-6"><a href="chapter-9-hypothesis-testing.html#cb90-6" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
-<span id="cb90-7"><a href="chapter-9-hypothesis-testing.html#cb90-7" tabindex="-1"></a></span>
-<span id="cb90-8"><a href="chapter-9-hypothesis-testing.html#cb90-8" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb90-9"><a href="chapter-9-hypothesis-testing.html#cb90-9" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter9.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb90-10"><a href="chapter-9-hypothesis-testing.html#cb90-10" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Debit_Spending&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb90-11"><a href="chapter-9-hypothesis-testing.html#cb90-11" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;MI_Life&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb90-12"><a href="chapter-9-hypothesis-testing.html#cb90-12" tabindex="-1"></a></span>
-<span id="cb90-13"><a href="chapter-9-hypothesis-testing.html#cb90-13" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb90-14"><a href="chapter-9-hypothesis-testing.html#cb90-14" tabindex="-1"></a>debit.spending.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb90-15"><a href="chapter-9-hypothesis-testing.html#cb90-15" tabindex="-1"></a>mi.life.expectancy.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="chapter-9-hypothesis-testing.html#cb145-1" tabindex="-1"></a><span class="co"># 安裝套件</span></span>
+<span id="cb145-2"><a href="chapter-9-hypothesis-testing.html#cb145-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;BSDA&quot;))</span></span>
+<span id="cb145-3"><a href="chapter-9-hypothesis-testing.html#cb145-3" tabindex="-1"></a></span>
+<span id="cb145-4"><a href="chapter-9-hypothesis-testing.html#cb145-4" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb145-5"><a href="chapter-9-hypothesis-testing.html#cb145-5" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb145-6"><a href="chapter-9-hypothesis-testing.html#cb145-6" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb145-7"><a href="chapter-9-hypothesis-testing.html#cb145-7" tabindex="-1"></a></span>
+<span id="cb145-8"><a href="chapter-9-hypothesis-testing.html#cb145-8" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb145-9"><a href="chapter-9-hypothesis-testing.html#cb145-9" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter9.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb145-10"><a href="chapter-9-hypothesis-testing.html#cb145-10" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Debit_Spending&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb145-11"><a href="chapter-9-hypothesis-testing.html#cb145-11" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;MI_Life&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb145-12"><a href="chapter-9-hypothesis-testing.html#cb145-12" tabindex="-1"></a></span>
+<span id="cb145-13"><a href="chapter-9-hypothesis-testing.html#cb145-13" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb145-14"><a href="chapter-9-hypothesis-testing.html#cb145-14" tabindex="-1"></a>debit.spending.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb145-15"><a href="chapter-9-hypothesis-testing.html#cb145-15" tabindex="-1"></a>mi.life.expectancy.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
 <div id="用head查看dataframe前六筆資料" class="section level3 hasAnchor" number="8.1.1">
 <h3><span class="header-section-number">8.1.1</span> 用head()查看dataframe前六筆資料<a href="chapter-9-hypothesis-testing.html#用head查看dataframe前六筆資料" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="chapter-9-hypothesis-testing.html#cb91-1" tabindex="-1"></a><span class="fu">head</span>(debit.spending.df)</span></code></pre></div>
+<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb146-1"><a href="chapter-9-hypothesis-testing.html#cb146-1" tabindex="-1"></a><span class="fu">head</span>(debit.spending.df)</span></code></pre></div>
 <pre><code>##   Spending
 ## 1     7960
 ## 2     7700
@@ -338,7 +349,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 4     7704
 ## 5     8543
 ## 6     7661</code></pre>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="chapter-9-hypothesis-testing.html#cb93-1" tabindex="-1"></a><span class="fu">head</span>(mi.life.expectancy.df)</span></code></pre></div>
+<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb148-1"><a href="chapter-9-hypothesis-testing.html#cb148-1" tabindex="-1"></a><span class="fu">head</span>(mi.life.expectancy.df)</span></code></pre></div>
 <pre><code>##    Age
 ## 1 76.4
 ## 2 76.0
@@ -361,15 +372,15 @@ H_A(對立假設) : μ &lt; 8000 (左尾檢定)</code></pre>
 </div>
 <div id="iii.-計算z統計量" class="section level4 hasAnchor" number="8.2.0.3">
 <h4><span class="header-section-number">8.2.0.3</span> III. 計算z統計量<a href="chapter-9-hypothesis-testing.html#iii.-計算z統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="chapter-9-hypothesis-testing.html#cb97-1" tabindex="-1"></a><span class="co"># 使用 debit.spending.df 數據文件來說明如何在已知 σ 的情況下檢驗 μ 的方法</span></span>
-<span id="cb97-2"><a href="chapter-9-hypothesis-testing.html#cb97-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 z.test() 函數</span></span>
-<span id="cb97-3"><a href="chapter-9-hypothesis-testing.html#cb97-3" tabindex="-1"></a><span class="co"># 因為對立假設是μ &lt; 8000 (左尾檢定)，所以我們設置 μ = 8000 並將 alternative 選項設置為 &quot;less&quot;</span></span>
-<span id="cb97-4"><a href="chapter-9-hypothesis-testing.html#cb97-4" tabindex="-1"></a><span class="co"># 將標準差 sigma.x 設置為 500</span></span>
-<span id="cb97-5"><a href="chapter-9-hypothesis-testing.html#cb97-5" tabindex="-1"></a></span>
-<span id="cb97-6"><a href="chapter-9-hypothesis-testing.html#cb97-6" tabindex="-1"></a><span class="co"># 執行 z 檢驗</span></span>
-<span id="cb97-7"><a href="chapter-9-hypothesis-testing.html#cb97-7" tabindex="-1"></a><span class="fu">z.test</span>(debit.spending.df[, <span class="st">&quot;Spending&quot;</span>], </span>
-<span id="cb97-8"><a href="chapter-9-hypothesis-testing.html#cb97-8" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">8000</span>, <span class="at">sigma.x =</span> <span class="dv">500</span>, </span>
-<span id="cb97-9"><a href="chapter-9-hypothesis-testing.html#cb97-9" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="chapter-9-hypothesis-testing.html#cb152-1" tabindex="-1"></a><span class="co"># 使用 debit.spending.df 數據文件來說明如何在已知 σ 的情況下檢驗 μ 的方法</span></span>
+<span id="cb152-2"><a href="chapter-9-hypothesis-testing.html#cb152-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 z.test() 函數</span></span>
+<span id="cb152-3"><a href="chapter-9-hypothesis-testing.html#cb152-3" tabindex="-1"></a><span class="co"># 因為對立假設是μ &lt; 8000 (左尾檢定)，所以我們設置 μ = 8000 並將 alternative 選項設置為 &quot;less&quot;</span></span>
+<span id="cb152-4"><a href="chapter-9-hypothesis-testing.html#cb152-4" tabindex="-1"></a><span class="co"># 將標準差 sigma.x 設置為 500</span></span>
+<span id="cb152-5"><a href="chapter-9-hypothesis-testing.html#cb152-5" tabindex="-1"></a></span>
+<span id="cb152-6"><a href="chapter-9-hypothesis-testing.html#cb152-6" tabindex="-1"></a><span class="co"># 執行 z 檢驗</span></span>
+<span id="cb152-7"><a href="chapter-9-hypothesis-testing.html#cb152-7" tabindex="-1"></a><span class="fu">z.test</span>(debit.spending.df[, <span class="st">&quot;Spending&quot;</span>], </span>
+<span id="cb152-8"><a href="chapter-9-hypothesis-testing.html#cb152-8" tabindex="-1"></a>       <span class="at">mu =</span> <span class="dv">8000</span>, <span class="at">sigma.x =</span> <span class="dv">500</span>, </span>
+<span id="cb152-9"><a href="chapter-9-hypothesis-testing.html#cb152-9" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One-sample z-Test
 ## 
@@ -406,12 +417,12 @@ H_A(對立假設) : μ &lt; 81.48 (左尾檢定)</code></pre>
 </div>
 <div id="iii.-計算z統計量-1" class="section level4 hasAnchor" number="8.3.0.3">
 <h4><span class="header-section-number">8.3.0.3</span> III. 計算z統計量<a href="chapter-9-hypothesis-testing.html#iii.-計算z統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="chapter-9-hypothesis-testing.html#cb103-1" tabindex="-1"></a><span class="co"># 使用 mi.life.expectancy.df 數據文件來說明如何在未知 σ 的情況下估計 μ 的方法</span></span>
-<span id="cb103-2"><a href="chapter-9-hypothesis-testing.html#cb103-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 t.test() 函數</span></span>
-<span id="cb103-3"><a href="chapter-9-hypothesis-testing.html#cb103-3" tabindex="-1"></a><span class="co"># 因為對立假設是 H_A : μ &lt; 81.48，所以我們設置 μ = 81.48 並將 alternative 選項設置為 &quot;less&quot;</span></span>
-<span id="cb103-4"><a href="chapter-9-hypothesis-testing.html#cb103-4" tabindex="-1"></a></span>
-<span id="cb103-5"><a href="chapter-9-hypothesis-testing.html#cb103-5" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
-<span id="cb103-6"><a href="chapter-9-hypothesis-testing.html#cb103-6" tabindex="-1"></a><span class="fu">t.test</span>(mi.life.expectancy.df[, <span class="st">&quot;Age&quot;</span>], <span class="at">mu =</span> <span class="fl">81.48</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="chapter-9-hypothesis-testing.html#cb158-1" tabindex="-1"></a><span class="co"># 使用 mi.life.expectancy.df 數據文件來說明如何在未知 σ 的情況下估計 μ 的方法</span></span>
+<span id="cb158-2"><a href="chapter-9-hypothesis-testing.html#cb158-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 t.test() 函數</span></span>
+<span id="cb158-3"><a href="chapter-9-hypothesis-testing.html#cb158-3" tabindex="-1"></a><span class="co"># 因為對立假設是 H_A : μ &lt; 81.48，所以我們設置 μ = 81.48 並將 alternative 選項設置為 &quot;less&quot;</span></span>
+<span id="cb158-4"><a href="chapter-9-hypothesis-testing.html#cb158-4" tabindex="-1"></a></span>
+<span id="cb158-5"><a href="chapter-9-hypothesis-testing.html#cb158-5" tabindex="-1"></a><span class="co"># 執行 t 檢驗</span></span>
+<span id="cb158-6"><a href="chapter-9-hypothesis-testing.html#cb158-6" tabindex="-1"></a><span class="fu">t.test</span>(mi.life.expectancy.df[, <span class="st">&quot;Age&quot;</span>], <span class="at">mu =</span> <span class="fl">81.48</span>, <span class="at">alternative =</span> <span class="st">&quot;less&quot;</span>)</span></code></pre></div>
 <pre><code>## 
 ##  One Sample t-test
 ## 
@@ -440,24 +451,24 @@ H_A(對立假設) : μ &lt; 81.48 (左尾檢定)</code></pre>
 <p><strong>使用範例9.14來說明如何檢驗 p</strong><br></p>
 <div id="a.-計算樣本比例-1" class="section level3 hasAnchor" number="8.4.1">
 <h3><span class="header-section-number">8.4.1</span> A. 計算樣本比例<a href="chapter-9-hypothesis-testing.html#a.-計算樣本比例-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="chapter-9-hypothesis-testing.html#cb107-1" tabindex="-1"></a><span class="co"># 設定成功次數 successes 為 67，試驗次數 trials 為 180，然後通過將 successes 除以 trials 來獲得樣本比例</span></span>
-<span id="cb107-2"><a href="chapter-9-hypothesis-testing.html#cb107-2" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="dv">67</span></span>
-<span id="cb107-3"><a href="chapter-9-hypothesis-testing.html#cb107-3" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="dv">180</span></span>
-<span id="cb107-4"><a href="chapter-9-hypothesis-testing.html#cb107-4" tabindex="-1"></a>pbar <span class="ot">&lt;-</span> successes <span class="sc">/</span> trials</span></code></pre></div>
+<div class="sourceCode" id="cb162"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb162-1"><a href="chapter-9-hypothesis-testing.html#cb162-1" tabindex="-1"></a><span class="co"># 設定成功次數 successes 為 67，試驗次數 trials 為 180，然後通過將 successes 除以 trials 來獲得樣本比例</span></span>
+<span id="cb162-2"><a href="chapter-9-hypothesis-testing.html#cb162-2" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="dv">67</span></span>
+<span id="cb162-3"><a href="chapter-9-hypothesis-testing.html#cb162-3" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="dv">180</span></span>
+<span id="cb162-4"><a href="chapter-9-hypothesis-testing.html#cb162-4" tabindex="-1"></a>pbar <span class="ot">&lt;-</span> successes <span class="sc">/</span> trials</span></code></pre></div>
 </div>
 <div id="b.-計算-z-統計量" class="section level3 hasAnchor" number="8.4.2">
 <h3><span class="header-section-number">8.4.2</span> B. 計算 z 統計量<a href="chapter-9-hypothesis-testing.html#b.-計算-z-統計量" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p>使用公式計算 z 統計量：
 <img src="/Users/bear/dev/R/Statistics/zfor.png" title="統計量" alt="公式1" /></p>
-<div class="sourceCode" id="cb108"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb108-1"><a href="chapter-9-hypothesis-testing.html#cb108-1" tabindex="-1"></a><span class="co"># p=0.40 是在對立假設中的比例</span></span>
-<span id="cb108-2"><a href="chapter-9-hypothesis-testing.html#cb108-2" tabindex="-1"></a>z.statistic <span class="ot">&lt;-</span> (pbar <span class="sc">-</span> <span class="fl">0.40</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fl">0.40</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.40</span>) <span class="sc">/</span> trials)</span></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="chapter-9-hypothesis-testing.html#cb163-1" tabindex="-1"></a><span class="co"># p=0.40 是在對立假設中的比例</span></span>
+<span id="cb163-2"><a href="chapter-9-hypothesis-testing.html#cb163-2" tabindex="-1"></a>z.statistic <span class="ot">&lt;-</span> (pbar <span class="sc">-</span> <span class="fl">0.40</span>) <span class="sc">/</span> <span class="fu">sqrt</span>(<span class="fl">0.40</span> <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> <span class="fl">0.40</span>) <span class="sc">/</span> trials)</span></code></pre></div>
 </div>
 <div id="c.-計算-p-值" class="section level3 hasAnchor" number="8.4.3">
 <h3><span class="header-section-number">8.4.3</span> C. 計算 p 值<a href="chapter-9-hypothesis-testing.html#c.-計算-p-值" class="anchor-section" aria-label="Anchor link to header"></a></h3>
-<div class="sourceCode" id="cb109"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb109-1"><a href="chapter-9-hypothesis-testing.html#cb109-1" tabindex="-1"></a><span class="co"># 使用 pnorm() 函數來計算與樣本 z 統計量相關的 p 值</span></span>
-<span id="cb109-2"><a href="chapter-9-hypothesis-testing.html#cb109-2" tabindex="-1"></a><span class="co"># 由於對立假設是 HA : p&lt;0.40，因此需要計算左尾 p 值</span></span>
-<span id="cb109-3"><a href="chapter-9-hypothesis-testing.html#cb109-3" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z.statistic)</span>
-<span id="cb109-4"><a href="chapter-9-hypothesis-testing.html#cb109-4" tabindex="-1"></a>p.value</span></code></pre></div>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="chapter-9-hypothesis-testing.html#cb164-1" tabindex="-1"></a><span class="co"># 使用 pnorm() 函數來計算與樣本 z 統計量相關的 p 值</span></span>
+<span id="cb164-2"><a href="chapter-9-hypothesis-testing.html#cb164-2" tabindex="-1"></a><span class="co"># 由於對立假設是 HA : p&lt;0.40，因此需要計算左尾 p 值</span></span>
+<span id="cb164-3"><a href="chapter-9-hypothesis-testing.html#cb164-3" tabindex="-1"></a>p.value <span class="ot">&lt;-</span> <span class="fu">pnorm</span>(z.statistic)</span>
+<span id="cb164-4"><a href="chapter-9-hypothesis-testing.html#cb164-4" tabindex="-1"></a>p.value</span></code></pre></div>
 <pre><code>## [1] 0.2234104</code></pre>
 </div>
 </div>
