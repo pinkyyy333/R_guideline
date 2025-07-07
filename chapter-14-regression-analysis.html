@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>12 Chapter 14 Regression Analysis | R Guideline</title>
+  <meta name="description" content="12 Chapter 14 Regression Analysis | R Guideline" />
+  <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="12 Chapter 14 Regression Analysis | R Guideline" />
+  <meta property="og:type" content="book" />
+  
+  
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="12 Chapter 14 Regression Analysis | R Guideline" />
+  
+  
+  
+
+<meta name="author" content="TA Pinky" />
+
+
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="chapter-12-chi-square-tests.html"/>
+<link rel="next" href="chapter-13.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="custom.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li class="chapter" data-level="1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html"><i class="fa fa-check"></i><b>1</b> Getting Started with R</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#安裝與r語言入門"><i class="fa fa-check"></i><b>1.1</b> 1. 安裝與R語言入門</a></li>
+<li class="chapter" data-level="1.2" data-path="getting-started-with-r.html"><a href="getting-started-with-r.html#設定工作目錄-working-directory"><i class="fa fa-check"></i><b>1.2</b> 2. 設定工作目錄 (working directory)</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="chapter-2.html"><a href="chapter-2.html"><i class="fa fa-check"></i><b>2</b> Chapter 2</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="chapter-2.html"><a href="chapter-2.html#安裝並載入套件讀檔"><i class="fa fa-check"></i><b>2.1</b> 1. 安裝並載入套件&amp;讀檔</a>
+<ul>
+<li class="chapter" data-level="2.1.1" data-path="chapter-2.html"><a href="chapter-2.html#將xlsx檔案讀入為dataframe"><i class="fa fa-check"></i><b>2.1.1</b> 將xlsx檔案讀入為dataframe</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="chapter-2.html"><a href="chapter-2.html#繪製圓餅圖pie-chart"><i class="fa fa-check"></i><b>2.2</b> 2. 繪製圓餅圖(Pie Chart)</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="chapter-2.html"><a href="chapter-2.html#繪製1960年婚姻狀態圓餅圖"><i class="fa fa-check"></i><b>2.2.1</b> 繪製1960年婚姻狀態圓餅圖</a></li>
+<li class="chapter" data-level="2.2.2" data-path="chapter-2.html"><a href="chapter-2.html#將兩個圓餅圖放在一起比較"><i class="fa fa-check"></i><b>2.2.2</b> 將兩個圓餅圖放在一起比較！</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="chapter-2.html"><a href="chapter-2.html#繪製長條圖bar-chart"><i class="fa fa-check"></i><b>2.3</b> 3. 繪製長條圖(Bar Chart)</a></li>
+<li class="chapter" data-level="2.4" data-path="chapter-2.html"><a href="chapter-2.html#繪製直方圖histogram"><i class="fa fa-check"></i><b>2.4</b> 4. 繪製直方圖(Histogram)</a></li>
+<li class="chapter" data-level="2.5" data-path="chapter-2.html"><a href="chapter-2.html#繪製次數多邊圖polygon"><i class="fa fa-check"></i><b>2.5</b> 5. 繪製次數多邊圖(Polygon)</a></li>
+<li class="chapter" data-level="2.6" data-path="chapter-2.html"><a href="chapter-2.html#繪製累積百分比曲線圖ogive"><i class="fa fa-check"></i><b>2.6</b> 6. 繪製累積百分比曲線圖(Ogive)</a></li>
+<li class="chapter" data-level="2.7" data-path="chapter-2.html"><a href="chapter-2.html#繪製散佈圖scatterplot"><i class="fa fa-check"></i><b>2.7</b> 7. 繪製散佈圖(Scatterplot)</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="chapter-3.html"><a href="chapter-3.html"><i class="fa fa-check"></i><b>3</b> Chapter 3</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="chapter-3.html"><a href="chapter-3.html#載入套件讀檔"><i class="fa fa-check"></i><b>3.1</b> 1. 載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="3.2" data-path="chapter-3.html"><a href="chapter-3.html#獲取基本數據摘要"><i class="fa fa-check"></i><b>3.2</b> 2. 獲取基本數據摘要</a></li>
+<li class="chapter" data-level="3.3" data-path="chapter-3.html"><a href="chapter-3.html#建立箱型圖box-plot"><i class="fa fa-check"></i><b>3.3</b> 3. 建立箱型圖(Box Plot)</a></li>
+<li class="chapter" data-level="3.4" data-path="chapter-3.html"><a href="chapter-3.html#計算共變異數和相關係數"><i class="fa fa-check"></i><b>3.4</b> 4. 計算共變異數和相關係數</a>
+<ul>
+<li class="chapter" data-level="3.4.1" data-path="chapter-3.html"><a href="chapter-3.html#計算共變異數covariance"><i class="fa fa-check"></i><b>3.4.1</b> 計算共變異數(Covariance)</a></li>
+<li class="chapter" data-level="3.4.2" data-path="chapter-3.html"><a href="chapter-3.html#計算相關係數correlation-coefficients"><i class="fa fa-check"></i><b>3.4.2</b> 計算相關係數(Correlation Coefficients)</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="chapter-5.html"><a href="chapter-5.html"><i class="fa fa-check"></i><b>4</b> Chapter 5</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="chapter-5.html"><a href="chapter-5.html#二項分布"><i class="fa fa-check"></i><b>4.1</b> 1.二項分布</a></li>
+<li class="chapter" data-level="4.2" data-path="chapter-5.html"><a href="chapter-5.html#卜瓦松分布"><i class="fa fa-check"></i><b>4.2</b> 2.卜瓦松分布</a></li>
+<li class="chapter" data-level="4.3" data-path="chapter-5.html"><a href="chapter-5.html#超幾何分布"><i class="fa fa-check"></i><b>4.3</b> 3.超幾何分布</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="chapter-6.html"><a href="chapter-6.html"><i class="fa fa-check"></i><b>5</b> Chapter 6</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="chapter-6.html"><a href="chapter-6.html#均勻分布"><i class="fa fa-check"></i><b>5.1</b> 1.均勻分布</a></li>
+<li class="chapter" data-level="5.2" data-path="chapter-6.html"><a href="chapter-6.html#常態分佈"><i class="fa fa-check"></i><b>5.2</b> 2.常態分佈</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="chapter-6.html"><a href="chapter-6.html#逆轉換"><i class="fa fa-check"></i><b>5.2.1</b> 逆轉換</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="chapter-6.html"><a href="chapter-6.html#指數分佈"><i class="fa fa-check"></i><b>5.3</b> 3.指數分佈</a></li>
+<li class="chapter" data-level="5.4" data-path="chapter-6.html"><a href="chapter-6.html#對數常態分布"><i class="fa fa-check"></i><b>5.4</b> 4.對數常態分布</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="chapter-6.html"><a href="chapter-6.html#逆轉換-1"><i class="fa fa-check"></i><b>5.4.1</b> 逆轉換</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="chapter-7.html"><a href="chapter-7.html"><i class="fa fa-check"></i><b>6</b> Chapter 7</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="chapter-7.html"><a href="chapter-7.html#安裝載入套件讀檔"><i class="fa fa-check"></i><b>6.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="6.2" data-path="chapter-7.html"><a href="chapter-7.html#生成隨機樣本"><i class="fa fa-check"></i><b>6.2</b> 2.生成隨機樣本</a>
+<ul>
+<li class="chapter" data-level="6.2.1" data-path="chapter-7.html"><a href="chapter-7.html#使用抽樣"><i class="fa fa-check"></i><b>6.2.1</b> 使用抽樣</a></li>
+<li class="chapter" data-level="6.2.2" data-path="chapter-7.html"><a href="chapter-7.html#從分布中生成樣本"><i class="fa fa-check"></i><b>6.2.2</b> 從分布中生成樣本</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="chapter-7.html"><a href="chapter-7.html#構建-x-圖"><i class="fa fa-check"></i><b>6.3</b> 3.構建 x̄ 圖</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="chapter-7.html"><a href="chapter-7.html#a.-從-lux.hotel.df-數據文件中提取等待時間的列"><i class="fa fa-check"></i><b>6.3.1</b> A. 從 lux.hotel.df 數據文件中提取等待時間的列</a></li>
+<li class="chapter" data-level="6.3.2" data-path="chapter-7.html"><a href="chapter-7.html#b.-使用-qcc-函數創建-x-圖"><i class="fa fa-check"></i><b>6.3.2</b> B. 使用 qcc 函數創建 x̄ 圖</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="chapter-8.html"><a href="chapter-8.html"><i class="fa fa-check"></i><b>7</b> Chapter 8</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="chapter-8.html"><a href="chapter-8.html#安裝載入套件讀檔-1"><i class="fa fa-check"></i><b>7.1</b> 1.安裝、載入套件&amp;讀檔</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="chapter-8.html"><a href="chapter-8.html#對dataframe使用summary函數"><i class="fa fa-check"></i><b>7.1.1</b> 對dataframe使用summary()函數</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="chapter-8.html"><a href="chapter-8.html#σ-已知時-估計-μ"><i class="fa fa-check"></i><b>7.2</b> 2. σ 已知時， 估計 μ</a></li>
+<li class="chapter" data-level="7.3" data-path="chapter-8.html"><a href="chapter-8.html#σ-未知時-估計-μ"><i class="fa fa-check"></i><b>7.3</b> 3. σ 未知時， 估計 μ</a></li>
+<li class="chapter" data-level="7.4" data-path="chapter-8.html"><a href="chapter-8.html#估計-p"><i class="fa fa-check"></i><b>7.4</b> 4.估計 p</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="chapter-8.html"><a href="chapter-8.html#a.-計算樣本比例"><i class="fa fa-check"></i><b>7.4.1</b> A. 計算樣本比例</a></li>
+<li class="chapter" data-level="7.4.2" data-path="chapter-8.html"><a href="chapter-8.html#b.-計算臨界值和誤差範圍"><i class="fa fa-check"></i><b>7.4.2</b> B. 計算臨界值和誤差範圍</a></li>
+<li class="chapter" data-level="7.4.3" data-path="chapter-8.html"><a href="chapter-8.html#c.-計算信賴區間"><i class="fa fa-check"></i><b>7.4.3</b> C. 計算信賴區間</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html"><i class="fa fa-check"></i><b>8</b> Chapter 9 Hypothesis Testing</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#安裝載入套件讀檔-2"><i class="fa fa-check"></i><b>8.1</b> 1.安裝、載入套件&amp;讀檔</a>
+<ul>
+<li class="chapter" data-level="8.1.1" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#用head查看dataframe前六筆資料"><i class="fa fa-check"></i><b>8.1.1</b> 用head()查看dataframe前六筆資料</a></li>
+</ul></li>
+<li class="chapter" data-level="8.2" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#σ-已知時-檢驗-μ"><i class="fa fa-check"></i><b>8.2</b> 2. σ 已知時， 檢驗 μ</a></li>
+<li class="chapter" data-level="8.3" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#σ-未知時-檢驗-μ"><i class="fa fa-check"></i><b>8.3</b> 3. σ 未知時， 檢驗 μ</a></li>
+<li class="chapter" data-level="8.4" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#檢驗-p"><i class="fa fa-check"></i><b>8.4</b> 4.檢驗 p</a>
+<ul>
+<li class="chapter" data-level="8.4.1" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#a.-計算樣本比例-1"><i class="fa fa-check"></i><b>8.4.1</b> A. 計算樣本比例</a></li>
+<li class="chapter" data-level="8.4.2" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#b.-計算-z-統計量"><i class="fa fa-check"></i><b>8.4.2</b> B. 計算 z 統計量</a></li>
+<li class="chapter" data-level="8.4.3" data-path="chapter-9-hypothesis-testing.html"><a href="chapter-9-hypothesis-testing.html#c.-計算-p-值"><i class="fa fa-check"></i><b>8.4.3</b> C. 計算 p 值</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="chapter-10-statistical-inference-concerning-two-populations.html"><a href="chapter-10-statistical-inference-concerning-two-populations.html"><i class="fa fa-check"></i><b>9</b> Chapter 10 Statistical Inference Concerning Two Populations</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="chapter-10-statistical-inference-concerning-two-populations.html"><a href="chapter-10-statistical-inference-concerning-two-populations.html#安裝載入套件讀檔-3"><i class="fa fa-check"></i><b>9.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="9.2" data-path="chapter-10-statistical-inference-concerning-two-populations.html"><a href="chapter-10-statistical-inference-concerning-two-populations.html#測試-μ1---μ2-的方法"><i class="fa fa-check"></i><b>9.2</b> 2.測試 μ1 - μ2 的方法</a></li>
+<li class="chapter" data-level="9.3" data-path="chapter-10-statistical-inference-concerning-two-populations.html"><a href="chapter-10-statistical-inference-concerning-two-populations.html#測試-μ_0-的方法"><i class="fa fa-check"></i><b>9.3</b> 2.測試 μ_0 的方法</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html"><i class="fa fa-check"></i><b>10</b> Chapter 11 Statistical Inference Concerning Variance</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html#安裝載入套件讀檔-4"><i class="fa fa-check"></i><b>10.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="10.2" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html#σ²-的信賴區間"><i class="fa fa-check"></i><b>10.2</b> 2. σ² 的信賴區間</a></li>
+<li class="chapter" data-level="10.3" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html#檢驗-σ²"><i class="fa fa-check"></i><b>10.3</b> 3.檢驗 σ²</a></li>
+<li class="chapter" data-level="10.4" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值的信賴區間計算"><i class="fa fa-check"></i><b>10.4</b> 4.變異數比值的信賴區間計算</a></li>
+<li class="chapter" data-level="10.5" data-path="chapter-11-statistical-inference-concerning-variance.html"><a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值檢驗"><i class="fa fa-check"></i><b>10.5</b> 5.變異數比值檢驗</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="chapter-12-chi-square-tests.html"><a href="chapter-12-chi-square-tests.html"><i class="fa fa-check"></i><b>11</b> Chapter 12 Chi-Square Tests</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="chapter-12-chi-square-tests.html"><a href="chapter-12-chi-square-tests.html#安裝載入套件讀檔-5"><i class="fa fa-check"></i><b>11.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="11.2" data-path="chapter-12-chi-square-tests.html"><a href="chapter-12-chi-square-tests.html#適配度檢驗goodness-of-fit-test"><i class="fa fa-check"></i><b>11.2</b> 2.適配度檢驗(Goodness-of-Fit Test)</a></li>
+<li class="chapter" data-level="11.3" data-path="chapter-12-chi-square-tests.html"><a href="chapter-12-chi-square-tests.html#獨立性檢驗test-for-independence"><i class="fa fa-check"></i><b>11.3</b> 3.獨立性檢驗(Test for Independence)</a></li>
+<li class="chapter" data-level="11.4" data-path="chapter-12-chi-square-tests.html"><a href="chapter-12-chi-square-tests.html#常態性檢驗tests-for-normality"><i class="fa fa-check"></i><b>11.4</b> 4. 常態性檢驗(Tests for Normality)</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html"><i class="fa fa-check"></i><b>12</b> Chapter 14 Regression Analysis</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#安裝載入套件讀檔-6"><i class="fa fa-check"></i><b>12.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="12.2" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#簡單線性迴歸分析simple-linear-regression"><i class="fa fa-check"></i><b>12.2</b> 2.簡單線性迴歸分析(Simple Linear Regression)</a></li>
+<li class="chapter" data-level="12.3" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#多元迴歸分析multiple-regression"><i class="fa fa-check"></i><b>12.3</b> 3.多元迴歸分析(Multiple Regression)</a></li>
+<li class="chapter" data-level="12.4" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#構建帶有趨勢線的散佈圖"><i class="fa fa-check"></i><b>12.4</b> 4. 構建帶有趨勢線的散佈圖</a>
+<ul>
+<li class="chapter" data-level="12.4.1" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#i.-使用-plot-函數構建散佈圖"><i class="fa fa-check"></i><b>12.4.1</b> I. 使用 plot() 函數構建散佈圖</a></li>
+<li class="chapter" data-level="12.4.2" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#ii.-添加趨勢線"><i class="fa fa-check"></i><b>12.4.2</b> II. 添加趨勢線</a></li>
+<li class="chapter" data-level="12.4.3" data-path="chapter-14-regression-analysis.html"><a href="chapter-14-regression-analysis.html#iii.-使用-ggplot2-函數構建更精美的散佈圖"><i class="fa fa-check"></i><b>12.4.3</b> III. 使用 ggplot2 函數構建更精美的散佈圖</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="chapter-13.html"><a href="chapter-13.html"><i class="fa fa-check"></i><b>13</b> Chapter 13</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="chapter-13.html"><a href="chapter-13.html#安裝載入套件讀檔-7"><i class="fa fa-check"></i><b>13.1</b> 1.安裝、載入套件&amp;讀檔</a></li>
+<li class="chapter" data-level="13.2" data-path="chapter-13.html"><a href="chapter-13.html#one-way-anova-fisher-and-tukey-confidence-intervals"><i class="fa fa-check"></i><b>13.2</b> 2. One-Way ANOVA; Fisher and Tukey Confidence Intervals</a>
+<ul>
+<li class="chapter" data-level="13.2.1" data-path="chapter-13.html"><a href="chapter-13.html#a.-數據準備"><i class="fa fa-check"></i><b>13.2.1</b> A. 數據準備</a></li>
+<li class="chapter" data-level="13.2.2" data-path="chapter-13.html"><a href="chapter-13.html#b.-建立變異數分析模型variance-model"><i class="fa fa-check"></i><b>13.2.2</b> B. 建立變異數分析模型(variance model)</a></li>
+<li class="chapter" data-level="13.2.3" data-path="chapter-13.html"><a href="chapter-13.html#c.-生成-anova-表"><i class="fa fa-check"></i><b>13.2.3</b> C. 生成 ANOVA 表</a></li>
+<li class="chapter" data-level="13.2.4" data-path="chapter-13.html"><a href="chapter-13.html#d.-使用-tukeyhsd-進行多重比較檢驗"><i class="fa fa-check"></i><b>13.2.4</b> D. 使用 TukeyHSD 進行多重比較檢驗</a></li>
+<li class="chapter" data-level="13.2.5" data-path="chapter-13.html"><a href="chapter-13.html#e.-使用-lsd.test-進行-fisher-檢驗"><i class="fa fa-check"></i><b>13.2.5</b> E. 使用 LSD.test 進行 Fisher 檢驗</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="chapter-13.html"><a href="chapter-13.html#two-way-anova-no-interaction"><i class="fa fa-check"></i><b>13.3</b> 3. Two-Way ANOVA (No Interaction)</a>
+<ul>
+<li class="chapter" data-level="13.3.1" data-path="chapter-13.html"><a href="chapter-13.html#a.-重新配置數據"><i class="fa fa-check"></i><b>13.3.1</b> A. 重新配置數據</a></li>
+<li class="chapter" data-level="13.3.2" data-path="chapter-13.html"><a href="chapter-13.html#b.-建立變異數分析模型variance-model-1"><i class="fa fa-check"></i><b>13.3.2</b> B. 建立變異數分析模型(variance model)</a></li>
+<li class="chapter" data-level="13.3.3" data-path="chapter-13.html"><a href="chapter-13.html#c.-生成-anova-表-1"><i class="fa fa-check"></i><b>13.3.3</b> C. 生成 ANOVA 表</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="chapter-13.html"><a href="chapter-13.html#two-way-anova-with-interaction"><i class="fa fa-check"></i><b>13.4</b> 4. Two-Way ANOVA (with Interaction)</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="chapter-13.html"><a href="chapter-13.html#a.-數據清理"><i class="fa fa-check"></i><b>13.4.1</b> A. 數據清理</a></li>
+<li class="chapter" data-level="13.4.2" data-path="chapter-13.html"><a href="chapter-13.html#b.-重新配置數據"><i class="fa fa-check"></i><b>13.4.2</b> B. 重新配置數據</a></li>
+<li class="chapter" data-level="13.4.3" data-path="chapter-13.html"><a href="chapter-13.html#c.-建立基於交互作用的變異數分析模型"><i class="fa fa-check"></i><b>13.4.3</b> C. 建立基於交互作用的變異數分析模型</a></li>
+<li class="chapter" data-level="13.4.4" data-path="chapter-13.html"><a href="chapter-13.html#d.-生成-anova-表"><i class="fa fa-check"></i><b>13.4.4</b> D. 生成 ANOVA 表</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="參考資料.html"><a href="參考資料.html"><i class="fa fa-check"></i><b>14</b> 參考資料</a></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">R Guideline</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="chapter-14-regression-analysis" class="section level1 hasAnchor" number="12">
+<h1><span class="header-section-number">12</span> Chapter 14 Regression Analysis<a href="chapter-14-regression-analysis.html#chapter-14-regression-analysis" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter14.xlsx <a href="https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&amp;ouid=110553448349846752071&amp;rtpof=true&amp;sd=true">下載點</a></p>
+<div id="安裝載入套件讀檔-6" class="section level2 hasAnchor" number="12.1">
+<h2><span class="header-section-number">12.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-14-regression-analysis.html#安裝載入套件讀檔-6" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-14-regression-analysis.html#cb187-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb187-2"><a href="chapter-14-regression-analysis.html#cb187-2" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb187-3"><a href="chapter-14-regression-analysis.html#cb187-3" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb187-4"><a href="chapter-14-regression-analysis.html#cb187-4" tabindex="-1"></a></span>
+<span id="cb187-5"><a href="chapter-14-regression-analysis.html#cb187-5" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb187-6"><a href="chapter-14-regression-analysis.html#cb187-6" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter14.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb187-7"><a href="chapter-14-regression-analysis.html#cb187-7" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Debt_Payments&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb187-8"><a href="chapter-14-regression-analysis.html#cb187-8" tabindex="-1"></a></span>
+<span id="cb187-9"><a href="chapter-14-regression-analysis.html#cb187-9" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb187-10"><a href="chapter-14-regression-analysis.html#cb187-10" tabindex="-1"></a>debt.payments.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb187-11"><a href="chapter-14-regression-analysis.html#cb187-11" tabindex="-1"></a><span class="fu">head</span>(debt.payments.df)</span></code></pre></div>
+<pre><code>##   Metropolitan.area Debt Income Unemployment
+## 1  Washington, D.C. 1285  103.5          6.3
+## 2           Seattle 1135   81.7          8.5
+## 3         Baltimore 1133   82.2          8.1
+## 4            Boston 1133   89.5          7.6
+## 5            Denver 1104   75.9          8.1
+## 6     San Francisco 1098   93.4          9.3</code></pre>
+</div>
+<div id="簡單線性迴歸分析simple-linear-regression" class="section level2 hasAnchor" number="12.2">
+<h2><span class="header-section-number">12.2</span> 2.簡單線性迴歸分析(Simple Linear Regression)<a href="chapter-14-regression-analysis.html#簡單線性迴歸分析simple-linear-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>範例14.4，使用 debt.payments.df 數據文件來估計一個簡單線性迴歸模型，並生成相關的回歸和 ANOVA 表。<br/></p>
+<div id="i.-假設-4" class="section level4 hasAnchor" number="12.2.0.1">
+<h4><span class="header-section-number">12.2.0.1</span> I. 假設<a href="chapter-14-regression-analysis.html#i.-假設-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>H_0(虛無假設):  自變量 (Income) 對應變量 (Debt) 沒有顯著影響
+H_A(對立假設) : 自變量 (Income) 對應變量 (Debt) 有顯著影響</code></pre>
+</div>
+<div id="ii.-設定-α-值-8" class="section level4 hasAnchor" number="12.2.0.2">
+<h4><span class="header-section-number">12.2.0.2</span> II. 設定 α 值<a href="chapter-14-regression-analysis.html#ii.-設定-α-值-8" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>α = 0.05</code></pre>
+</div>
+<div id="iii.-輸入數據並構建線性迴歸模型" class="section level4 hasAnchor" number="12.2.0.3">
+<h4><span class="header-section-number">12.2.0.3</span> III. 輸入數據並構建線性迴歸模型<a href="chapter-14-regression-analysis.html#iii.-輸入數據並構建線性迴歸模型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb191"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb191-1"><a href="chapter-14-regression-analysis.html#cb191-1" tabindex="-1"></a><span class="co"># 構建線性迴歸模型</span></span>
+<span id="cb191-2"><a href="chapter-14-regression-analysis.html#cb191-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個線性模型對象。這個模型將債務 (Debt) 作為應變量，收入 (Income) 作為自變量。</span></span>
+<span id="cb191-3"><a href="chapter-14-regression-analysis.html#cb191-3" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span></code></pre></div>
+</div>
+<div id="iv.-獲取回歸模型摘要" class="section level4 hasAnchor" number="12.2.0.4">
+<h4><span class="header-section-number">12.2.0.4</span> IV. 獲取回歸模型摘要<a href="chapter-14-regression-analysis.html#iv.-獲取回歸模型摘要" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb192"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb192-1"><a href="chapter-14-regression-analysis.html#cb192-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和顯著性水平等信息。</span></span>
+<span id="cb192-2"><a href="chapter-14-regression-analysis.html#cb192-2" tabindex="-1"></a><span class="fu">summary</span>(debt.income.lm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Debt ~ Income, data = debt.payments.df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -107.087  -38.767   -5.828   50.137  101.619 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  210.298     91.339   2.302   0.0303 *  
+## Income        10.441      1.222   8.544 9.66e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 63.26 on 24 degrees of freedom
+## Multiple R-squared:  0.7526, Adjusted R-squared:  0.7423 
+## F-statistic:    73 on 1 and 24 DF,  p-value: 9.66e-09</code></pre>
+</div>
+<div id="v.-進行-anova-分析" class="section level4 hasAnchor" number="12.2.0.5">
+<h4><span class="header-section-number">12.2.0.5</span> V. 進行 ANOVA 分析<a href="chapter-14-regression-analysis.html#v.-進行-anova-分析" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-14-regression-analysis.html#cb194-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數來生成 ANOVA 表，以檢查模型的總體顯著性</span></span>
+<span id="cb194-2"><a href="chapter-14-regression-analysis.html#cb194-2" tabindex="-1"></a><span class="fu">anova</span>(debt.income.lm)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Debt
+##           Df Sum Sq Mean Sq F value   Pr(&gt;F)    
+## Income     1 292137  292137      73 9.66e-09 ***
+## Residuals 24  96046    4002                     
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="vi.-結果解讀" class="section level4 hasAnchor" number="12.2.0.6">
+<h4><span class="header-section-number">12.2.0.6</span> VI. 結果解讀<a href="chapter-14-regression-analysis.html#vi.-結果解讀" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>1. 迴歸係數：
+  截距 (估計值 = 210.298, p 值 = 0.0303)：
+      這表示當收入為零時，預計債務為 210.298 單位。
+  收入 (估計值 = 10.441, p 值 = 9.66e-09)：
+      此係數非常顯著（p 值 &lt; 0.001），表明收入對債務有強烈且正向的影響。
+2. 模型擬合度：
+  R 平方 = 0.7526，調整後的 R 平方 = 0.7423：
+      這表示約 75.26% 的債務變異可以由收入解釋。
+3. ANOVA F 統計量：
+  F 統計量 = 73，p 值 = 9.66e-09：
+      整體模型具有統計顯著性，表明收入對債務具有顯著的預測能力。</code></pre>
+</div>
+<div id="vii.-結論" class="section level4 hasAnchor" number="12.2.0.7">
+<h4><span class="header-section-number">12.2.0.7</span> VII. 結論<a href="chapter-14-regression-analysis.html#vii.-結論" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>根據回歸分析和 ANOVA 結果，我們拒絕 H_0，這表明收入對債務有顯著影響。
+正向的迴歸係數表明隨著收入增加，債務也會增加。</code></pre>
+</div>
+</div>
+<div id="多元迴歸分析multiple-regression" class="section level2 hasAnchor" number="12.3">
+<h2><span class="header-section-number">12.3</span> 3.多元迴歸分析(Multiple Regression)<a href="chapter-14-regression-analysis.html#多元迴歸分析multiple-regression" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>範例14.6<br/></p>
+<div id="i.-假設-5" class="section level4 hasAnchor" number="12.3.0.1">
+<h4><span class="header-section-number">12.3.0.1</span> I. 假設<a href="chapter-14-regression-analysis.html#i.-假設-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>H_0 (虛無假設): 收入和失業率對債務沒有顯著影響。
+H_A (對立假設): 收入和/或失業率對債務有顯著影響。</code></pre>
+</div>
+<div id="ii.-設定-α-值-9" class="section level4 hasAnchor" number="12.3.0.2">
+<h4><span class="header-section-number">12.3.0.2</span> II. 設定 α 值<a href="chapter-14-regression-analysis.html#ii.-設定-α-值-9" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>α = 0.05</code></pre>
+</div>
+<div id="iii.-輸入數據並構建多元線性迴歸模型" class="section level4 hasAnchor" number="12.3.0.3">
+<h4><span class="header-section-number">12.3.0.3</span> III. 輸入數據並構建多元線性迴歸模型<a href="chapter-14-regression-analysis.html#iii.-輸入數據並構建多元線性迴歸模型" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-14-regression-analysis.html#cb200-1" tabindex="-1"></a><span class="co"># 構建多元線性迴歸模型</span></span>
+<span id="cb200-2"><a href="chapter-14-regression-analysis.html#cb200-2" tabindex="-1"></a><span class="co"># 使用 lm() 函數來創建一個多元線性模型對象，將債務 (Debt) 作為應變量，收入 (Income) 和失業率 (Unemployment) 作為自變量。</span></span>
+<span id="cb200-3"><a href="chapter-14-regression-analysis.html#cb200-3" tabindex="-1"></a>debt.multiple.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income <span class="sc">+</span> Unemployment, <span class="at">data =</span> debt.payments.df)</span>
+<span id="cb200-4"><a href="chapter-14-regression-analysis.html#cb200-4" tabindex="-1"></a><span class="co"># 注意：lm() 函數執行後不會立即輸出結果，您需要使用其他函數來查看結果。</span></span></code></pre></div>
+</div>
+<div id="iv.-獲取回歸模型摘要-1" class="section level4 hasAnchor" number="12.3.0.4">
+<h4><span class="header-section-number">12.3.0.4</span> IV. 獲取回歸模型摘要<a href="chapter-14-regression-analysis.html#iv.-獲取回歸模型摘要-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb201"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb201-1"><a href="chapter-14-regression-analysis.html#cb201-1" tabindex="-1"></a><span class="co"># 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和 p 值等信息。</span></span>
+<span id="cb201-2"><a href="chapter-14-regression-analysis.html#cb201-2" tabindex="-1"></a><span class="fu">summary</span>(debt.multiple.lm)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Debt ~ Income + Unemployment, data = debt.payments.df)
+## 
+## Residuals:
+##      Min       1Q   Median       3Q      Max 
+## -110.456  -38.454   -5.836   51.156  102.121 
+## 
+## Coefficients:
+##              Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  198.9956   156.3619   1.273    0.216    
+## Income        10.5122     1.4765   7.120 2.98e-07 ***
+## Unemployment   0.6186     6.8679   0.090    0.929    
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 64.61 on 23 degrees of freedom
+## Multiple R-squared:  0.7527, Adjusted R-squared:  0.7312 
+## F-statistic:    35 on 2 and 23 DF,  p-value: 1.054e-07</code></pre>
+</div>
+<div id="v.-進行-anova-分析-1" class="section level4 hasAnchor" number="12.3.0.5">
+<h4><span class="header-section-number">12.3.0.5</span> V. 進行 ANOVA 分析<a href="chapter-14-regression-analysis.html#v.-進行-anova-分析-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-14-regression-analysis.html#cb203-1" tabindex="-1"></a><span class="co"># 使用 anova() 函數生成 ANOVA 表，以評估模型的整體顯著性。</span></span>
+<span id="cb203-2"><a href="chapter-14-regression-analysis.html#cb203-2" tabindex="-1"></a><span class="fu">anova</span>(debt.multiple.lm)</span></code></pre></div>
+<pre><code>## Analysis of Variance Table
+## 
+## Response: Debt
+##              Df Sum Sq Mean Sq F value    Pr(&gt;F)    
+## Income        1 292137  292137 69.9826 1.976e-08 ***
+## Unemployment  1     34      34  0.0081     0.929    
+## Residuals    23  96012    4174                      
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1</code></pre>
+</div>
+<div id="vi.-結果解讀-1" class="section level4 hasAnchor" number="12.3.0.6">
+<h4><span class="header-section-number">12.3.0.6</span> VI. 結果解讀<a href="chapter-14-regression-analysis.html#vi.-結果解讀-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>1. 迴歸係數：
+    截距 (估計值 = 198.9956, p 值 = 0.216)：
+        這表示當收入和失業率為零時，預計債務為 198.9956 單位，但 p 值不顯著，無法得出明確結論。
+    收入 (估計值 = 10.5122, p 值 = 2.98e-07)：
+        此係數非常顯著（p 值 &lt; 0.001），表明收入對債務有強烈且正向的影響。
+    失業率 (估計值 = 0.6186, p 值 = 0.929)：
+        失業率的影響不顯著（p 值 &gt; 0.05），因此我們無法確認失業率對債務的顯著影響。
+2.模型擬合度：
+    R 平方 = 0.7527，調整後的 R 平方 = 0.7312：
+        這表示約 75.27% 的債務變異可以由收入和失業率解釋。
+3.ANOVA F 統計量：
+    F 統計量 = 35，p 值 = 1.054e-07：
+        整體模型具有統計顯著性，表明收入和/或失業率對債務具有顯著的預測能力。</code></pre>
+</div>
+<div id="vii.-結論-1" class="section level4 hasAnchor" number="12.3.0.7">
+<h4><span class="header-section-number">12.3.0.7</span> VII. 結論<a href="chapter-14-regression-analysis.html#vii.-結論-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<pre><code>根據多元迴歸分析和 ANOVA 結果，我們拒絕 H_0，這表明收入對債務有顯著影響。
+雖然失業率的影響不顯著，但整體模型還是具有顯著性。</code></pre>
+</div>
+</div>
+<div id="構建帶有趨勢線的散佈圖" class="section level2 hasAnchor" number="12.4">
+<h2><span class="header-section-number">12.4</span> 4. 構建帶有趨勢線的散佈圖<a href="chapter-14-regression-analysis.html#構建帶有趨勢線的散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="i.-使用-plot-函數構建散佈圖" class="section level3 hasAnchor" number="12.4.1">
+<h3><span class="header-section-number">12.4.1</span> I. 使用 plot() 函數構建散佈圖<a href="chapter-14-regression-analysis.html#i.-使用-plot-函數構建散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb207"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb207-1"><a href="chapter-14-regression-analysis.html#cb207-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
+<span id="cb207-2"><a href="chapter-14-regression-analysis.html#cb207-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
+<span id="cb207-3"><a href="chapter-14-regression-analysis.html#cb207-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
+<span id="cb207-4"><a href="chapter-14-regression-analysis.html#cb207-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span></code></pre></div>
+<p><img src="R_guideline_files/figure-html/14-4-1-1.png" width="672" /></p>
+</div>
+<div id="ii.-添加趨勢線" class="section level3 hasAnchor" number="12.4.2">
+<h3><span class="header-section-number">12.4.2</span> II. 添加趨勢線<a href="chapter-14-regression-analysis.html#ii.-添加趨勢線" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb208"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb208-1"><a href="chapter-14-regression-analysis.html#cb208-1" tabindex="-1"></a><span class="co"># 使用 debt.payments.df 數據文件來構建散佈圖。</span></span>
+<span id="cb208-2"><a href="chapter-14-regression-analysis.html#cb208-2" tabindex="-1"></a><span class="co"># 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。</span></span>
+<span id="cb208-3"><a href="chapter-14-regression-analysis.html#cb208-3" tabindex="-1"></a><span class="fu">plot</span>(debt.payments.df[,<span class="st">&quot;Debt&quot;</span>] <span class="sc">~</span> debt.payments.df[,<span class="st">&quot;Income&quot;</span>],</span>
+<span id="cb208-4"><a href="chapter-14-regression-analysis.html#cb208-4" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;債務支付 ($)&quot;</span>, <span class="at">xlab =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>)</span>
+<span id="cb208-5"><a href="chapter-14-regression-analysis.html#cb208-5" tabindex="-1"></a></span>
+<span id="cb208-6"><a href="chapter-14-regression-analysis.html#cb208-6" tabindex="-1"></a><span class="co"># 使用 lm() 函數來構建一個簡單的線性回歸模型</span></span>
+<span id="cb208-7"><a href="chapter-14-regression-analysis.html#cb208-7" tabindex="-1"></a><span class="co"># 然後使用 abline() 函數將趨勢線添加到散佈圖中</span></span>
+<span id="cb208-8"><a href="chapter-14-regression-analysis.html#cb208-8" tabindex="-1"></a>debt.income.lm <span class="ot">&lt;-</span> <span class="fu">lm</span>(Debt <span class="sc">~</span> Income, <span class="at">data =</span> debt.payments.df)</span>
+<span id="cb208-9"><a href="chapter-14-regression-analysis.html#cb208-9" tabindex="-1"></a><span class="fu">abline</span>(debt.income.lm)</span></code></pre></div>
+<p><img src="R_guideline_files/figure-html/14-4-2-1.png" width="672" /></p>
+</div>
+<div id="iii.-使用-ggplot2-函數構建更精美的散佈圖" class="section level3 hasAnchor" number="12.4.3">
+<h3><span class="header-section-number">12.4.3</span> III. 使用 ggplot2 函數構建更精美的散佈圖<a href="chapter-14-regression-analysis.html#iii.-使用-ggplot2-函數構建更精美的散佈圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb209"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb209-1"><a href="chapter-14-regression-analysis.html#cb209-1" tabindex="-1"></a><span class="co"># 載入 ggplot2</span></span>
+<span id="cb209-2"><a href="chapter-14-regression-analysis.html#cb209-2" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb209-3"><a href="chapter-14-regression-analysis.html#cb209-3" tabindex="-1"></a></span>
+<span id="cb209-4"><a href="chapter-14-regression-analysis.html#cb209-4" tabindex="-1"></a><span class="co"># 使用 ggplot2 創建帶有趨勢線的散佈圖</span></span>
+<span id="cb209-5"><a href="chapter-14-regression-analysis.html#cb209-5" tabindex="-1"></a>debt.income.plot <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(debt.payments.df, <span class="fu">aes</span>(Income, Debt)) <span class="sc">+</span></span>
+<span id="cb209-6"><a href="chapter-14-regression-analysis.html#cb209-6" tabindex="-1"></a>                    <span class="fu">geom_point</span>() <span class="sc">+</span>  <span class="co"># 添加數據點</span></span>
+<span id="cb209-7"><a href="chapter-14-regression-analysis.html#cb209-7" tabindex="-1"></a>                    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">&quot;lm&quot;</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span>  <span class="co"># 添加趨勢線</span></span>
+<span id="cb209-8"><a href="chapter-14-regression-analysis.html#cb209-8" tabindex="-1"></a>                    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;收入 ($1,000s)&quot;</span>, <span class="at">y =</span> <span class="st">&quot;債務支付 ($)&quot;</span>)  <span class="co"># 添加自定義標籤</span></span>
+<span id="cb209-9"><a href="chapter-14-regression-analysis.html#cb209-9" tabindex="-1"></a></span>
+<span id="cb209-10"><a href="chapter-14-regression-analysis.html#cb209-10" tabindex="-1"></a><span class="co"># 顯示圖表</span></span>
+<span id="cb209-11"><a href="chapter-14-regression-analysis.html#cb209-11" tabindex="-1"></a><span class="fu">print</span>(debt.income.plot)</span></code></pre></div>
+<pre><code>## $data
+##    Metropolitan.area Debt Income Unemployment
+## 1   Washington, D.C. 1285  103.5          6.3
+## 2            Seattle 1135   81.7          8.5
+## 3          Baltimore 1133   82.2          8.1
+## 4             Boston 1133   89.5          7.6
+## 5             Denver 1104   75.9          8.1
+## 6      San Francisco 1098   93.4          9.3
+## 7          San Diego 1076   75.5         10.6
+## 8         Sacramento 1045   73.1         12.4
+## 9        Los Angeles 1024   68.2         12.9
+## 10           Chicago 1017   75.1          9.7
+## 11      Philadelphia 1011   78.3          9.2
+## 12       Minneapolis 1011   84.0          7.0
+## 13          New York  989   78.3          9.3
+## 14           Atlanta  986   71.8         10.3
+## 15            Dallas  970   68.3          8.4
+## 16           Phoenix  957   66.6          9.1
+## 17          Portland  948   71.2         10.2
+## 18        Cincinnati  920   69.5          9.3
+## 19           Houston  889   65.1          8.7
+## 20          Columbus  888   68.6          8.3
+## 21         St. Louis  886   68.3          9.9
+## 22             Miami  867   60.2         14.5
+## 23           Detroit  832   69.8         15.7
+## 24         Cleveland  812   64.8          9.6
+## 25             Tampa  791   59.4         12.6
+## 26        Pittsburgh  763   63.0          8.3
+## 
+## $layers
+## $layers[[1]]
+## geom_point: na.rm = FALSE
+## stat_identity: na.rm = FALSE
+## position_identity 
+## 
+## $layers[[2]]
+## geom_smooth: na.rm = FALSE, orientation = NA, se = FALSE
+## stat_smooth: na.rm = FALSE, orientation = NA, se = FALSE, method = lm
+## position_identity 
+## 
+## 
+## $scales
+## &lt;ggproto object: Class ScalesList, gg&gt;
+##     add: function
+##     add_defaults: function
+##     add_missing: function
+##     backtransform_df: function
+##     clone: function
+##     find: function
+##     get_scales: function
+##     has_scale: function
+##     input: function
+##     map_df: function
+##     n: function
+##     non_position_scales: function
+##     scales: list
+##     train_df: function
+##     transform_df: function
+##     super:  &lt;ggproto object: Class ScalesList, gg&gt;
+## 
+## $guides
+## &lt;Guides[0] ggproto object&gt;
+## 
+## &lt;empty&gt;
+## 
+## $mapping
+## Aesthetic mapping: 
+## * `x` -&gt; `Income`
+## * `y` -&gt; `Debt`
+## 
+## $theme
+## list()
+## 
+## $coordinates
+## &lt;ggproto object: Class CoordCartesian, Coord, gg&gt;
+##     aspect: function
+##     backtransform_range: function
+##     clip: on
+##     default: TRUE
+##     distance: function
+##     expand: TRUE
+##     is_free: function
+##     is_linear: function
+##     labels: function
+##     limits: list
+##     modify_scales: function
+##     range: function
+##     render_axis_h: function
+##     render_axis_v: function
+##     render_bg: function
+##     render_fg: function
+##     setup_data: function
+##     setup_layout: function
+##     setup_panel_guides: function
+##     setup_panel_params: function
+##     setup_params: function
+##     train_panel_guides: function
+##     transform: function
+##     super:  &lt;ggproto object: Class CoordCartesian, Coord, gg&gt;
+## 
+## $facet
+## &lt;ggproto object: Class FacetNull, Facet, gg&gt;
+##     compute_layout: function
+##     draw_back: function
+##     draw_front: function
+##     draw_labels: function
+##     draw_panels: function
+##     finish_data: function
+##     init_scales: function
+##     map_data: function
+##     params: list
+##     setup_data: function
+##     setup_params: function
+##     shrink: TRUE
+##     train_scales: function
+##     vars: function
+##     super:  &lt;ggproto object: Class FacetNull, Facet, gg&gt;
+## 
+## $plot_env
+## &lt;environment: R_GlobalEnv&gt;
+## 
+## $layout
+## &lt;ggproto object: Class Layout, gg&gt;
+##     coord: NULL
+##     coord_params: list
+##     facet: NULL
+##     facet_params: list
+##     finish_data: function
+##     get_scales: function
+##     layout: NULL
+##     map_position: function
+##     panel_params: NULL
+##     panel_scales_x: NULL
+##     panel_scales_y: NULL
+##     render: function
+##     render_labels: function
+##     reset_scales: function
+##     resolve_label: function
+##     setup: function
+##     setup_panel_guides: function
+##     setup_panel_params: function
+##     train_position: function
+##     super:  &lt;ggproto object: Class Layout, gg&gt;
+## 
+## $labels
+## $labels$x
+## [1] &quot;收入 ($1,000s)&quot;
+## 
+## $labels$y
+## [1] &quot;債務支付 ($)&quot;
+## 
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;gg&quot;     &quot;ggplot&quot;</code></pre>
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="chapter-12-chi-square-tests.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-13.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+  "sharing": {
+    "github": false,
+    "facebook": true,
+    "twitter": true,
+    "linkedin": false,
+    "weibo": false,
+    "instapaper": false,
+    "vk": false,
+    "whatsapp": false,
+    "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+  },
+  "fontsettings": {
+    "theme": "white",
+    "family": "sans",
+    "size": 2
+  },
+  "edit": {
+    "link": null,
+    "text": null
+  },
+  "history": {
+    "link": null,
+    "text": null
+  },
+  "view": {
+    "link": null,
+    "text": null
+  },
+  "download": null,
+  "search": false,
+  "toc": {
+    "collapse": "section",
+    "smooth_scroll": true
+  }
+});
+});
+</script>
+
+</body>
+
+</html>

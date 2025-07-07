@@ -1,16 +1,15 @@
 ---
 title: "R Guideline"
 author: "TA Pinky"
-date: "2025-07-07"
+site: bookdown::bookdown_site
 output:
-  rmdformats::readthedown:
-    self_contained: true
-    thumbnails: true
-    lightbox: true
-    gallery: false
-    highlight: tango
+  bookdown::gitbook:
+    config:
+      toc:
+        collapse: section
+        smooth_scroll: yes
+    css: custom.css    # 如有自訂
 ---
-
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```

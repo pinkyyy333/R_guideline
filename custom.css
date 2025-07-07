@@ -1,0 +1,123 @@
+/* =============================================================================
+   Bookdown GitBook：自訂粉彩暖調配色
+   ----------------------------------------------------
+   定義色票：
+     --text-color:   #918380  (深灰紫)
+     --primary-bg:   #AC7461  (磚紅)
+     --secondary-bg: #DC7A5D  (珊瑚橘)
+     --accent-bg:    #F4D1CC  (粉玉米)
+     --main-bg:      #F5B992  (蜜瓜黃)
+   ============================================================================= */
+:root {
+  --text-color:   #3e3f4c;
+  --primary-bg:   #AC7461;
+  --secondary-bg: #f7e0cd;
+  --accent-bg:    #fff;
+  --main-bg:      #fff;
+}
+
+/* 1. 左側目錄 Sidebar（.book-summary） */
+.book-summary li > a {
+  /* 清除原本只有文字顏色的設定，改成同時改底色和字色 */
+  color: var(--text-color)   !important;
+  background-color: transparent !important;
+}
+.book-summary li > a:hover,
+.book-summary li.active > a {
+  background-color: var(--accent-bg)   !important;
+  color:          var(--primary-bg)    !important;
+}
+.book-summary {
+  background-color: var(--secondary-bg) !important;
+}
+/* 2. 內容區域 Main Content（.book-body） */
+.book-body {
+  background: var(--main-bg)  !important;
+  color: var(--text-color)    !important;
+}
+.book-body h1, .book-body h2, .book-body h3,
+.book-body h4, .book-body h5, .book-body h6 {
+  color: var(--text-color)    !important;
+}
+
+/* 3. 工具列 Toolbar（左上漢堡、字級、說明按鈕） */
+.book-toolbar {
+  background: var(--primary-bg) !important;
+}
+.book-toolbar a {
+  color: var(--main-bg)        !important;
+  transition: color .2s;
+}
+.book-toolbar a:hover {
+  color: var(--accent-bg)      !important;
+}
+
+/* 4. 頂部導覽列 Navbar / Brand */
+.navbar {
+  background-color: var(--primary-bg) !important;
+  border-bottom: 1px solid var(--accent-bg) !important;
+}
+.navbar .navbar-brand {
+  color: var(--main-bg)        !important;
+}
+.navbar .navbar-brand:hover {
+  color: var(--accent-bg)      !important;
+}
+
+/* 5. 右上社群／分享按鈕 Social / Share Icons */
+.book-social, .navbar-nav.pull-right {
+  background: var(--primary-bg) !important;
+}
+.book-social a, .navbar-nav.pull-right a {
+  color: var(--main-bg)        !important;
+  transition: color .2s;
+}
+.book-social a:hover, .navbar-nav.pull-right a:hover {
+  color: var(--accent-bg)      !important;
+}
+
+/* 6. 全域連結、強調、按鈕、表格、程式碼 */
+a {
+  color: var(--text-color)   !important;
+  text-decoration: none;
+}
+a:hover {
+  color: var(--primary-bg)   !important;
+}
+mark, .highlight {
+  background: var(--accent-bg) !important;
+  color: var(--text-color)     !important;
+  padding: 0 .2em;
+}
+.btn, button {
+  background: var(--primary-bg) !important;
+  color: var(--main-bg)         !important;
+  border: none;
+  border-radius: 4px;
+  transition: background .2s;
+}
+.btn-secondary {
+  background: var(--secondary-bg) !important;
+}
+.btn:hover {
+  background: var(--accent-bg)  !important;
+  color: var(--text-color)      !important;
+}
+table, code {
+  border: none      !important;
+}
+/* 只對整個 code block (pre) 下外框 */
+pre {
+  border: 1px solid var(--text-color) !important;
+  background: #ffffff                !important;
+  padding: .8em 1em                  !important;
+  border-radius: 4px                !important;
+  overflow: auto                    !important;
+}
+/* 如果你還想保留 inline code 的底色，但去掉它的框線： */
+code {
+  background: #f7f7f7 !important;
+  padding: 0 .3em     !important;
+  border: none        !important;
+  border-radius: 3px  !important;
+}
