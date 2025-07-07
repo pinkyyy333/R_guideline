@@ -33,11 +33,10 @@ R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數
 getwd()
 
 # 設置工作目錄，使用函數 setwd()
-setwd("/Users/bear/dev/Python")
+setwd("D:/college information/R_statistics")
 getwd()
 
 ```
-
 # Chapter 2
 
 Chapter 2 - R markdown檔案 [下載點](https://drive.google.com/file/d/1JJa5F2DwkJ8Szw5mhVzfSns4wEOGj2JE/view?usp=sharing)
@@ -64,7 +63,7 @@ Chapter2.xlsx [下載點](https://docs.google.com/spreadsheets/d/16s-_ftmfIGnKEo
 
 ```{r read_file}
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter2.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter2.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Marital_Status" #這裡輸入您要讀取的sheet的名稱
 sheet_name_2 <- "MV_Houses" #這裡輸入您要讀取的sheet的名稱
 
@@ -238,7 +237,7 @@ Fund_Returns.xlsx [下載點](https://docs.google.com/spreadsheets/d/1rKbstviJN1
 library(openxlsx)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Fund_Returns.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Fund_Returns.xlsx" # 更改成您要讀取之xlsx的路徑
 
 # 使用read.xlsx函數讀取
 fund.returns.df <- read.xlsx(file_path)
@@ -399,7 +398,7 @@ library(openxlsx)
 library(qcc)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter7.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter7.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Lux_Hotel" #這裡輸入您要讀取的sheet的名稱
 
 # 使用read.xlsx函數讀取指定的工作表
@@ -460,7 +459,7 @@ library(openxlsx)
 library(BSDA)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter8.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter8.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Hockey_Pucks" #這裡輸入您要讀取的sheet的名稱
 sheet_name_2 <- "Lottery" #這裡輸入您要讀取的sheet的名稱
 
@@ -551,7 +550,7 @@ library(openxlsx)
 library(BSDA)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter9.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter9.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Debit_Spending" #這裡輸入您要讀取的sheet的名稱
 sheet_name_2 <- "MI_Life" #這裡輸入您要讀取的sheet的名稱
 
@@ -669,7 +668,7 @@ Chapter10.xlsx [下載點](https://docs.google.com/spreadsheets/d/1McirZ6yGPMRtX
 ```{r 10-1}
 library(openxlsx)
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter10.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter10.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Gold_Oil" #這裡輸入您要讀取的sheet的名稱
 sheet_name_2 <- "Food_Calories" #這裡輸入您要讀取的sheet的名稱
 
@@ -775,7 +774,7 @@ Chapter11.xlsx [下載點](https://docs.google.com/spreadsheets/d/1BK8N8Ghh0gokc
 library(openxlsx)
 library(EnvStats)
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter11.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter11.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Fund_Returns" #這裡輸入您要讀取的sheet的名稱
 
 # 使用read.xlsx函數讀取指定的工作表
@@ -918,7 +917,7 @@ library(openxlsx)
 library(nortest)
 library(fBasics)
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter12.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter12.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Household_Income" #這裡輸入您要讀取的sheet的名稱
 
 # 使用read.xlsx函數讀取指定的工作表
@@ -1097,7 +1096,7 @@ library(openxlsx)
 library(ggplot2)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter14.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter14.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Debt_Payments" #這裡輸入您要讀取的sheet的名稱
 
 # 使用read.xlsx函數讀取指定的工作表
@@ -1266,7 +1265,7 @@ library(reshape2)
 library(agricolae)
 
 # 讀取檔案
-file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter13.xlsx" # 更改成您要讀取之xlsx的路徑
+file_path <- "D:/college information/R_statistics/Data Files/Chapter13.xlsx" # 更改成您要讀取之xlsx的路徑
 sheet_name_1 <- "Public_Transportation" #這裡輸入您要讀取的sheet的名稱
 sheet_name_2 <- "TwoFactor_Income" #這裡輸入您要讀取的sheet的名稱
 sheet_name_3 <- "Income_Interaction" #這裡輸入您要讀取的sheet的名稱
