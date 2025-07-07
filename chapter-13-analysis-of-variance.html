@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Chapter 11 Statistical Inference Concerning Variance | R Guideline</title>
-  <meta name="description" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <title>13 Chapter 13 Analysis of Variance | R Guideline</title>
+  <meta name="description" content="13 Chapter 13 Analysis of Variance | R Guideline" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta property="og:title" content="13 Chapter 13 Analysis of Variance | R Guideline" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta name="twitter:title" content="13 Chapter 13 Analysis of Variance | R Guideline" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-10-statistical-inference-concerning-two-populations.html"/>
-<link rel="next" href="chapter-12-chi-square-tests.html"/>
+<link rel="prev" href="chapter-14-regression-analysis.html"/>
+<link rel="next" href="參考資料.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -319,194 +319,274 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-11-statistical-inference-concerning-variance" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> Chapter 11 Statistical Inference Concerning Variance<a href="chapter-11-statistical-inference-concerning-variance.html#chapter-11-statistical-inference-concerning-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Chapter11.xlsx <a href="https://docs.google.com/spreadsheets/d/1Gw705JKjR5QuRaP1mfYJW8bxWHM_HzPh/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
-<div id="安裝載入套件讀檔-4" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-11-statistical-inference-concerning-variance.html#安裝載入套件讀檔-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb183-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-2" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span></code></pre></div>
+<div id="chapter-13-analysis-of-variance" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">13</span> Chapter 13 Analysis of Variance<a href="chapter-13-analysis-of-variance.html#chapter-13-analysis-of-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter13.xlsx <a href="https://docs.google.com/spreadsheets/d/1f7cdyUj10L2mObCZQovr9XdizUet6SeM/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
+<div id="安裝載入套件讀檔-7" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-13-analysis-of-variance.html#安裝載入套件讀檔-7" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb266"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb266-1"><a href="chapter-13-analysis-of-variance.html#cb266-1" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb266-2"><a href="chapter-13-analysis-of-variance.html#cb266-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;reshape2&quot;, &quot;agricolae&quot;))</span></span>
+<span id="cb266-3"><a href="chapter-13-analysis-of-variance.html#cb266-3" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb266-4"><a href="chapter-13-analysis-of-variance.html#cb266-4" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb266-5"><a href="chapter-13-analysis-of-variance.html#cb266-5" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span></code></pre></div>
+<pre><code>## Warning: 套件 &#39;agricolae&#39; 是用 R 版本 4.3.3 來建造的</code></pre>
 <pre><code>## 
-## 載入套件：&#39;EnvStats&#39;</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:stats&#39;:
+## 載入套件：&#39;agricolae&#39;</code></pre>
+<pre><code>## 下列物件被遮斷自 &#39;package:fBasics&#39;:
 ## 
-##     predict, predict.lm</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:base&#39;:
+##     kurtosis, skewness</code></pre>
+<pre><code>## 下列物件被遮斷自 &#39;package:EnvStats&#39;:
 ## 
-##     print.default</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb187-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter11.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb187-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Fund_Returns&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb187-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-4" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb187-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-6" tabindex="-1"></a>fund.returns.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb187-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-7" tabindex="-1"></a><span class="fu">head</span>(fund.returns.df)</span></code></pre></div>
-<pre><code>##   Year Metals Income
-## 1 2000  -7.34   4.07
-## 2 2001  18.33   6.52
-## 3 2002  33.35   9.38
-## 4 2003  59.45  18.62
-## 5 2004   8.09   9.44
-## 6 2005  43.79   3.12</code></pre>
+##     kurtosis, skewness</code></pre>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="chapter-13-analysis-of-variance.html#cb271-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb271-2"><a href="chapter-13-analysis-of-variance.html#cb271-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter13.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb271-3"><a href="chapter-13-analysis-of-variance.html#cb271-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Public_Transportation&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-4"><a href="chapter-13-analysis-of-variance.html#cb271-4" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;TwoFactor_Income&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-5"><a href="chapter-13-analysis-of-variance.html#cb271-5" tabindex="-1"></a>sheet_name_3 <span class="ot">&lt;-</span> <span class="st">&quot;Income_Interaction&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb271-6"><a href="chapter-13-analysis-of-variance.html#cb271-6" tabindex="-1"></a></span>
+<span id="cb271-7"><a href="chapter-13-analysis-of-variance.html#cb271-7" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb271-8"><a href="chapter-13-analysis-of-variance.html#cb271-8" tabindex="-1"></a>public.transportation.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb271-9"><a href="chapter-13-analysis-of-variance.html#cb271-9" tabindex="-1"></a>two.factor.income.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span>
+<span id="cb271-10"><a href="chapter-13-analysis-of-variance.html#cb271-10" tabindex="-1"></a>income.interaction.df<span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_3)</span>
+<span id="cb271-11"><a href="chapter-13-analysis-of-variance.html#cb271-11" tabindex="-1"></a></span>
+<span id="cb271-12"><a href="chapter-13-analysis-of-variance.html#cb271-12" tabindex="-1"></a><span class="co"># head</span></span>
+<span id="cb271-13"><a href="chapter-13-analysis-of-variance.html#cb271-13" tabindex="-1"></a><span class="fu">head</span>(public.transportation.df)</span></code></pre></div>
+<pre><code>##   Boston    NY    SF Chicago
+## 1  12500 12450 11800   10595
+## 2  12640 12500 11745   10740
+## 3  12600 12595 11700   10850
+## 4  12625 12605 11800   10725
+## 5  12745 12650 11700   10740
+## 6     NA 12620 11575      NA</code></pre>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="chapter-13-analysis-of-variance.html#cb273-1" tabindex="-1"></a><span class="fu">head</span>(two.factor.income.df)</span></code></pre></div>
+<pre><code>##            X1 Educational.Services Financial.Services Medical.Services
+## 1 High School                   18                 25               26
+## 2  Bachelor’s                   35                 45               43
+## 3    Master’s                   46                 58               62
+## 4       Ph.D.                   75                 90              110</code></pre>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="chapter-13-analysis-of-variance.html#cb275-1" tabindex="-1"></a><span class="fu">head</span>(income.interaction.df)</span></code></pre></div>
+<pre><code>##            X1 Educational Financial Medical
+## 1 High School          20        27      26
+## 2        &lt;NA&gt;          25        25      24
+## 3        &lt;NA&gt;          22        25      25
+## 4  Bachelor&#39;s          30        44      42
+## 5        &lt;NA&gt;          35        46      43
+## 6        &lt;NA&gt;          34        48      45</code></pre>
 </div>
-<div id="σ²-的信賴區間" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> 2. σ² 的信賴區間<a href="chapter-11-statistical-inference-concerning-variance.html#σ²-的信賴區間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>使用 varTest() 函數來計算變異數的信賴區間：</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Metals&quot;</span>])</span>
-<span id="cb189-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-2" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
-## 
-## Null Hypothesis:                 variance = 1
-## 
-## Alternative Hypothesis:          True variance is not equal to 1
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 1378.605
-## 
-## Data:                            fund.returns.df[, &quot;Metals&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 12407.44
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0
-## 
-## 95% Confidence Interval:         LCL =  652.2418
-##                                  UCL = 4594.6866</code></pre>
-<pre><code>varTest() 函數的主要輸入值：
-1. x:
-  數據向量，表示需要進行方差檢定的樣本。
-  如果是雙樣本檢定，這裡可以是第一個樣本數據的向量。
-2. y (可選):
-  另一個數據向量，用於雙樣本檢定。如果提供了這個向量，則檢驗兩個樣本的方差是否相等。
-  sigma.squared (可選):
-  變異數的理論值，用於單樣本檢定。默認值為 1。
-3. alternative (可選):
-  定義備擇假設的類型。選項有：
-  &quot;two.sided&quot;（雙側檢定，默認）
-  &quot;less&quot;（左側檢定）
-  &quot;greater&quot;（右側檢定）
-4. conf.level (可選):
-  * Note that the confidence level is set at 95% by default, but it can be changed by adjusting
-  the conf.level argument (i.e. for 99% we would include conf.level = 0.99 in the function).</code></pre>
+<div id="one-way-anova-fisher-and-tukey-confidence-intervals" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> 2. One-Way ANOVA; Fisher and Tukey Confidence Intervals<a href="chapter-13-analysis-of-variance.html#one-way-anova-fisher-and-tukey-confidence-intervals" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(Replicating Table 13.4 and Table 13.5)</p>
+<div id="a.-數據準備" class="section level3 hasAnchor" number="13.2.1">
+<h3><span class="header-section-number">13.2.1</span> A. 數據準備<a href="chapter-13-analysis-of-variance.html#a.-數據準備" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>首先，我們需要將城市名稱和成本數值進行堆疊。為此，我們使用 reshape2 包中的 melt() 函數來重新配置數據，並將結果儲存為 melted.df。這裡 melt() 函數將數據堆疊成兩列：一列表示城市名稱（City），另一列表示相應的交通成本（Cost）。</code></pre>
+<div class="sourceCode" id="cb278"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb278-1"><a href="chapter-13-analysis-of-variance.html#cb278-1" tabindex="-1"></a><span class="co"># 加載reshape2包</span></span>
+<span id="cb278-2"><a href="chapter-13-analysis-of-variance.html#cb278-2" tabindex="-1"></a><span class="fu">library</span>(reshape2)</span>
+<span id="cb278-3"><a href="chapter-13-analysis-of-variance.html#cb278-3" tabindex="-1"></a></span>
+<span id="cb278-4"><a href="chapter-13-analysis-of-variance.html#cb278-4" tabindex="-1"></a><span class="co"># 堆疊城市名稱和成本數據</span></span>
+<span id="cb278-5"><a href="chapter-13-analysis-of-variance.html#cb278-5" tabindex="-1"></a>melted.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(public.transportation.df)</span></code></pre></div>
+<pre><code>## No id variables; using all as measure variables</code></pre>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="chapter-13-analysis-of-variance.html#cb280-1" tabindex="-1"></a><span class="co"># 將堆疊後的數據列命名</span></span>
+<span id="cb280-2"><a href="chapter-13-analysis-of-variance.html#cb280-2" tabindex="-1"></a><span class="fu">colnames</span>(melted.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;City&quot;</span>, <span class="st">&quot;Cost&quot;</span>)</span>
+<span id="cb280-3"><a href="chapter-13-analysis-of-variance.html#cb280-3" tabindex="-1"></a></span>
+<span id="cb280-4"><a href="chapter-13-analysis-of-variance.html#cb280-4" tabindex="-1"></a><span class="co"># 查看堆疊後的數據</span></span>
+<span id="cb280-5"><a href="chapter-13-analysis-of-variance.html#cb280-5" tabindex="-1"></a><span class="fu">print</span>(melted.df)</span></code></pre></div>
+<pre><code>##       City  Cost
+## 1   Boston 12500
+## 2   Boston 12640
+## 3   Boston 12600
+## 4   Boston 12625
+## 5   Boston 12745
+## 6   Boston    NA
+## 7   Boston    NA
+## 8   Boston    NA
+## 9       NY 12450
+## 10      NY 12500
+## 11      NY 12595
+## 12      NY 12605
+## 13      NY 12650
+## 14      NY 12620
+## 15      NY 12560
+## 16      NY 12700
+## 17      SF 11800
+## 18      SF 11745
+## 19      SF 11700
+## 20      SF 11800
+## 21      SF 11700
+## 22      SF 11575
+## 23      SF    NA
+## 24      SF    NA
+## 25 Chicago 10595
+## 26 Chicago 10740
+## 27 Chicago 10850
+## 28 Chicago 10725
+## 29 Chicago 10740
+## 30 Chicago    NA
+## 31 Chicago    NA
+## 32 Chicago    NA</code></pre>
 </div>
-<div id="檢驗-σ²" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> 3.檢驗 σ²<a href="chapter-11-statistical-inference-concerning-variance.html#檢驗-σ²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="i.-假設-1" class="section level4 hasAnchor" number="10.3.0.1">
-<h4><span class="header-section-number">10.3.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>H_0(虛無假設):  σ² = 72.25
-H_A(對立假設) : σ² ≠ 72.25 （雙尾檢定）</code></pre>
+<div id="b.-建立變異數分析模型variance-model" class="section level3 hasAnchor" number="13.2.2">
+<h3><span class="header-section-number">13.2.2</span> B. 建立變異數分析模型(variance model)<a href="chapter-13-analysis-of-variance.html#b.-建立變異數分析模型variance-model" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>我們使用 aov() 函數來構建一個變異數分析模型(variance model)，並將該模型儲存為 transit.aov。
+這個模型將交通成本 (Cost) 作為應變量，城市 (City) 作為自變量。</code></pre>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="chapter-13-analysis-of-variance.html#cb283-1" tabindex="-1"></a><span class="co"># 建立變異數分析模型</span></span>
+<span id="cb283-2"><a href="chapter-13-analysis-of-variance.html#cb283-2" tabindex="-1"></a>transit.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Cost <span class="sc">~</span> City, <span class="at">data =</span> melted.df)</span></code></pre></div>
 </div>
-<div id="ii.-設定-α-值-4" class="section level4 hasAnchor" number="10.3.0.2">
-<h4><span class="header-section-number">10.3.0.2</span> II. 設定 α 值<a href="chapter-11-statistical-inference-concerning-variance.html#ii.-設定-α-值-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>α = 0.05</code></pre>
+<div id="c.-生成-anova-表" class="section level3 hasAnchor" number="13.2.3">
+<h3><span class="header-section-number">13.2.3</span> C. 生成 ANOVA 表<a href="chapter-13-analysis-of-variance.html#c.-生成-anova-表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="chapter-13-analysis-of-variance.html#cb284-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb284-2"><a href="chapter-13-analysis-of-variance.html#cb284-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(transit.aov)</span>
+<span id="cb284-3"><a href="chapter-13-analysis-of-variance.html#cb284-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<pre><code>##           Df   Sum Sq Mean Sq  F value       Pr(&gt;F)
+## City       3 13204720 4401573 610.5664 7.955557e-20
+## Residuals 20   144180    7209       NA           NA</code></pre>
+<pre><code>使用 anova() 函數來生成 ANOVA 表，該表顯示了不同城市間的成本差異是否具有統計顯著性。
+
+解釋：
+  City: P 值（Pr(&gt;F)）小於 0.001，表明城市之間的成本差異具有顯著性。</code></pre>
 </div>
-<div id="iii.-計算檢驗統計量" class="section level4 hasAnchor" number="10.3.0.3">
-<h4><span class="header-section-number">10.3.0.3</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-1" tabindex="-1"></a><span class="co"># 使用範例 11.4 和 fund.returns.df 數據文件中的 &quot;Income&quot; 變量進行變異數檢驗</span></span>
-<span id="cb194-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-2" tabindex="-1"></a><span class="co"># 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25</span></span>
-<span id="cb194-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-3" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-4" tabindex="-1"></a><span class="co"># 執行變異數檢驗</span></span>
-<span id="cb194-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Income&quot;</span>], <span class="at">sigma.squared =</span> <span class="fl">72.25</span>)</span>
-<span id="cb194-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-6" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
+<div id="d.-使用-tukeyhsd-進行多重比較檢驗" class="section level3 hasAnchor" number="13.2.4">
+<h3><span class="header-section-number">13.2.4</span> D. 使用 TukeyHSD 進行多重比較檢驗<a href="chapter-13-analysis-of-variance.html#d.-使用-tukeyhsd-進行多重比較檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>我們使用 TukeyHSD() 函數來進行 Tukey HSD 檢驗，這是一種多重比較方法，用於比較多個組別之間的均值差異。我們將置信水平（conf.level）設為 95%。</code></pre>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="chapter-13-analysis-of-variance.html#cb288-1" tabindex="-1"></a><span class="co"># 進行 Tukey 檢驗</span></span>
+<span id="cb288-2"><a href="chapter-13-analysis-of-variance.html#cb288-2" tabindex="-1"></a>tukey_result <span class="ot">&lt;-</span> <span class="fu">TukeyHSD</span>(transit.aov, <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span>
+<span id="cb288-3"><a href="chapter-13-analysis-of-variance.html#cb288-3" tabindex="-1"></a><span class="fu">print</span>(tukey_result)</span></code></pre></div>
+<pre><code>## $City
+##                 diff        lwr         upr        p adj
+## NY-Boston        -37  -172.4791    98.47906 8.694226e-01
+## SF-Boston       -902 -1045.9018  -758.09820 7.511769e-13
+## Chicago-Boston -1892 -2042.3005 -1741.69947 1.920686e-14
+## SF-NY           -865  -993.3435  -736.65649 1.898481e-13
+## Chicago-NY     -1855 -1990.4791 -1719.52094 1.920686e-14
+## Chicago-SF      -990 -1133.9018  -846.09820 1.325606e-13
 ## 
-## Null Hypothesis:                 variance = 72.25
-## 
-## Alternative Hypothesis:          True variance is not equal to 72.25
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 122.484
-## 
-## Data:                            fund.returns.df[, &quot;Income&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 15.25752
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0.1682017
-## 
-## 95% Confidence Interval:         LCL =  57.9493
-##                                  UCL = 408.2211</code></pre>
+## attr(,&quot;class&quot;)
+## [1] &quot;TukeyHSD&quot;  &quot;multicomp&quot;
+## attr(,&quot;orig.call&quot;)
+## aov(formula = Cost ~ City, data = melted.df)
+## attr(,&quot;conf.level&quot;)
+## [1] 0.95
+## attr(,&quot;ordered&quot;)
+## [1] FALSE</code></pre>
 </div>
-<div id="iv.-是否拒絕-h_0-2" class="section level4 hasAnchor" number="10.3.0.4">
-<h4><span class="header-section-number">10.3.0.4</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.1682017
-p 值 ≥ 0.05，無法拒絕 H_0</code></pre>
-</div>
-<div id="v.-結論-4" class="section level4 hasAnchor" number="10.3.0.5">
-<h4><span class="header-section-number">10.3.0.5</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們無法拒絕 H_0，沒有足夠的證據表明 &quot;Income&quot; 變量的變異數顯著不同於 72.25。</code></pre>
-</div>
-</div>
-<div id="變異數比值的信賴區間計算" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> 4.變異數比值的信賴區間計算<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值的信賴區間計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.6 和 fund.returns.df 數據文件來構造兩個母體之間的變異數比值的信賴區間。<br></p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-1" tabindex="-1"></a><span class="co"># 計算樣本方差比值</span></span>
-<span id="cb198-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-2" tabindex="-1"></a>prop.var <span class="ot">&lt;-</span> <span class="fl">182.25</span> <span class="sc">/</span> <span class="fl">457.96</span></span>
-<span id="cb198-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-3" tabindex="-1"></a></span>
-<span id="cb198-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-4" tabindex="-1"></a><span class="co"># 計算自由度</span></span>
-<span id="cb198-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-5" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-6" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-7" tabindex="-1"></a></span>
-<span id="cb198-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-8" tabindex="-1"></a><span class="co"># 計算信賴區間的下限</span></span>
-<span id="cb198-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-9" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> prop.var <span class="sc">/</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
-<span id="cb198-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-10" tabindex="-1"></a></span>
-<span id="cb198-11"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-11" tabindex="-1"></a><span class="co"># 計算信賴區間的上限</span></span>
-<span id="cb198-12"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-12" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> prop.var <span class="sc">*</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df2, df1)</span>
-<span id="cb198-13"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-13" tabindex="-1"></a></span>
-<span id="cb198-14"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-14" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb198-15"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-15" tabindex="-1"></a><span class="fu">print</span>(lower.bound)</span></code></pre></div>
-<pre><code>## [1] 0.1300441</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb200-1" tabindex="-1"></a><span class="fu">print</span>(upper.bound)</span></code></pre></div>
-<pre><code>## [1] 1.401487</code></pre>
-</div>
-<div id="變異數比值檢驗" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> 5.變異數比值檢驗<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.8 和 fund.returns.df 數據文件來進行變異數比值的假設檢驗。具體來說，我們將檢驗以下假設：</p>
-<div id="i.-假設-2" class="section level4 hasAnchor" number="10.5.0.1">
-<h4><span class="header-section-number">10.5.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="/Users/bear/dev/R/Statistics/截圖%202024-08-24%20凌晨1.47.40.png" title="假設" />
-#### II. 設定 α 值</p>
-<pre><code>α = 0.05</code></pre>
-</div>
-<div id="iii.-計算檢驗統計量-1" class="section level4 hasAnchor" number="10.5.0.2">
-<h4><span class="header-section-number">10.5.0.2</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-1" tabindex="-1"></a><span class="co"># 計算樣本 F 統計量，它是兩個樣本變異數的比值</span></span>
-<span id="cb203-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-2" tabindex="-1"></a>sample.F <span class="ot">&lt;-</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Metals&quot;</span>]) <span class="sc">/</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Income&quot;</span>])</span>
-<span id="cb203-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-3" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-4" tabindex="-1"></a><span class="co"># 顯示樣本 F 統計量</span></span>
-<span id="cb203-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-5" tabindex="-1"></a><span class="fu">print</span>(sample.F)</span></code></pre></div>
-<pre><code>## [1] 11.25539</code></pre>
-<div id="計算-p-值" class="section level5 hasAnchor" number="10.5.0.2.1">
-<h5><span class="header-section-number">10.5.0.2.1</span> 計算 p 值<a href="chapter-11-statistical-inference-concerning-variance.html#計算-p-值" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-1" tabindex="-1"></a><span class="co"># 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值</span></span>
-<span id="cb205-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-2" tabindex="-1"></a><span class="co"># lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。</span></span>
-<span id="cb205-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-3" tabindex="-1"></a><span class="co"># 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。</span></span>
-<span id="cb205-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-4" tabindex="-1"></a><span class="co"># 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2</span></span>
-<span id="cb205-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-5" tabindex="-1"></a></span>
-<span id="cb205-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-6" tabindex="-1"></a><span class="co"># 計算 p 值</span></span>
-<span id="cb205-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-7" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pf</span>(sample.F, <span class="dv">9</span>, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb205-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-8" tabindex="-1"></a></span>
-<span id="cb205-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-9" tabindex="-1"></a><span class="co"># 顯示 p 值</span></span>
-<span id="cb205-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-10" tabindex="-1"></a><span class="fu">print</span>(pvalue)</span></code></pre></div>
-<pre><code>## [1] 0.001317916</code></pre>
+<div id="e.-使用-lsd.test-進行-fisher-檢驗" class="section level3 hasAnchor" number="13.2.5">
+<h3><span class="header-section-number">13.2.5</span> E. 使用 LSD.test 進行 Fisher 檢驗<a href="chapter-13-analysis-of-variance.html#e.-使用-lsd.test-進行-fisher-檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>R 中沒有直接計算 Fisher 置信區間的函數，
+但我們可以使用 argicolae 包中的 LSD.test() 函數來計算 Fisher 的 LSD 檢驗所需的所有值。</code></pre>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb291-1"><a href="chapter-13-analysis-of-variance.html#cb291-1" tabindex="-1"></a><span class="co"># 加載 agricolae 包</span></span>
+<span id="cb291-2"><a href="chapter-13-analysis-of-variance.html#cb291-2" tabindex="-1"></a><span class="fu">library</span>(agricolae)</span>
+<span id="cb291-3"><a href="chapter-13-analysis-of-variance.html#cb291-3" tabindex="-1"></a></span>
+<span id="cb291-4"><a href="chapter-13-analysis-of-variance.html#cb291-4" tabindex="-1"></a><span class="co"># 進行 Fisher 檢驗</span></span>
+<span id="cb291-5"><a href="chapter-13-analysis-of-variance.html#cb291-5" tabindex="-1"></a>fisher.lsd <span class="ot">&lt;-</span> <span class="fu">LSD.test</span>(transit.aov, <span class="st">&quot;City&quot;</span>)</span>
+<span id="cb291-6"><a href="chapter-13-analysis-of-variance.html#cb291-6" tabindex="-1"></a><span class="fu">print</span>(fisher.lsd)</span></code></pre></div>
+<pre><code>## $statistics
+##   MSerror Df  Mean        CV
+##      7209 20 11990 0.7081387
+## 
+## $parameters
+##         test p.ajusted name.t ntr alpha
+##   Fisher-LSD      none   City   4  0.05
+## 
+## $means
+##          Cost      std r       se      LCL      UCL   Min   Max   Q25     Q50
+## Boston  12622 87.79237 5 37.97104 12542.79 12701.21 12500 12745 12600 12625.0
+## Chicago 10730 90.62284 5 37.97104 10650.79 10809.21 10595 10850 10725 10740.0
+## NY      12585 80.40078 8 30.01874 12522.38 12647.62 12450 12700 12545 12600.0
+## SF      11720 83.96428 6 34.66266 11647.69 11792.31 11575 11800 11700 11722.5
+##              Q75
+## Boston  12640.00
+## Chicago 10740.00
+## NY      12627.50
+## SF      11786.25
+## 
+## $comparison
+## NULL
+## 
+## $groups
+##          Cost groups
+## Boston  12622      a
+## NY      12585      a
+## SF      11720      b
+## Chicago 10730      c
+## 
+## attr(,&quot;class&quot;)
+## [1] &quot;group&quot;</code></pre>
 </div>
 </div>
-<div id="iv.-是否拒絕-h_0-3" class="section level4 hasAnchor" number="10.5.0.3">
-<h4><span class="header-section-number">10.5.0.3</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.001317916
-p 值 &lt; 0.05，拒絕 H_0</code></pre>
+<div id="two-way-anova-no-interaction" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> 3. Two-Way ANOVA (No Interaction)<a href="chapter-13-analysis-of-variance.html#two-way-anova-no-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(Replicating Table 13.14)</p>
+<div id="a.-重新配置數據" class="section level3 hasAnchor" number="13.3.1">
+<h3><span class="header-section-number">13.3.1</span> A. 重新配置數據<a href="chapter-13-analysis-of-variance.html#a.-重新配置數據" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb293-1"><a href="chapter-13-analysis-of-variance.html#cb293-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據</span></span>
+<span id="cb293-2"><a href="chapter-13-analysis-of-variance.html#cb293-2" tabindex="-1"></a>melted2.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(two.factor.income.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
+<span id="cb293-3"><a href="chapter-13-analysis-of-variance.html#cb293-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
+<span id="cb293-4"><a href="chapter-13-analysis-of-variance.html#cb293-4" tabindex="-1"></a><span class="fu">colnames</span>(melted2.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
 </div>
-<div id="v.-結論-5" class="section level4 hasAnchor" number="10.5.0.4">
-<h4><span class="header-section-number">10.5.0.4</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們拒絕 H_0，得出結論，Metals 和 Income 兩組數據的方差顯著不同。</code></pre>
+<div id="b.-建立變異數分析模型variance-model-1" class="section level3 hasAnchor" number="13.3.2">
+<h3><span class="header-section-number">13.3.2</span> B. 建立變異數分析模型(variance model)<a href="chapter-13-analysis-of-variance.html#b.-建立變異數分析模型variance-model-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>接著，我們使用 aov() 函數來構建一個加法模型（即沒有交互作用的模型），並將該模型儲存為 income.aov。
+這個模型將薪資 (Salary) 作為應變量，教育程度 (Education) 和專業領域 (Field) 作為自變量。</code></pre>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb295-1"><a href="chapter-13-analysis-of-variance.html#cb295-1" tabindex="-1"></a><span class="co"># 建立雙因子變異數分析模型</span></span>
+<span id="cb295-2"><a href="chapter-13-analysis-of-variance.html#cb295-2" tabindex="-1"></a>income.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">+</span> Field, <span class="at">data =</span> melted2.df)</span></code></pre></div>
+</div>
+<div id="c.-生成-anova-表-1" class="section level3 hasAnchor" number="13.3.3">
+<h3><span class="header-section-number">13.3.3</span> C. 生成 ANOVA 表<a href="chapter-13-analysis-of-variance.html#c.-生成-anova-表-1" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="chapter-13-analysis-of-variance.html#cb296-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb296-2"><a href="chapter-13-analysis-of-variance.html#cb296-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income.aov)</span>
+<span id="cb296-3"><a href="chapter-13-analysis-of-variance.html#cb296-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<pre><code>##           Df    Sum Sq    Mean Sq   F value       Pr(&gt;F)
+## Education  3 7632.9167 2544.30556 56.575046 8.595367e-05
+## Field      2  579.5000  289.75000  6.442866 3.206655e-02
+## Residuals  6  269.8333   44.97222        NA           NA</code></pre>
+<pre><code>解釋：
+  Education: F 值為 56.5750，P 值（Pr(&gt;F)）小於 0.001，表明教育程度對薪資的影響具有高度顯著性。
+  Field: F 值為 6.4429，P 值為 0.03207，表明專業領域對薪資的影響具有顯著性。
+  Residuals: 殘差的自由度為 6，Sum Sq 為 269.8。</code></pre>
+</div>
+</div>
+<div id="two-way-anova-with-interaction" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> 4. Two-Way ANOVA (with Interaction)<a href="chapter-13-analysis-of-variance.html#two-way-anova-with-interaction" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>(Replicating Table 13.17)</p>
+<div id="a.-數據清理" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> A. 數據清理<a href="chapter-13-analysis-of-variance.html#a.-數據清理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>首先，我們需要清理數據。由於原始數據框 income.interaction.df 的第一列中某些欄位缺少資料，
+因此我們使用 c() 和 rep() 函數來創建一個新的列，並替換原始的第一列。
+這樣做可以確保每個教育程度的名稱正確地對應於每組數據。</code></pre>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb300-1"><a href="chapter-13-analysis-of-variance.html#cb300-1" tabindex="-1"></a><span class="co"># 清理數據，替換第一列</span></span>
+<span id="cb300-2"><a href="chapter-13-analysis-of-variance.html#cb300-2" tabindex="-1"></a>income.interaction.df[, <span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="st">&quot;High School&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-3"><a href="chapter-13-analysis-of-variance.html#cb300-3" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Bachelor&#39;s&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-4"><a href="chapter-13-analysis-of-variance.html#cb300-4" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Master&#39;s&quot;</span>, <span class="dv">3</span>),</span>
+<span id="cb300-5"><a href="chapter-13-analysis-of-variance.html#cb300-5" tabindex="-1"></a>                                <span class="fu">rep</span>(<span class="st">&quot;Ph.D.&quot;</span>, <span class="dv">3</span>))</span></code></pre></div>
+</div>
+<div id="b.-重新配置數據" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> B. 重新配置數據<a href="chapter-13-analysis-of-variance.html#b.-重新配置數據" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb301"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb301-1"><a href="chapter-13-analysis-of-variance.html#cb301-1" tabindex="-1"></a><span class="co"># 使用 melt() 函數重新配置數據，將教育程度、專業領域和薪資值堆疊在一起。</span></span>
+<span id="cb301-2"><a href="chapter-13-analysis-of-variance.html#cb301-2" tabindex="-1"></a>melted3.df <span class="ot">&lt;-</span> <span class="fu">melt</span>(income.interaction.df, <span class="at">id.vars =</span> <span class="st">&quot;X1&quot;</span>)</span>
+<span id="cb301-3"><a href="chapter-13-analysis-of-variance.html#cb301-3" tabindex="-1"></a><span class="co"># 命名列</span></span>
+<span id="cb301-4"><a href="chapter-13-analysis-of-variance.html#cb301-4" tabindex="-1"></a><span class="fu">colnames</span>(melted3.df) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;Education&quot;</span>, <span class="st">&quot;Field&quot;</span>, <span class="st">&quot;Salary&quot;</span>)</span></code></pre></div>
+</div>
+<div id="c.-建立基於交互作用的變異數分析模型" class="section level3 hasAnchor" number="13.4.3">
+<h3><span class="header-section-number">13.4.3</span> C. 建立基於交互作用的變異數分析模型<a href="chapter-13-analysis-of-variance.html#c.-建立基於交互作用的變異數分析模型" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<pre><code>接著，我們使用 aov() 函數來構建一個有交互作用的模型，並將該模型儲存為 income2.aov。
+這個模型將薪資 (Salary) 作為應變量，並考慮教育程度 (Education)、專業領域 (Field) 及其交互作用。</code></pre>
+<div class="sourceCode" id="cb303"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb303-1"><a href="chapter-13-analysis-of-variance.html#cb303-1" tabindex="-1"></a><span class="co"># 構建基於交互作用的方差分析模型</span></span>
+<span id="cb303-2"><a href="chapter-13-analysis-of-variance.html#cb303-2" tabindex="-1"></a>income2.aov <span class="ot">&lt;-</span> <span class="fu">aov</span>(Salary <span class="sc">~</span> Education <span class="sc">*</span> Field, <span class="at">data =</span> melted3.df)</span></code></pre></div>
+</div>
+<div id="d.-生成-anova-表" class="section level3 hasAnchor" number="13.4.4">
+<h3><span class="header-section-number">13.4.4</span> D. 生成 ANOVA 表<a href="chapter-13-analysis-of-variance.html#d.-生成-anova-表" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb304-1"><a href="chapter-13-analysis-of-variance.html#cb304-1" tabindex="-1"></a><span class="co"># 生成 ANOVA 表</span></span>
+<span id="cb304-2"><a href="chapter-13-analysis-of-variance.html#cb304-2" tabindex="-1"></a>anova_result <span class="ot">&lt;-</span> <span class="fu">anova</span>(income2.aov)</span>
+<span id="cb304-3"><a href="chapter-13-analysis-of-variance.html#cb304-3" tabindex="-1"></a><span class="fu">print</span>(anova_result)</span></code></pre></div>
+<pre><code>##                 Df     Sum Sq    Mean Sq    F value       Pr(&gt;F)
+## Education        3 20523.8889 6841.29630 658.520499 3.582203e-23
+## Field            2   916.2222  458.11111  44.096257 9.182657e-09
+## Education:Field  6   318.4444   53.07407   5.108734 1.659488e-03
+## Residuals       24   249.3333   10.38889         NA           NA</code></pre>
+<pre><code>解釋：
+  Education: F 值為 658.5205，P 值（Pr(&gt;F)）小於 0.001，表明教育程度對薪資的影響具有高度顯著性。
+  Field: F 值為 44.0963，P 值小於 0.001，表明專業領域對薪資的影響具有顯著性。
+  教育程度與專業領域之間的交互作用的自由度為 6，Sum Sq 為 318.4，Mean Sq 為 53.1，
+    F 值為 5.1087，P 值為 0.001659，表明這個交互作用對薪資的影響也具有統計顯著性。</code></pre>
 </div>
 </div>
 </div>
@@ -515,8 +595,8 @@ p 值 &lt; 0.05，拒絕 H_0</code></pre>
           </div>
         </div>
       </div>
-<a href="chapter-10-statistical-inference-concerning-two-populations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-12-chi-square-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-14-regression-analysis.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="參考資料.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Chapter 11 Statistical Inference Concerning Variance | R Guideline</title>
-  <meta name="description" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <title>6 Chapter 7 Sampling and sampling distributions | R Guideline</title>
+  <meta name="description" content="6 Chapter 7 Sampling and sampling distributions | R Guideline" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta property="og:title" content="6 Chapter 7 Sampling and sampling distributions | R Guideline" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta name="twitter:title" content="6 Chapter 7 Sampling and sampling distributions | R Guideline" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-10-statistical-inference-concerning-two-populations.html"/>
-<link rel="next" href="chapter-12-chi-square-tests.html"/>
+<link rel="prev" href="chapter-6-continuous-probability-distributions.html"/>
+<link rel="next" href="chapter-8-interval-estimation.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -319,194 +319,160 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-11-statistical-inference-concerning-variance" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> Chapter 11 Statistical Inference Concerning Variance<a href="chapter-11-statistical-inference-concerning-variance.html#chapter-11-statistical-inference-concerning-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Chapter11.xlsx <a href="https://docs.google.com/spreadsheets/d/1Gw705JKjR5QuRaP1mfYJW8bxWHM_HzPh/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
-<div id="安裝載入套件讀檔-4" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-11-statistical-inference-concerning-variance.html#安裝載入套件讀檔-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb183-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-2" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span></code></pre></div>
-<pre><code>## 
-## 載入套件：&#39;EnvStats&#39;</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:stats&#39;:
-## 
-##     predict, predict.lm</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:base&#39;:
-## 
-##     print.default</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb187-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter11.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb187-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Fund_Returns&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb187-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-4" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb187-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-6" tabindex="-1"></a>fund.returns.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb187-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-7" tabindex="-1"></a><span class="fu">head</span>(fund.returns.df)</span></code></pre></div>
-<pre><code>##   Year Metals Income
-## 1 2000  -7.34   4.07
-## 2 2001  18.33   6.52
-## 3 2002  33.35   9.38
-## 4 2003  59.45  18.62
-## 5 2004   8.09   9.44
-## 6 2005  43.79   3.12</code></pre>
+<div id="chapter-7-sampling-and-sampling-distributions" class="section level1 hasAnchor" number="6">
+<h1><span class="header-section-number">6</span> Chapter 7 Sampling and sampling distributions<a href="chapter-7-sampling-and-sampling-distributions.html#chapter-7-sampling-and-sampling-distributions" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter7.xlsx <a href="https://docs.google.com/spreadsheets/d/1Q9df0fVf_bir4lMSid_MvIn66MtYLPOQ/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
+<div id="安裝載入套件讀檔" class="section level2 hasAnchor" number="6.1">
+<h2><span class="header-section-number">6.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-7-sampling-and-sampling-distributions.html#安裝載入套件讀檔" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb114"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb114-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-1" tabindex="-1"></a><span class="do">## 安裝套件</span></span>
+<span id="cb114-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;qcc&quot;))</span></span>
+<span id="cb114-3"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-3" tabindex="-1"></a><span class="do">## 載入套件</span></span>
+<span id="cb114-4"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-4" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb114-5"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-5" tabindex="-1"></a><span class="fu">library</span>(qcc)</span>
+<span id="cb114-6"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-6" tabindex="-1"></a></span>
+<span id="cb114-7"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-7" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb114-8"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-8" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter7.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb114-9"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-9" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Lux_Hotel&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb114-10"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-10" tabindex="-1"></a></span>
+<span id="cb114-11"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-11" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb114-12"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-12" tabindex="-1"></a>lux.hotel.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb114-13"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-13" tabindex="-1"></a></span>
+<span id="cb114-14"><a href="chapter-7-sampling-and-sampling-distributions.html#cb114-14" tabindex="-1"></a><span class="fu">print</span>(lux.hotel.df)</span></code></pre></div>
+<pre><code>##               Shift Sample Wait.Time.(in.seconds)  X4  X5  X6 Sample.Mean
+## 1              &lt;NA&gt;      1                     67  48  52  71          60
+## 2              &lt;NA&gt;      2                     57  68  60  66          63
+## 3          Shift 1:      3                     37  41  60  41          45
+## 4  12:00 am-6:00 am      4                     83  59  49  66          64
+## 5              &lt;NA&gt;      5                     82  63  64  83          73
+## 6              &lt;NA&gt;      6                     87  53  66  69          69
+## 7              &lt;NA&gt;      7                     98 100 122 108         107
+## 8              &lt;NA&gt;      8                    125 121 120 128         124
+## 9          Shift 2:      9                    116 104  96 111         107
+## 10 6:00 am-12:00 pm     10                    100 123 102  90         104
+## 11             &lt;NA&gt;     11                    123  94 128 113         114
+## 12             &lt;NA&gt;     12                    107 105 113 106         108
+## 13             &lt;NA&gt;     13                     59  41  37  41          44
+## 14             &lt;NA&gt;     14                     27  42  39  49          39
+## 15         Shift 3:     15                     72  81  62  67          71
+## 16 12:00 pm-6:00 pm     16                     50  46  30  45          43
+## 17             &lt;NA&gt;     17                     17  46  53  24          35
+## 18             &lt;NA&gt;     18                     34  37  34  47          38
+## 19             &lt;NA&gt;     19                      6  11   8   9           9
+## 20             &lt;NA&gt;     20                     10   8  10   9           9
+## 21         Shift 4:     21                     11   7  14   7          10
+## 22 6:00 pm-12:00 am     22                      8   9   9  12          10
+## 23             &lt;NA&gt;     23                      9  12   9  14          11
+## 24             &lt;NA&gt;     24                      5   8  15  11          10</code></pre>
 </div>
-<div id="σ²-的信賴區間" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> 2. σ² 的信賴區間<a href="chapter-11-statistical-inference-concerning-variance.html#σ²-的信賴區間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>使用 varTest() 函數來計算變異數的信賴區間：</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Metals&quot;</span>])</span>
-<span id="cb189-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-2" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
-## 
-## Null Hypothesis:                 variance = 1
-## 
-## Alternative Hypothesis:          True variance is not equal to 1
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 1378.605
-## 
-## Data:                            fund.returns.df[, &quot;Metals&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 12407.44
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0
-## 
-## 95% Confidence Interval:         LCL =  652.2418
-##                                  UCL = 4594.6866</code></pre>
-<pre><code>varTest() 函數的主要輸入值：
-1. x:
-  數據向量，表示需要進行方差檢定的樣本。
-  如果是雙樣本檢定，這裡可以是第一個樣本數據的向量。
-2. y (可選):
-  另一個數據向量，用於雙樣本檢定。如果提供了這個向量，則檢驗兩個樣本的方差是否相等。
-  sigma.squared (可選):
-  變異數的理論值，用於單樣本檢定。默認值為 1。
-3. alternative (可選):
-  定義備擇假設的類型。選項有：
-  &quot;two.sided&quot;（雙側檢定，默認）
-  &quot;less&quot;（左側檢定）
-  &quot;greater&quot;（右側檢定）
-4. conf.level (可選):
-  * Note that the confidence level is set at 95% by default, but it can be changed by adjusting
-  the conf.level argument (i.e. for 99% we would include conf.level = 0.99 in the function).</code></pre>
+<div id="生成隨機樣本" class="section level2 hasAnchor" number="6.2">
+<h2><span class="header-section-number">6.2</span> 2.生成隨機樣本<a href="chapter-7-sampling-and-sampling-distributions.html#生成隨機樣本" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>（重現範例7.1）</strong></p>
+<div id="使用抽樣" class="section level3 hasAnchor" number="6.2.1">
+<h3><span class="header-section-number">6.2.1</span> 使用抽樣<a href="chapter-7-sampling-and-sampling-distributions.html#使用抽樣" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a.-使用-sample-函數" class="section level4 hasAnchor" number="6.2.1.1">
+<h4><span class="header-section-number">6.2.1.1</span> A. 使用 sample() 函數<a href="chapter-7-sampling-and-sampling-distributions.html#a.-使用-sample-函數" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb116"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb116-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb116-1" tabindex="-1"></a><span class="co"># 從 20,000 名學生中隨機選擇 100 名學生</span></span>
+<span id="cb116-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb116-2" tabindex="-1"></a><span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##   [1] 15949  9674  1912   144   743  3089 18532 16190 14549  1663 14293 14403
+##  [13] 13204 12970 14456  5949   423  4348   667 16111 16279  7755 16236 11674
+##  [25]  3419 16550  3364 15907 17903  3815 16231 10128  6539  7596  5825 18718
+##  [37]   587 15585  3950 12094  8888 11393 18746  6577  8391 12388 19228 14985
+##  [49] 11827 10416 19456 12020   965  2579 18098  2431 10154 19517 19961  5346
+##  [61]  4564  5970 12741  4176 19146 19960  5958 15527  6683  4370  7342  9782
+##  [73]  9131   850  8405  7028  3093  6968  9590   164  8661  8877 15137  5316
+##  [85]  7140 12927 18613 12767  6632 19293  7487 18287 18246  2946 15595 12295
+##  [97] 19331   205 11373  3958</code></pre>
 </div>
-<div id="檢驗-σ²" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> 3.檢驗 σ²<a href="chapter-11-statistical-inference-concerning-variance.html#檢驗-σ²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="i.-假設-1" class="section level4 hasAnchor" number="10.3.0.1">
-<h4><span class="header-section-number">10.3.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>H_0(虛無假設):  σ² = 72.25
-H_A(對立假設) : σ² ≠ 72.25 （雙尾檢定）</code></pre>
-</div>
-<div id="ii.-設定-α-值-4" class="section level4 hasAnchor" number="10.3.0.2">
-<h4><span class="header-section-number">10.3.0.2</span> II. 設定 α 值<a href="chapter-11-statistical-inference-concerning-variance.html#ii.-設定-α-值-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>α = 0.05</code></pre>
-</div>
-<div id="iii.-計算檢驗統計量" class="section level4 hasAnchor" number="10.3.0.3">
-<h4><span class="header-section-number">10.3.0.3</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-1" tabindex="-1"></a><span class="co"># 使用範例 11.4 和 fund.returns.df 數據文件中的 &quot;Income&quot; 變量進行變異數檢驗</span></span>
-<span id="cb194-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-2" tabindex="-1"></a><span class="co"># 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25</span></span>
-<span id="cb194-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-3" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-4" tabindex="-1"></a><span class="co"># 執行變異數檢驗</span></span>
-<span id="cb194-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Income&quot;</span>], <span class="at">sigma.squared =</span> <span class="fl">72.25</span>)</span>
-<span id="cb194-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-6" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
-## 
-## Null Hypothesis:                 variance = 72.25
-## 
-## Alternative Hypothesis:          True variance is not equal to 72.25
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 122.484
-## 
-## Data:                            fund.returns.df[, &quot;Income&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 15.25752
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0.1682017
-## 
-## 95% Confidence Interval:         LCL =  57.9493
-##                                  UCL = 408.2211</code></pre>
-</div>
-<div id="iv.-是否拒絕-h_0-2" class="section level4 hasAnchor" number="10.3.0.4">
-<h4><span class="header-section-number">10.3.0.4</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.1682017
-p 值 ≥ 0.05，無法拒絕 H_0</code></pre>
-</div>
-<div id="v.-結論-4" class="section level4 hasAnchor" number="10.3.0.5">
-<h4><span class="header-section-number">10.3.0.5</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們無法拒絕 H_0，沒有足夠的證據表明 &quot;Income&quot; 變量的變異數顯著不同於 72.25。</code></pre>
+<div id="b.-使用-sample.int-函數" class="section level4 hasAnchor" number="6.2.1.2">
+<h4><span class="header-section-number">6.2.1.2</span> B. 使用 sample.int() 函數<a href="chapter-7-sampling-and-sampling-distributions.html#b.-使用-sample.int-函數" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb118"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb118-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb118-1" tabindex="-1"></a><span class="co"># 使用 replace = FALSE 因為我們希望不放回抽樣</span></span>
+<span id="cb118-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb118-2" tabindex="-1"></a><span class="fu">sample.int</span>(<span class="dv">20000</span>, <span class="dv">100</span>, <span class="at">replace =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<pre><code>##   [1] 17744  3231  5115  1338    79 14794  5103 12971 14238 18604 16356  9763
+##  [13] 18190  8644 16850 18851   707 16847 12330 11393  4067 16749  8219  6813
+##  [25] 17027  9170 12808  6989  8444  4949  3203  9397 15435 19557  1738  8159
+##  [37] 11484  8206  9716 16427 12929 17903 15081 12172  1089  2595 15027  7903
+##  [49]  8060 13874 14692 12344  4840 15885 16179  7515 12260  9892 14809  4661
+##  [61] 18135  4270 12113  9869 15175   995  5338  4723 10711 12521 10732  6385
+##  [73] 13510 17816 10051  6867  1395  8532 12360 11360 12845  4865 14629 14254
+##  [85] 15062 13740  9751 18248  4962  3887  7756  8814  7257  3937  3261  4285
+##  [97] 17961 11235  1439 17676</code></pre>
 </div>
 </div>
-<div id="變異數比值的信賴區間計算" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> 4.變異數比值的信賴區間計算<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值的信賴區間計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.6 和 fund.returns.df 數據文件來構造兩個母體之間的變異數比值的信賴區間。<br></p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-1" tabindex="-1"></a><span class="co"># 計算樣本方差比值</span></span>
-<span id="cb198-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-2" tabindex="-1"></a>prop.var <span class="ot">&lt;-</span> <span class="fl">182.25</span> <span class="sc">/</span> <span class="fl">457.96</span></span>
-<span id="cb198-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-3" tabindex="-1"></a></span>
-<span id="cb198-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-4" tabindex="-1"></a><span class="co"># 計算自由度</span></span>
-<span id="cb198-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-5" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-6" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-7" tabindex="-1"></a></span>
-<span id="cb198-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-8" tabindex="-1"></a><span class="co"># 計算信賴區間的下限</span></span>
-<span id="cb198-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-9" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> prop.var <span class="sc">/</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
-<span id="cb198-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-10" tabindex="-1"></a></span>
-<span id="cb198-11"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-11" tabindex="-1"></a><span class="co"># 計算信賴區間的上限</span></span>
-<span id="cb198-12"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-12" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> prop.var <span class="sc">*</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df2, df1)</span>
-<span id="cb198-13"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-13" tabindex="-1"></a></span>
-<span id="cb198-14"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-14" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb198-15"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-15" tabindex="-1"></a><span class="fu">print</span>(lower.bound)</span></code></pre></div>
-<pre><code>## [1] 0.1300441</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb200-1" tabindex="-1"></a><span class="fu">print</span>(upper.bound)</span></code></pre></div>
-<pre><code>## [1] 1.401487</code></pre>
+<div id="從分布中生成樣本" class="section level3 hasAnchor" number="6.2.2">
+<h3><span class="header-section-number">6.2.2</span> 從分布中生成樣本<a href="chapter-7-sampling-and-sampling-distributions.html#從分布中生成樣本" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div id="a.-使用-runif-函數從均勻分布中生成樣本" class="section level4 hasAnchor" number="6.2.2.1">
+<h4><span class="header-section-number">6.2.2.1</span> A. 使用 runif() 函數從均勻分布中生成樣本<a href="chapter-7-sampling-and-sampling-distributions.html#a.-使用-runif-函數從均勻分布中生成樣本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb120-1" tabindex="-1"></a>values <span class="ot">&lt;-</span> <span class="fu">runif</span>(<span class="dv">100</span>, <span class="dv">1</span>, <span class="dv">20000</span>)</span>
+<span id="cb120-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb120-2" tabindex="-1"></a>values</span></code></pre></div>
+<pre><code>##   [1] 11281.4250 11477.8616  8681.2056  6346.3331  3431.1515   600.3302
+##   [7] 16349.5038  2203.0732 10276.4123  8421.1111 14639.8339 15347.4228
+##  [13]  7142.8927 17859.6960  6699.0655 14436.2387 13693.9697 19165.7899
+##  [19] 13637.9521 14196.7483 14967.1753   589.1632  7043.8320 17473.3813
+##  [25] 10731.2885  7443.3310  5052.0247 19005.6602  8664.5901 10809.0731
+##  [31] 11917.7453  6099.7503 17512.8068  1076.6924  1442.1617 12748.1256
+##  [37]  3445.0379 16927.1372  4612.6404  6938.2033 10791.2087 16451.4062
+##  [43]  5639.2724  2681.8780  7558.2849  3554.0926 14213.7858  7926.2753
+##  [49] 12295.8600 19720.0686 10370.8467 16707.0473  6924.4050 16256.1172
+##  [55]  9414.4755 15746.7111 13311.3180  1734.0648 17853.0321 14117.1757
+##  [61]  5335.5629 10266.4800 19478.0244  3632.5329  7927.9981  9421.0438
+##  [67]  4284.0781 10912.3876  6329.1463 10628.5684  1753.3081  4032.2326
+##  [73]  2862.1628 14176.2013  5618.3005 17599.3031   552.5876 11846.1367
+##  [79]  5728.2221  5181.7184 14140.2044 16329.5017  5027.7878 18543.5520
+##  [85]  4265.3568  2854.5290 14944.8592  9061.5589 15534.3568 12834.8067
+##  [91]  3116.5771  9444.2869 13077.6356 15357.2853  8726.7119 12349.1136
+##  [97]  8900.0972   606.1843 17692.3938 16746.2997</code></pre>
 </div>
-<div id="變異數比值檢驗" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> 5.變異數比值檢驗<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.8 和 fund.returns.df 數據文件來進行變異數比值的假設檢驗。具體來說，我們將檢驗以下假設：</p>
-<div id="i.-假設-2" class="section level4 hasAnchor" number="10.5.0.1">
-<h4><span class="header-section-number">10.5.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="/Users/bear/dev/R/Statistics/截圖%202024-08-24%20凌晨1.47.40.png" title="假設" />
-#### II. 設定 α 值</p>
-<pre><code>α = 0.05</code></pre>
-</div>
-<div id="iii.-計算檢驗統計量-1" class="section level4 hasAnchor" number="10.5.0.2">
-<h4><span class="header-section-number">10.5.0.2</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-1" tabindex="-1"></a><span class="co"># 計算樣本 F 統計量，它是兩個樣本變異數的比值</span></span>
-<span id="cb203-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-2" tabindex="-1"></a>sample.F <span class="ot">&lt;-</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Metals&quot;</span>]) <span class="sc">/</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Income&quot;</span>])</span>
-<span id="cb203-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-3" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-4" tabindex="-1"></a><span class="co"># 顯示樣本 F 統計量</span></span>
-<span id="cb203-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-5" tabindex="-1"></a><span class="fu">print</span>(sample.F)</span></code></pre></div>
-<pre><code>## [1] 11.25539</code></pre>
-<div id="計算-p-值" class="section level5 hasAnchor" number="10.5.0.2.1">
-<h5><span class="header-section-number">10.5.0.2.1</span> 計算 p 值<a href="chapter-11-statistical-inference-concerning-variance.html#計算-p-值" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-1" tabindex="-1"></a><span class="co"># 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值</span></span>
-<span id="cb205-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-2" tabindex="-1"></a><span class="co"># lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。</span></span>
-<span id="cb205-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-3" tabindex="-1"></a><span class="co"># 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。</span></span>
-<span id="cb205-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-4" tabindex="-1"></a><span class="co"># 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2</span></span>
-<span id="cb205-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-5" tabindex="-1"></a></span>
-<span id="cb205-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-6" tabindex="-1"></a><span class="co"># 計算 p 值</span></span>
-<span id="cb205-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-7" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pf</span>(sample.F, <span class="dv">9</span>, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb205-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-8" tabindex="-1"></a></span>
-<span id="cb205-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-9" tabindex="-1"></a><span class="co"># 顯示 p 值</span></span>
-<span id="cb205-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-10" tabindex="-1"></a><span class="fu">print</span>(pvalue)</span></code></pre></div>
-<pre><code>## [1] 0.001317916</code></pre>
+<div id="b.-將生成的值四捨五入到整數獲得隨機整數樣本" class="section level4 hasAnchor" number="6.2.2.2">
+<h4><span class="header-section-number">6.2.2.2</span> B. 將生成的值四捨五入到整數，獲得隨機整數樣本<a href="chapter-7-sampling-and-sampling-distributions.html#b.-將生成的值四捨五入到整數獲得隨機整數樣本" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb122-1" tabindex="-1"></a><span class="fu">round</span>(values, <span class="dv">0</span>)</span></code></pre></div>
+<pre><code>##   [1] 11281 11478  8681  6346  3431   600 16350  2203 10276  8421 14640 15347
+##  [13]  7143 17860  6699 14436 13694 19166 13638 14197 14967   589  7044 17473
+##  [25] 10731  7443  5052 19006  8665 10809 11918  6100 17513  1077  1442 12748
+##  [37]  3445 16927  4613  6938 10791 16451  5639  2682  7558  3554 14214  7926
+##  [49] 12296 19720 10371 16707  6924 16256  9414 15747 13311  1734 17853 14117
+##  [61]  5336 10266 19478  3633  7928  9421  4284 10912  6329 10629  1753  4032
+##  [73]  2862 14176  5618 17599   553 11846  5728  5182 14140 16330  5028 18544
+##  [85]  4265  2855 14945  9062 15534 12835  3117  9444 13078 15357  8727 12349
+##  [97]  8900   606 17692 16746</code></pre>
 </div>
 </div>
-<div id="iv.-是否拒絕-h_0-3" class="section level4 hasAnchor" number="10.5.0.3">
-<h4><span class="header-section-number">10.5.0.3</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.001317916
-p 值 &lt; 0.05，拒絕 H_0</code></pre>
 </div>
-<div id="v.-結論-5" class="section level4 hasAnchor" number="10.5.0.4">
-<h4><span class="header-section-number">10.5.0.4</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們拒絕 H_0，得出結論，Metals 和 Income 兩組數據的方差顯著不同。</code></pre>
+<div id="構建-x-圖" class="section level2 hasAnchor" number="6.3">
+<h2><span class="header-section-number">6.3</span> 3.構建 x̄ 圖<a href="chapter-7-sampling-and-sampling-distributions.html#構建-x-圖" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="a.-從-lux.hotel.df-數據文件中提取等待時間的列" class="section level3 hasAnchor" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> A. 從 lux.hotel.df 數據文件中提取等待時間的列<a href="chapter-7-sampling-and-sampling-distributions.html#a.-從-lux.hotel.df-數據文件中提取等待時間的列" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb124-1" tabindex="-1"></a>wait.times <span class="ot">&lt;-</span> lux.hotel.df[, <span class="dv">3</span><span class="sc">:</span><span class="dv">6</span>]</span>
+<span id="cb124-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb124-2" tabindex="-1"></a><span class="fu">head</span>(wait.times)</span></code></pre></div>
+<pre><code>##   Wait.Time.(in.seconds) X4 X5 X6
+## 1                     67 48 52 71
+## 2                     57 68 60 66
+## 3                     37 41 60 41
+## 4                     83 59 49 66
+## 5                     82 63 64 83
+## 6                     87 53 66 69</code></pre>
+</div>
+<div id="b.-使用-qcc-函數創建-x-圖" class="section level3 hasAnchor" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> B. 使用 qcc 函數創建 x̄ 圖<a href="chapter-7-sampling-and-sampling-distributions.html#b.-使用-qcc-函數創建-x-圖" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb126"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb126-1"><a href="chapter-7-sampling-and-sampling-distributions.html#cb126-1" tabindex="-1"></a><span class="co"># 創建 x̄ 圖</span></span>
+<span id="cb126-2"><a href="chapter-7-sampling-and-sampling-distributions.html#cb126-2" tabindex="-1"></a><span class="fu">qcc</span>(wait.times, <span class="at">type =</span> <span class="st">&quot;xbar&quot;</span>, <span class="at">center =</span> <span class="dv">60</span>, <span class="at">std.dev =</span> <span class="dv">30</span>, <span class="at">nsigmas =</span> <span class="dv">3</span>)</span></code></pre></div>
+<p><img src="R_guideline_files/figure-html/graph-1.png" width="672" /></p>
+<pre><code>## List of 11
+##  $ call      : language qcc(data = wait.times, type = &quot;xbar&quot;, center = 60, std.dev = 30, nsigmas = 3)
+##  $ type      : chr &quot;xbar&quot;
+##  $ data.name : chr &quot;wait.times&quot;
+##  $ data      : num [1:24, 1:4] 67 57 37 83 82 87 98 125 116 100 ...
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##  $ statistics: Named num [1:24] 59.5 62.8 44.8 64.2 73 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:24] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  $ sizes     : Named int [1:24] 4 4 4 4 4 4 4 4 4 4 ...
+##   ..- attr(*, &quot;names&quot;)= chr [1:24] &quot;1&quot; &quot;2&quot; &quot;3&quot; &quot;4&quot; ...
+##  $ center    : num 60
+##  $ std.dev   : num 30
+##  $ nsigmas   : num 3
+##  $ limits    : num [1, 1:2] 15 105
+##   ..- attr(*, &quot;dimnames&quot;)=List of 2
+##  $ violations:List of 2
+##  - attr(*, &quot;class&quot;)= chr &quot;qcc&quot;</code></pre>
 </div>
 </div>
 </div>
@@ -515,8 +481,8 @@ p 值 &lt; 0.05，拒絕 H_0</code></pre>
           </div>
         </div>
       </div>
-<a href="chapter-10-statistical-inference-concerning-two-populations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-12-chi-square-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-6-continuous-probability-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-8-interval-estimation.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>

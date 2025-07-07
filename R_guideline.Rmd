@@ -160,7 +160,7 @@ class(y)
 help(c)
 ```
 
-# Chapter 2
+# Chapter 2 Descriptive statistics: tabular and graphical forms
 
 Chapter 2 - R markdown檔案 [下載點](https://drive.google.com/file/d/1JJa5F2DwkJ8Szw5mhVzfSns4wEOGj2JE/view?usp=sharing)
 
@@ -182,7 +182,7 @@ library(openxlsx)
 
 ### 將xlsx檔案讀入為dataframe
 
-Chapter2.xlsx [下載點](https://docs.google.com/spreadsheets/d/16s-_ftmfIGnKEoCx1QC34F1N7DUQSILk/edit?usp=sharing&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter2.xlsx [下載點](https://docs.google.com/spreadsheets/d/1F_Ll_ks6ucdobOVMLYkzqmWib2QfZ3tv/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ```{r read_file}
 # 讀取檔案
@@ -347,12 +347,12 @@ plot(edinc.matrix, ylab = "Income", xlab = "Education")
 ```
 
 
-# Chapter 3
+# Chapter 3 Descriptive statistics: Numerical measures
 
 Chapter 3 - R markdown檔案 [下載點](https://drive.google.com/file/d/1JlP8sGDQN3GHUixnh8TqjGmZJ-r2wrhZ/view?usp=share_link)
 
 **在這個章節，我們使用的資料集是「Fund_Returns」:**
-Fund_Returns.xlsx [下載點](https://docs.google.com/spreadsheets/d/1rKbstviJN1Rppem3h56P1kraNQOcpxC-/edit?usp=sharing&ouid=110553448349846752071&rtpof=true&sd=true)
+Fund_Returns.xlsx [下載點](https://docs.google.com/spreadsheets/d/1QbTs2DZeGKYXIM6azmYFiD5SFJhPVL-L/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1. 載入套件&讀檔
 ```{r, read_file2}
@@ -417,7 +417,7 @@ cor_matrix <- cor(fund.returns.df)
 print(cor_matrix)
 ```
 
-# Chapter 5
+# Chapter 5 Discrete Probability Distributions
 
 Chapter 5 - R markdown檔案 [下載點](https://drive.google.com/file/d/1sEUBeMeWbyOTpv6esoBX8NVxV3d-2lCX/view?usp=share_link)
 
@@ -449,7 +449,7 @@ dhyper(1, 2, 18, 5)
 ```
 
 
-# Chapter 6
+# Chapter 6 Continuous probability distributions
 
 ## 1.均勻分布
 **使用 punif(x, a, b, lower.tail = FALSE or TRUE) 函數來計算連續均勻隨機變數 X 在區間 [a, b] 內取某個範圍值的機率**<br>
@@ -509,8 +509,8 @@ plnorm(200, 5, 1.2)
 qlnorm(0.90, 5, 1.2)
 ```
 
-# Chapter 7
-Chapter7.xlsx [下載點](https://docs.google.com/spreadsheets/d/1jitup-4jbbFoG0NeH8cqt6HqMdsfd0WC/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+# Chapter 7 Sampling and sampling distributions 
+Chapter7.xlsx [下載點](https://docs.google.com/spreadsheets/d/1Q9df0fVf_bir4lMSid_MvIn66MtYLPOQ/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r load, message=FALSE, warning=FALSE}
@@ -568,9 +568,9 @@ head(wait.times)
 qcc(wait.times, type = "xbar", center = 60, std.dev = 30, nsigmas = 3)
 ```
 
-# Chapter 8
+# Chapter 8 Interval estimation
 
-Chapter8.xlsx [下載點](https://docs.google.com/spreadsheets/d/1irH4-_QJqi5AL4mJRuc-se3b9fUuP9fa/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter8.xlsx [下載點](https://docs.google.com/spreadsheets/d/14-0kROV6jkYukSI2VBb2ix5VaH-5pzjF/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r ch8-1, message=FALSE, warning=FALSE}
@@ -661,7 +661,7 @@ conf.interval
 
 # Chapter 9 Hypothesis Testing
 
-Chapter9.xlsx [下載點](https://docs.google.com/spreadsheets/d/1KyHUSv7p4YvgKpVaQGBZrQhVcQZd0Xyh/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter9.xlsx [下載點](https://docs.google.com/spreadsheets/d/1Od6ZGiCm3zHzznxVvZMg8iD_SDxi6_uO/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r ch9-1, message=FALSE, warning=FALSE}
@@ -785,7 +785,7 @@ p.value
 
 # Chapter 10 Statistical Inference Concerning Two Populations
 
-Chapter10.xlsx [下載點](https://docs.google.com/spreadsheets/d/1McirZ6yGPMRtXTL0bSDElsu5fHRfaMau/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter10.xlsx [下載點](https://docs.google.com/spreadsheets/d/1c0WUWWdx9QOA3f4wjq4Xi84qqbjEHDgZ/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r 10-1}
@@ -890,7 +890,7 @@ t.test(food.calories.df[, "Before"], food.calories.df[, "After"],
 
 # Chapter 11 Statistical Inference Concerning Variance
 
-Chapter11.xlsx [下載點](https://docs.google.com/spreadsheets/d/1BK8N8Ghh0gokco88COP-PzTWVTNFWP1-/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter11.xlsx [下載點](https://docs.google.com/spreadsheets/d/1Gw705JKjR5QuRaP1mfYJW8bxWHM_HzPh/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r 11-1}
@@ -1032,7 +1032,7 @@ p 值 < 0.05，拒絕 H_0
 
 # Chapter 12 Chi-Square Tests
 
-Chapter12.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter12.xlsx [下載點](https://docs.google.com/spreadsheets/d/1y21pODhg3T30n9ALqZ1IKj8GZ_mRhE1Y/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r 12-1}
@@ -1210,7 +1210,7 @@ p 值: 1.842161e-07
 
 # Chapter 14 Regression Analysis
 
-Chapter14.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter14.xlsx [下載點](https://docs.google.com/spreadsheets/d/1NjHJo1WBtDwsKF8wKdLYXsd6xr5lB7qs/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r 14-1}
@@ -1375,9 +1375,9 @@ debt.income.plot <- ggplot(debt.payments.df, aes(Income, Debt)) +
 print(debt.income.plot)
 ```
 
-# Chapter 13
+# Chapter 13 Analysis of Variance
 
-Chapter13.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+Chapter13.xlsx [下載點](https://docs.google.com/spreadsheets/d/1f7cdyUj10L2mObCZQovr9XdizUet6SeM/edit?usp=drive_link&ouid=107639335093163328813&rtpof=true&sd=true)
 
 ## 1.安裝、載入套件&讀檔
 ```{r 13-1}

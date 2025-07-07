@@ -4,18 +4,18 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>10 Chapter 11 Statistical Inference Concerning Variance | R Guideline</title>
-  <meta name="description" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <title>7 Chapter 8 Interval estimation | R Guideline</title>
+  <meta name="description" content="7 Chapter 8 Interval estimation | R Guideline" />
   <meta name="generator" content="bookdown 0.43 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta property="og:title" content="7 Chapter 8 Interval estimation | R Guideline" />
   <meta property="og:type" content="book" />
   
   
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="10 Chapter 11 Statistical Inference Concerning Variance | R Guideline" />
+  <meta name="twitter:title" content="7 Chapter 8 Interval estimation | R Guideline" />
   
   
   
@@ -29,8 +29,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="chapter-10-statistical-inference-concerning-two-populations.html"/>
-<link rel="next" href="chapter-12-chi-square-tests.html"/>
+<link rel="prev" href="chapter-7-sampling-and-sampling-distributions.html"/>
+<link rel="next" href="chapter-9-hypothesis-testing.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -319,194 +319,129 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="chapter-11-statistical-inference-concerning-variance" class="section level1 hasAnchor" number="10">
-<h1><span class="header-section-number">10</span> Chapter 11 Statistical Inference Concerning Variance<a href="chapter-11-statistical-inference-concerning-variance.html#chapter-11-statistical-inference-concerning-variance" class="anchor-section" aria-label="Anchor link to header"></a></h1>
-<p>Chapter11.xlsx <a href="https://docs.google.com/spreadsheets/d/1Gw705JKjR5QuRaP1mfYJW8bxWHM_HzPh/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
-<div id="安裝載入套件讀檔-4" class="section level2 hasAnchor" number="10.1">
-<h2><span class="header-section-number">10.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-11-statistical-inference-concerning-variance.html#安裝載入套件讀檔-4" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb183-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-1" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
-<span id="cb183-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb183-2" tabindex="-1"></a><span class="fu">library</span>(EnvStats)</span></code></pre></div>
+<div id="chapter-8-interval-estimation" class="section level1 hasAnchor" number="7">
+<h1><span class="header-section-number">7</span> Chapter 8 Interval estimation<a href="chapter-8-interval-estimation.html#chapter-8-interval-estimation" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>Chapter8.xlsx <a href="https://docs.google.com/spreadsheets/d/14-0kROV6jkYukSI2VBb2ix5VaH-5pzjF/edit?usp=drive_link&amp;ouid=107639335093163328813&amp;rtpof=true&amp;sd=true">下載點</a></p>
+<div id="安裝載入套件讀檔-1" class="section level2 hasAnchor" number="7.1">
+<h2><span class="header-section-number">7.1</span> 1.安裝、載入套件&amp;讀檔<a href="chapter-8-interval-estimation.html#安裝載入套件讀檔-1" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb128"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb128-1"><a href="chapter-8-interval-estimation.html#cb128-1" tabindex="-1"></a><span class="co"># 安裝套件</span></span>
+<span id="cb128-2"><a href="chapter-8-interval-estimation.html#cb128-2" tabindex="-1"></a><span class="co"># install.packages(c(&quot;openxlsx&quot;, &quot;BSDA&quot;))</span></span>
+<span id="cb128-3"><a href="chapter-8-interval-estimation.html#cb128-3" tabindex="-1"></a></span>
+<span id="cb128-4"><a href="chapter-8-interval-estimation.html#cb128-4" tabindex="-1"></a><span class="co"># 載入套件</span></span>
+<span id="cb128-5"><a href="chapter-8-interval-estimation.html#cb128-5" tabindex="-1"></a><span class="fu">library</span>(openxlsx)</span>
+<span id="cb128-6"><a href="chapter-8-interval-estimation.html#cb128-6" tabindex="-1"></a><span class="fu">library</span>(BSDA)</span>
+<span id="cb128-7"><a href="chapter-8-interval-estimation.html#cb128-7" tabindex="-1"></a></span>
+<span id="cb128-8"><a href="chapter-8-interval-estimation.html#cb128-8" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
+<span id="cb128-9"><a href="chapter-8-interval-estimation.html#cb128-9" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter8.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
+<span id="cb128-10"><a href="chapter-8-interval-estimation.html#cb128-10" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Hockey_Pucks&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb128-11"><a href="chapter-8-interval-estimation.html#cb128-11" tabindex="-1"></a>sheet_name_2 <span class="ot">&lt;-</span> <span class="st">&quot;Lottery&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
+<span id="cb128-12"><a href="chapter-8-interval-estimation.html#cb128-12" tabindex="-1"></a></span>
+<span id="cb128-13"><a href="chapter-8-interval-estimation.html#cb128-13" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
+<span id="cb128-14"><a href="chapter-8-interval-estimation.html#cb128-14" tabindex="-1"></a>hockey.pucks.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
+<span id="cb128-15"><a href="chapter-8-interval-estimation.html#cb128-15" tabindex="-1"></a>lottery.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_2)</span></code></pre></div>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="chapter-8-interval-estimation.html#cb129-1" tabindex="-1"></a><span class="co"># 用head() 函數用於查看資料的前幾行，默認值為6 行</span></span>
+<span id="cb129-2"><a href="chapter-8-interval-estimation.html#cb129-2" tabindex="-1"></a><span class="fu">head</span>(hockey.pucks.df)</span></code></pre></div>
+<pre><code>##   Weight
+## 1  162.2
+## 2  159.8
+## 3  163.6
+## 4  166.2
+## 5  166.0
+## 6  167.3</code></pre>
+<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb131-1"><a href="chapter-8-interval-estimation.html#cb131-1" tabindex="-1"></a><span class="co"># 調整查看的行數為前7行</span></span>
+<span id="cb131-2"><a href="chapter-8-interval-estimation.html#cb131-2" tabindex="-1"></a><span class="fu">head</span>(lottery.df, <span class="dv">7</span>)</span></code></pre></div>
+<pre><code>##   Expenditures
+## 1          790
+## 2          594
+## 3          899
+## 4         1105
+## 5         1090
+## 6         1197
+## 7          413</code></pre>
+<div id="對dataframe使用summary函數" class="section level3 hasAnchor" number="7.1.1">
+<h3><span class="header-section-number">7.1.1</span> 對dataframe使用summary()函數<a href="chapter-8-interval-estimation.html#對dataframe使用summary函數" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="chapter-8-interval-estimation.html#cb133-1" tabindex="-1"></a><span class="fu">summary</span>(hockey.pucks.df)</span></code></pre></div>
+<pre><code>##      Weight     
+##  Min.   :152.2  
+##  1st Qu.:162.2  
+##  Median :166.2  
+##  Mean   :166.7  
+##  3rd Qu.:171.1  
+##  Max.   :188.1</code></pre>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="chapter-8-interval-estimation.html#cb135-1" tabindex="-1"></a><span class="fu">summary</span>(lottery.df)</span></code></pre></div>
+<pre><code>##   Expenditures   
+##  Min.   : 334.0  
+##  1st Qu.: 685.0  
+##  Median : 833.0  
+##  Mean   : 841.9  
+##  3rd Qu.: 994.5  
+##  Max.   :1325.0</code></pre>
+</div>
+</div>
+<div id="σ-已知時-估計-μ" class="section level2 hasAnchor" number="7.2">
+<h2><span class="header-section-number">7.2</span> 2. σ 已知時， 估計 μ<a href="chapter-8-interval-estimation.html#σ-已知時-估計-μ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="chapter-8-interval-estimation.html#cb137-1" tabindex="-1"></a><span class="co"># 使用 hockey.pucks.df 數據文件來說明如何在已知 σ 的情況下估計 μ 的方法</span></span>
+<span id="cb137-2"><a href="chapter-8-interval-estimation.html#cb137-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 z.test() 函數</span></span>
+<span id="cb137-3"><a href="chapter-8-interval-estimation.html#cb137-3" tabindex="-1"></a><span class="co"># 將總體標準差 sigma.x 設置為 7.5，將信賴區間 conf.level 設置為 0.92</span></span>
+<span id="cb137-4"><a href="chapter-8-interval-estimation.html#cb137-4" tabindex="-1"></a></span>
+<span id="cb137-5"><a href="chapter-8-interval-estimation.html#cb137-5" tabindex="-1"></a><span class="co"># 執行 z 檢驗</span></span>
+<span id="cb137-6"><a href="chapter-8-interval-estimation.html#cb137-6" tabindex="-1"></a><span class="fu">z.test</span>(hockey.pucks.df[, <span class="st">&quot;Weight&quot;</span>], <span class="at">sigma.x =</span> <span class="fl">7.5</span>, <span class="at">conf.level =</span> <span class="fl">0.92</span>)</span></code></pre></div>
 <pre><code>## 
-## 載入套件：&#39;EnvStats&#39;</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:stats&#39;:
+##  One-sample z-Test
 ## 
-##     predict, predict.lm</code></pre>
-<pre><code>## 下列物件被遮斷自 &#39;package:base&#39;:
-## 
-##     print.default</code></pre>
-<div class="sourceCode" id="cb187"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb187-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-1" tabindex="-1"></a><span class="co"># 讀取檔案</span></span>
-<span id="cb187-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-2" tabindex="-1"></a>file_path <span class="ot">&lt;-</span> <span class="st">&quot;D:/college information/R_statistics/Data Files/Chapter11.xlsx&quot;</span> <span class="co"># 更改成您要讀取之xlsx的路徑</span></span>
-<span id="cb187-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-3" tabindex="-1"></a>sheet_name_1 <span class="ot">&lt;-</span> <span class="st">&quot;Fund_Returns&quot;</span> <span class="co">#這裡輸入您要讀取的sheet的名稱</span></span>
-<span id="cb187-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-4" tabindex="-1"></a></span>
-<span id="cb187-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-5" tabindex="-1"></a><span class="co"># 使用read.xlsx函數讀取指定的工作表</span></span>
-<span id="cb187-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-6" tabindex="-1"></a>fund.returns.df <span class="ot">&lt;-</span> <span class="fu">read.xlsx</span>(file_path, <span class="at">sheet =</span> sheet_name_1)</span>
-<span id="cb187-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb187-7" tabindex="-1"></a><span class="fu">head</span>(fund.returns.df)</span></code></pre></div>
-<pre><code>##   Year Metals Income
-## 1 2000  -7.34   4.07
-## 2 2001  18.33   6.52
-## 3 2002  33.35   9.38
-## 4 2003  59.45  18.62
-## 5 2004   8.09   9.44
-## 6 2005  43.79   3.12</code></pre>
+## data:  hockey.pucks.df[, &quot;Weight&quot;]
+## z = 198.81, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 92 percent confidence interval:
+##  165.2433 168.1792
+## sample estimates:
+## mean of x 
+##  166.7113</code></pre>
 </div>
-<div id="σ²-的信賴區間" class="section level2 hasAnchor" number="10.2">
-<h2><span class="header-section-number">10.2</span> 2. σ² 的信賴區間<a href="chapter-11-statistical-inference-concerning-variance.html#σ²-的信賴區間" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>使用 varTest() 函數來計算變異數的信賴區間：</p>
-<div class="sourceCode" id="cb189"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb189-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-1" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Metals&quot;</span>])</span>
-<span id="cb189-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb189-2" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
+<div id="σ-未知時-估計-μ" class="section level2 hasAnchor" number="7.3">
+<h2><span class="header-section-number">7.3</span> 3. σ 未知時， 估計 μ<a href="chapter-8-interval-estimation.html#σ-未知時-估計-μ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="chapter-8-interval-estimation.html#cb139-1" tabindex="-1"></a><span class="co"># 使用 lottery.df 數據文件來說明如何在未知 σ 的情況下估計 μ 的方法</span></span>
+<span id="cb139-2"><a href="chapter-8-interval-estimation.html#cb139-2" tabindex="-1"></a><span class="co"># 使用 BSDA 包中的 t.test() 函數</span></span>
+<span id="cb139-3"><a href="chapter-8-interval-estimation.html#cb139-3" tabindex="-1"></a><span class="co"># 信賴區間 conf.level 的默認值為 0.95，但為了讓程式碼更清楚，在這裡仍然明確寫入程式碼中</span></span>
+<span id="cb139-4"><a href="chapter-8-interval-estimation.html#cb139-4" tabindex="-1"></a></span>
+<span id="cb139-5"><a href="chapter-8-interval-estimation.html#cb139-5" tabindex="-1"></a><span class="co"># 執行 z 檢驗</span></span>
+<span id="cb139-6"><a href="chapter-8-interval-estimation.html#cb139-6" tabindex="-1"></a><span class="fu">t.test</span>(lottery.df[, <span class="st">&quot;Expenditures&quot;</span>], <span class="at">conf.level =</span> <span class="fl">0.95</span>)</span></code></pre></div>
 <pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
+##  One Sample t-test
 ## 
-## Null Hypothesis:                 variance = 1
-## 
-## Alternative Hypothesis:          True variance is not equal to 1
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 1378.605
-## 
-## Data:                            fund.returns.df[, &quot;Metals&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 12407.44
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0
-## 
-## 95% Confidence Interval:         LCL =  652.2418
-##                                  UCL = 4594.6866</code></pre>
-<pre><code>varTest() 函數的主要輸入值：
-1. x:
-  數據向量，表示需要進行方差檢定的樣本。
-  如果是雙樣本檢定，這裡可以是第一個樣本數據的向量。
-2. y (可選):
-  另一個數據向量，用於雙樣本檢定。如果提供了這個向量，則檢驗兩個樣本的方差是否相等。
-  sigma.squared (可選):
-  變異數的理論值，用於單樣本檢定。默認值為 1。
-3. alternative (可選):
-  定義備擇假設的類型。選項有：
-  &quot;two.sided&quot;（雙側檢定，默認）
-  &quot;less&quot;（左側檢定）
-  &quot;greater&quot;（右側檢定）
-4. conf.level (可選):
-  * Note that the confidence level is set at 95% by default, but it can be changed by adjusting
-  the conf.level argument (i.e. for 99% we would include conf.level = 0.99 in the function).</code></pre>
+## data:  lottery.df[, &quot;Expenditures&quot;]
+## t = 38.772, df = 99, p-value &lt; 2.2e-16
+## alternative hypothesis: true mean is not equal to 0
+## 95 percent confidence interval:
+##  798.8522 885.0278
+## sample estimates:
+## mean of x 
+##    841.94</code></pre>
 </div>
-<div id="檢驗-σ²" class="section level2 hasAnchor" number="10.3">
-<h2><span class="header-section-number">10.3</span> 3.檢驗 σ²<a href="chapter-11-statistical-inference-concerning-variance.html#檢驗-σ²" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<div id="i.-假設-1" class="section level4 hasAnchor" number="10.3.0.1">
-<h4><span class="header-section-number">10.3.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>H_0(虛無假設):  σ² = 72.25
-H_A(對立假設) : σ² ≠ 72.25 （雙尾檢定）</code></pre>
+<div id="估計-p" class="section level2 hasAnchor" number="7.4">
+<h2><span class="header-section-number">7.4</span> 4.估計 p<a href="chapter-8-interval-estimation.html#估計-p" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><strong>使用範例8.7來說明如何估計 p</strong><br></p>
+<div id="a.-計算樣本比例" class="section level3 hasAnchor" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> A. 計算樣本比例<a href="chapter-8-interval-estimation.html#a.-計算樣本比例" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="chapter-8-interval-estimation.html#cb141-1" tabindex="-1"></a><span class="co"># 設定成功次數 successes 為 7，試驗次數 trials 為 25，然後通過將 successes 除以 trials 來獲得樣本比例</span></span>
+<span id="cb141-2"><a href="chapter-8-interval-estimation.html#cb141-2" tabindex="-1"></a>successes <span class="ot">&lt;-</span> <span class="dv">7</span></span>
+<span id="cb141-3"><a href="chapter-8-interval-estimation.html#cb141-3" tabindex="-1"></a>trials <span class="ot">&lt;-</span> <span class="dv">25</span></span>
+<span id="cb141-4"><a href="chapter-8-interval-estimation.html#cb141-4" tabindex="-1"></a>pbar <span class="ot">&lt;-</span> successes <span class="sc">/</span> trials</span></code></pre></div>
 </div>
-<div id="ii.-設定-α-值-4" class="section level4 hasAnchor" number="10.3.0.2">
-<h4><span class="header-section-number">10.3.0.2</span> II. 設定 α 值<a href="chapter-11-statistical-inference-concerning-variance.html#ii.-設定-α-值-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>α = 0.05</code></pre>
+<div id="b.-計算臨界值和誤差範圍" class="section level3 hasAnchor" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> B. 計算臨界值和誤差範圍<a href="chapter-8-interval-estimation.html#b.-計算臨界值和誤差範圍" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="chapter-8-interval-estimation.html#cb142-1" tabindex="-1"></a><span class="co"># 使用 qnorm() 函數來找到臨界值 z</span></span>
+<span id="cb142-2"><a href="chapter-8-interval-estimation.html#cb142-2" tabindex="-1"></a><span class="co"># 由於我們希望信賴區間為 90%，因此 α = 1 − 0.90 =0.10，我們使用 α/2 = 0.05</span></span>
+<span id="cb142-3"><a href="chapter-8-interval-estimation.html#cb142-3" tabindex="-1"></a>z <span class="ot">&lt;-</span> <span class="sc">-</span><span class="fu">qnorm</span>(<span class="fl">0.05</span>)</span>
+<span id="cb142-4"><a href="chapter-8-interval-estimation.html#cb142-4" tabindex="-1"></a><span class="co"># 計算誤差範圍</span></span>
+<span id="cb142-5"><a href="chapter-8-interval-estimation.html#cb142-5" tabindex="-1"></a>margin.of.error <span class="ot">&lt;-</span> z <span class="sc">*</span> <span class="fu">sqrt</span>(pbar <span class="sc">*</span> (<span class="dv">1</span> <span class="sc">-</span> pbar) <span class="sc">/</span> trials)</span></code></pre></div>
 </div>
-<div id="iii.-計算檢驗統計量" class="section level4 hasAnchor" number="10.3.0.3">
-<h4><span class="header-section-number">10.3.0.3</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb194"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb194-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-1" tabindex="-1"></a><span class="co"># 使用範例 11.4 和 fund.returns.df 數據文件中的 &quot;Income&quot; 變量進行變異數檢驗</span></span>
-<span id="cb194-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-2" tabindex="-1"></a><span class="co"># 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25</span></span>
-<span id="cb194-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-3" tabindex="-1"></a></span>
-<span id="cb194-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-4" tabindex="-1"></a><span class="co"># 執行變異數檢驗</span></span>
-<span id="cb194-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-5" tabindex="-1"></a>result <span class="ot">&lt;-</span> <span class="fu">varTest</span>(fund.returns.df[, <span class="st">&quot;Income&quot;</span>], <span class="at">sigma.squared =</span> <span class="fl">72.25</span>)</span>
-<span id="cb194-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb194-6" tabindex="-1"></a><span class="fu">print</span>(result)</span></code></pre></div>
-<pre><code>## 
-## Results of Hypothesis Test
-## --------------------------
-## 
-## Null Hypothesis:                 variance = 72.25
-## 
-## Alternative Hypothesis:          True variance is not equal to 72.25
-## 
-## Test Name:                       Chi-Squared Test on Variance
-## 
-## Estimated Parameter(s):          variance = 122.484
-## 
-## Data:                            fund.returns.df[, &quot;Income&quot;]
-## 
-## Test Statistic:                  Chi-Squared = 15.25752
-## 
-## Test Statistic Parameter:        df = 9
-## 
-## P-value:                         0.1682017
-## 
-## 95% Confidence Interval:         LCL =  57.9493
-##                                  UCL = 408.2211</code></pre>
-</div>
-<div id="iv.-是否拒絕-h_0-2" class="section level4 hasAnchor" number="10.3.0.4">
-<h4><span class="header-section-number">10.3.0.4</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.1682017
-p 值 ≥ 0.05，無法拒絕 H_0</code></pre>
-</div>
-<div id="v.-結論-4" class="section level4 hasAnchor" number="10.3.0.5">
-<h4><span class="header-section-number">10.3.0.5</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-4" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們無法拒絕 H_0，沒有足夠的證據表明 &quot;Income&quot; 變量的變異數顯著不同於 72.25。</code></pre>
-</div>
-</div>
-<div id="變異數比值的信賴區間計算" class="section level2 hasAnchor" number="10.4">
-<h2><span class="header-section-number">10.4</span> 4.變異數比值的信賴區間計算<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值的信賴區間計算" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.6 和 fund.returns.df 數據文件來構造兩個母體之間的變異數比值的信賴區間。<br></p>
-<div class="sourceCode" id="cb198"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb198-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-1" tabindex="-1"></a><span class="co"># 計算樣本方差比值</span></span>
-<span id="cb198-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-2" tabindex="-1"></a>prop.var <span class="ot">&lt;-</span> <span class="fl">182.25</span> <span class="sc">/</span> <span class="fl">457.96</span></span>
-<span id="cb198-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-3" tabindex="-1"></a></span>
-<span id="cb198-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-4" tabindex="-1"></a><span class="co"># 計算自由度</span></span>
-<span id="cb198-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-5" tabindex="-1"></a>df1 <span class="ot">&lt;-</span> <span class="dv">11</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-6" tabindex="-1"></a>df2 <span class="ot">&lt;-</span> <span class="dv">16</span> <span class="sc">-</span> <span class="dv">1</span></span>
-<span id="cb198-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-7" tabindex="-1"></a></span>
-<span id="cb198-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-8" tabindex="-1"></a><span class="co"># 計算信賴區間的下限</span></span>
-<span id="cb198-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-9" tabindex="-1"></a>lower.bound <span class="ot">&lt;-</span> prop.var <span class="sc">/</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df1, df2)</span>
-<span id="cb198-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-10" tabindex="-1"></a></span>
-<span id="cb198-11"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-11" tabindex="-1"></a><span class="co"># 計算信賴區間的上限</span></span>
-<span id="cb198-12"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-12" tabindex="-1"></a>upper.bound <span class="ot">&lt;-</span> prop.var <span class="sc">*</span> <span class="fu">qf</span>(<span class="fl">0.975</span>, df2, df1)</span>
-<span id="cb198-13"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-13" tabindex="-1"></a></span>
-<span id="cb198-14"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-14" tabindex="-1"></a><span class="co"># 顯示結果</span></span>
-<span id="cb198-15"><a href="chapter-11-statistical-inference-concerning-variance.html#cb198-15" tabindex="-1"></a><span class="fu">print</span>(lower.bound)</span></code></pre></div>
-<pre><code>## [1] 0.1300441</code></pre>
-<div class="sourceCode" id="cb200"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb200-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb200-1" tabindex="-1"></a><span class="fu">print</span>(upper.bound)</span></code></pre></div>
-<pre><code>## [1] 1.401487</code></pre>
-</div>
-<div id="變異數比值檢驗" class="section level2 hasAnchor" number="10.5">
-<h2><span class="header-section-number">10.5</span> 5.變異數比值檢驗<a href="chapter-11-statistical-inference-concerning-variance.html#變異數比值檢驗" class="anchor-section" aria-label="Anchor link to header"></a></h2>
-<p>我們使用範例 11.8 和 fund.returns.df 數據文件來進行變異數比值的假設檢驗。具體來說，我們將檢驗以下假設：</p>
-<div id="i.-假設-2" class="section level4 hasAnchor" number="10.5.0.1">
-<h4><span class="header-section-number">10.5.0.1</span> I. 假設<a href="chapter-11-statistical-inference-concerning-variance.html#i.-假設-2" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<p><img src="/Users/bear/dev/R/Statistics/截圖%202024-08-24%20凌晨1.47.40.png" title="假設" />
-#### II. 設定 α 值</p>
-<pre><code>α = 0.05</code></pre>
-</div>
-<div id="iii.-計算檢驗統計量-1" class="section level4 hasAnchor" number="10.5.0.2">
-<h4><span class="header-section-number">10.5.0.2</span> III. 計算檢驗統計量<a href="chapter-11-statistical-inference-concerning-variance.html#iii.-計算檢驗統計量-1" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<div class="sourceCode" id="cb203"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb203-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-1" tabindex="-1"></a><span class="co"># 計算樣本 F 統計量，它是兩個樣本變異數的比值</span></span>
-<span id="cb203-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-2" tabindex="-1"></a>sample.F <span class="ot">&lt;-</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Metals&quot;</span>]) <span class="sc">/</span> <span class="fu">var</span>(fund.returns.df[,<span class="st">&quot;Income&quot;</span>])</span>
-<span id="cb203-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-3" tabindex="-1"></a></span>
-<span id="cb203-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-4" tabindex="-1"></a><span class="co"># 顯示樣本 F 統計量</span></span>
-<span id="cb203-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb203-5" tabindex="-1"></a><span class="fu">print</span>(sample.F)</span></code></pre></div>
-<pre><code>## [1] 11.25539</code></pre>
-<div id="計算-p-值" class="section level5 hasAnchor" number="10.5.0.2.1">
-<h5><span class="header-section-number">10.5.0.2.1</span> 計算 p 值<a href="chapter-11-statistical-inference-concerning-variance.html#計算-p-值" class="anchor-section" aria-label="Anchor link to header"></a></h5>
-<div class="sourceCode" id="cb205"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb205-1"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-1" tabindex="-1"></a><span class="co"># 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值</span></span>
-<span id="cb205-2"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-2" tabindex="-1"></a><span class="co"># lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。</span></span>
-<span id="cb205-3"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-3" tabindex="-1"></a><span class="co"># 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。</span></span>
-<span id="cb205-4"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-4" tabindex="-1"></a><span class="co"># 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2</span></span>
-<span id="cb205-5"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-5" tabindex="-1"></a></span>
-<span id="cb205-6"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-6" tabindex="-1"></a><span class="co"># 計算 p 值</span></span>
-<span id="cb205-7"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-7" tabindex="-1"></a>pvalue <span class="ot">&lt;-</span> <span class="dv">2</span> <span class="sc">*</span> <span class="fu">pf</span>(sample.F, <span class="dv">9</span>, <span class="dv">9</span>, <span class="at">lower.tail =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb205-8"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-8" tabindex="-1"></a></span>
-<span id="cb205-9"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-9" tabindex="-1"></a><span class="co"># 顯示 p 值</span></span>
-<span id="cb205-10"><a href="chapter-11-statistical-inference-concerning-variance.html#cb205-10" tabindex="-1"></a><span class="fu">print</span>(pvalue)</span></code></pre></div>
-<pre><code>## [1] 0.001317916</code></pre>
-</div>
-</div>
-<div id="iv.-是否拒絕-h_0-3" class="section level4 hasAnchor" number="10.5.0.3">
-<h4><span class="header-section-number">10.5.0.3</span> IV. 是否拒絕 H_0<a href="chapter-11-statistical-inference-concerning-variance.html#iv.-是否拒絕-h_0-3" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>P-value: 0.001317916
-p 值 &lt; 0.05，拒絕 H_0</code></pre>
-</div>
-<div id="v.-結論-5" class="section level4 hasAnchor" number="10.5.0.4">
-<h4><span class="header-section-number">10.5.0.4</span> V. 結論<a href="chapter-11-statistical-inference-concerning-variance.html#v.-結論-5" class="anchor-section" aria-label="Anchor link to header"></a></h4>
-<pre><code>我們拒絕 H_0，得出結論，Metals 和 Income 兩組數據的方差顯著不同。</code></pre>
+<div id="c.-計算信賴區間" class="section level3 hasAnchor" number="7.4.3">
+<h3><span class="header-section-number">7.4.3</span> C. 計算信賴區間<a href="chapter-8-interval-estimation.html#c.-計算信賴區間" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="chapter-8-interval-estimation.html#cb143-1" tabindex="-1"></a><span class="co"># 通過從樣本比例中加上和減去誤差範圍來找到信賴區間</span></span>
+<span id="cb143-2"><a href="chapter-8-interval-estimation.html#cb143-2" tabindex="-1"></a>conf.interval <span class="ot">&lt;-</span> <span class="fu">c</span>(pbar <span class="sc">-</span> margin.of.error, pbar <span class="sc">+</span> margin.of.error)</span>
+<span id="cb143-3"><a href="chapter-8-interval-estimation.html#cb143-3" tabindex="-1"></a>conf.interval</span></code></pre></div>
+<pre><code>## [1] 0.1322925 0.4277075</code></pre>
 </div>
 </div>
 </div>
@@ -515,8 +450,8 @@ p 值 &lt; 0.05，拒絕 H_0</code></pre>
           </div>
         </div>
       </div>
-<a href="chapter-10-statistical-inference-concerning-two-populations.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="chapter-12-chi-square-tests.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="chapter-7-sampling-and-sampling-distributions.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="chapter-9-hypothesis-testing.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
