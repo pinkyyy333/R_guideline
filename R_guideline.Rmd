@@ -1,6 +1,6 @@
 ---
 title: "R Guideline"
-author: "TA Pinky"
+author: "TA Pinky pineapple168.mg11@nycu.edu.tw"
 site: bookdown::bookdown_site
 output:
   bookdown::gitbook:
