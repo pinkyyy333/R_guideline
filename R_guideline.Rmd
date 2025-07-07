@@ -1,0 +1,1444 @@
+---
+title: "R Guideline"
+author: "TA Pinky"
+date: "2024-07-07"
+output:
+  rmdformats::readthedown:
+    self_contained: true
+    thumbnails: true
+    lightbox: true
+    gallery: false
+    highlight: tango
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Getting Started with R
+
+R 是一款專為統計分析和數據視覺化設計的強大且免費的軟件環境。<br>
+它融合了統計包的便利性和編程的靈活性，廣泛應用於數據分析、機器學習和科學研究。<br>
+R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數據操作和高質量的圖形輸出。<br>
+
+
+## 1. 安裝與R語言入門
+
+教學檔案.pdf [下載點](https://drive.google.com/file/d/19KnlivREtSyZJWFhNvTUQkHfPrDvVnBn/view?usp=sharing)
+
+## 2. 設定工作目錄 (working directory)
+
+```{r, wd}
+# 獲取當前工作目錄，使用函數 getwd()
+getwd()
+
+# 設置工作目錄，使用函數 setwd()
+setwd("/Users/bear/dev/Python")
+getwd()
+
+```
+
+# Chapter 2
+
+Chapter 2 - R markdown檔案 [下載點](https://drive.google.com/file/d/1JJa5F2DwkJ8Szw5mhVzfSns4wEOGj2JE/view?usp=sharing)
+
+## 1. 安裝並載入套件&讀檔
+
+```{r CRAN, include=FALSE}
+options(repos = c(CRAN = "https://cran.r-project.org"))
+```
+
+
+```{r install_packages, message=FALSE, warning=FALSE, results='hide'}
+# 安裝openxlsx套件--套件只要安裝過一次即可
+# install.packages("openxlsx")
+
+# 載入套件
+library(openxlsx)
+```
+
+
+### 將xlsx檔案讀入為dataframe
+
+Chapter2.xlsx [下載點](https://docs.google.com/spreadsheets/d/16s-_ftmfIGnKEoCx1QC34F1N7DUQSILk/edit?usp=sharing&ouid=110553448349846752071&rtpof=true&sd=true)
+
+```{r read_file}
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter2.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Marital_Status" #這裡輸入您要讀取的sheet的名稱
+sheet_name_2 <- "MV_Houses" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+marital.status.df <- read.xlsx(file_path, sheet = sheet_name_1)
+mv.houses.df <- read.xlsx(file_path, sheet = sheet_name_2)
+```
+
+```{r print_data}
+# 顯示讀取的數據
+print(marital.status.df)
+print(mv.houses.df)
+```
+
+
+## 2. 繪製圓餅圖(Pie Chart)
+
+### 繪製1960年婚姻狀態圓餅圖
+```{r, pie_chart}
+# R語言的基本繪圖功能 -- pie()函數
+pie(marital.status.df[, "1960"], # 選擇使用marital.status.df中1960年的資料繪製圓餅圖
+    labels = marital.status.df[, "Marital.Status"], # 選擇用來分類的feature為婚姻狀況(Marital.Status)
+    main = "Marital Status, 1960") # 設定圓餅圖的標題
+```
+
+```{r, pie_chart_ggplot2}
+# ggplot2套件繪圖功能
+# 載入ggplot2套件
+library(ggplot2)
+
+# 設置圓餅圖的顏色
+colors <- c("#EAD7D7", "#C4A0A0", "#A69291", "#6B6363")
+
+# 使用 ggplot() 函數，設置資料來源為 marital.status.df，aes() 函數設置x與y變數，以及對應到不同顏色變量的屬性
+ggplot(marital.status.df, aes(x = "", y = `1960`, fill = `Marital.Status`)) +
+  # 使用 geom_bar() 函數繪製長條圖，設置寬度為1，stat = "identity" 表示使用資料的實際值
+  geom_bar(width = 1, stat = "identity") +
+  # 使用 coord_polar() 函數將長條圖轉換為圓餅圖，theta = "y" 表示以 y 軸為角度
+  coord_polar(theta = "y") +
+  # 使用 scale_fill_manual() 函數設置填充顏色
+  scale_fill_manual(values = colors) +
+  # 設值圓餅圖標題
+  labs(title = "Marital Status, 1960") +
+  # 將背景設定為空白
+  theme_void() +
+  # 將圖例設置在右側
+  theme(legend.position = "right")
+
+
+```
+
+### 將兩個圓餅圖放在一起比較！
+```{r, pie_chart_advance}
+library(ggplot2)
+library(gridExtra)
+
+# 設置圓餅圖的顏色
+colors <- c("#F0C9C9", "#E5A5A5", "#D18E8E", "#8C7E7E")
+
+# 繪製1960年的圓餅圖
+plot_1960 <- ggplot(marital.status.df, aes(x = "", y = `1960`, fill = `Marital.Status`)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar(theta = "y") +
+  scale_fill_manual(values = colors) +
+  labs(title = "Marital Status, 1960") +
+  theme_void() +
+  theme(legend.position = "right")
+
+# 繪製2010年的圓餅圖
+plot_2010 <- ggplot(marital.status.df, aes(x = "", y = `2010`, fill = `Marital.Status`)) +
+  geom_bar(width = 1, stat = "identity") +
+  coord_polar(theta = "y") +
+  scale_fill_manual(values = colors) +
+  labs(title = "Marital Status, 2010") +
+  theme_void() +
+  theme(legend.position = "right")
+
+# 使用 gridExtra 將兩個圓餅圖合再一起
+combined_plot <- grid.arrange(plot_1960, plot_2010, ncol = 2)
+
+```
+
+## 3. 繪製長條圖(Bar Chart)
+
+```{r, bar_chart}
+# R語言的基本繪圖功能 -- barplot()
+# 取出我們感興趣的第二列和第三列數據，使用as.matrix()函數將這些數值保存為列形式，然後使用轉置函數t()將列轉換為行
+marital.status.matrix.t <- t(as.matrix(marital.status.df[, 2:3]))
+
+# 顯示轉置後的數據
+print(marital.status.matrix.t)
+
+# 使用colnames()函數為轉置後的矩陣中的每一列命名列名
+colnames(marital.status.matrix.t) <- marital.status.df[, 'Marital.Status']
+
+# 這樣轉置後的矩陣就有列名了
+print(marital.status.matrix.t)
+
+# 使用 barplot() 函數創建一個長條圖
+barplot(marital.status.matrix.t, # 傳入的數據
+        beside = TRUE, # 指定條形圖是並列顯示，而不是堆疊顯示
+        ylab = 'Proportions', # 設定y軸標籤
+        col = c('slateblue4', 'red3')) # 設定不同類別的顏色，此處共設定兩種顏色
+abline(h=0) # 在當前的圖形中添加一條水平於 y=0 的直線（也就是x軸）
+legend("topright", c("1960","2010"), pch=15, col=c("slateblue4","red3")) # 設置圖例位置、標籤、字體大小與顏色
+```
+
+## 4. 繪製直方圖(Histogram)
+
+
+```{r, histogram}
+# R語言的基本繪圖功能 -- hist() 函數
+hist(mv.houses.df[, "House.Price"], # 使用mv.houses.df 的 House.Price 欄位作為輸入資料
+     breaks = 5, # 指定直方圖中的分組數量
+     xlab = "House Prices (in $1000s)", # 設置 x 軸的標籤
+     main = NULL) # 設置圖表的標題，這裡並無設置，因此為NULL
+```
+
+## 5. 繪製次數多邊圖(Polygon)
+
+```{r, polygon}
+# 輸入中點向量和相對頻率數據
+midpoint <- seq(from = 250, to = 850, by = 100)
+relative.frequency <- c(0, 0.11, 0.31, 0.39, 0.14, 0.06, 0)
+
+# R語言的基本繪圖功能 -- plot()
+plot(relative.frequency ~ midpoint, # 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係
+     ylab = "Relative Frequency",  # 設置了 y 軸的標籤為 "Relative Frequency"
+     xlab = "House Prices (in $1000s)") # 設置 x 軸的標籤為 "House Prices (in $1000s)"
+lines(relative.frequency ~ midpoint) # 將繪製的點進行連線
+```
+
+## 6. 繪製累積百分比曲線圖(Ogive)
+
+```{r}
+# 輸入房屋價格區間與相對頻率有關的資料
+midpoint <- seq(from = 300, to = 800, by = 100)
+relative.frequency <- c(0, 0.11, 0.42, 0.81, 0.95, 1) # 定義成一個向量
+
+# R語言的基本繪圖功能 -- plot()
+plot(relative.frequency ~ midpoint, # 將 relative.frequency（y 軸）繪製為與 midpoint（x 軸）的函數關係
+     ylab = "Relative Frequency", # 設置了 y 軸的標籤為 "Relative Frequency"
+     xlab = "House Prices (in $1000s)") # 設置 x 軸的標籤為 "House Prices (in $1000s)"
+lines(relative.frequency ~ midpoint)  # 將繪製的點進行連線
+```
+
+## 7. 繪製散佈圖(Scatterplot)
+
+```{r, scatterplot}
+# 輸入並且設定資料
+edinc.matrix <- rbind(c(3,45),c(4,56), c(6,85), c(2,35),
+                      c(5,55),c(4,48), c(8,100), c(0,38))
+colnames(edinc.matrix) <- c("education", "income")
+edinc.matrix
+
+# R語言的基本繪圖功能 -- plot()
+plot(edinc.matrix, ylab = "Income", xlab = "Education")
+```
+
+
+# Chapter 3
+
+Chapter 3 - R markdown檔案 [下載點](https://drive.google.com/file/d/1JlP8sGDQN3GHUixnh8TqjGmZJ-r2wrhZ/view?usp=share_link)
+
+**在這個章節，我們使用的資料集是「Fund_Returns」:**
+Fund_Returns.xlsx [下載點](https://docs.google.com/spreadsheets/d/1rKbstviJN1Rppem3h56P1kraNQOcpxC-/edit?usp=sharing&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1. 載入套件&讀檔
+```{r, read_file2}
+# 載入套件
+library(openxlsx)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Fund_Returns.xlsx" # 更改成您要讀取之xlsx的路徑
+
+# 使用read.xlsx函數讀取
+fund.returns.df <- read.xlsx(file_path)
+
+# 印出資料集
+print(fund.returns.df)
+```
+
+## 2. 獲取基本數據摘要
+
+```{r summary}
+# 使用 fund.returns.df 展示如何獲取一個dataframe的數據統計摘要
+(summary(fund.returns.df))
+```
+
+```{r mean}
+# 此外，R 具有許多可以獨立生成這些測量值的函數。
+# 例如，函數 mean()、median()、min()、max()、sd() 和 var() 分別提供均值、中位數、最小值、最大值、標準差和方差。
+# 假設想找到 Fund_Return 數據中 Metals 基金的均值，可以輸入以下命令：
+mean(fund.returns.df[, 'Metals'])
+```
+
+## 3. 建立箱型圖(Box Plot)
+
+
+```{r box plot fund.returns1}
+# 使用 boxplot() 函數與fund.returns.df數據框來創建 Metals 的水平箱型圖
+# 方法一
+boxplot(fund.returns.df[, 'Metals'], horizontal = TRUE)
+```
+
+```{r box plot fund.returns2}
+# 方法二
+boxplot(fund.returns.df$Metals, # 選擇數據
+        horizontal = TRUE, # 生成水平箱型圖
+        main = NULL, # 設置圖表的標題
+        xlab = NULL) # 設置 X 軸的標籤
+```
+
+## 4. 計算共變異數和相關係數
+
+### 計算共變異數(Covariance)
+```{r Covariance}
+# 計算共變異數矩陣
+cov_matrix <- cov(fund.returns.df)
+print(cov_matrix)
+```
+
+### 計算相關係數(Correlation Coefficients)
+
+```{r Correlation Coefficients}
+# 計算相關矩陣
+cor_matrix <- cor(fund.returns.df)
+print(cor_matrix)
+```
+
+# Chapter 5
+
+Chapter 5 - R markdown檔案 [下載點](https://drive.google.com/file/d/1sEUBeMeWbyOTpv6esoBX8NVxV3d-2lCX/view?usp=share_link)
+
+## 1.二項分布
+**使用 dbinom(x, n, p) 函數來計算二項隨機變數 X 取特定值 x 的機率** <br>
+**其中 x 是成功次數，n 是試驗次數，p 是成功的機率**
+```{r dbinom(x, n, p)}
+# 課本範例5.9a
+# 因為 X 是一個二項隨機變數，且 n = 100，p = 0.047，我們可以通過輸入以下程式碼來找到 P(X = 5):
+dbinom(5, 100, 0.047)
+```
+
+## 2.卜瓦松分布
+**使用 dpois(x, μ) 函數來計算泊松隨機變數 X 取特定值 x 的機率**<br>
+**其中 x 是在某個區間內的成功次數，μ 是該區間內的平均值**
+```{r ppois(x, μ)}
+# 課本範例5.11a
+# 因為 X 是一個泊松隨機變數，且 μ = 114，我們可以通過輸入以下程式碼來找到 P(X ≤ 100):
+ppois(100, 114)
+```
+
+## 3.超幾何分布
+**使用 dhyper(x, S, N − S, n) 函數來計算超幾何隨機變數 X 取特定值 x 的機率**<br>
+**其中 x 是樣本中的成功次數，S 是總體中的成功次數，N 是總體大小（所以 N − S 是失敗次數），n 是樣本大小**
+```{r dhyper(x, S, N − S, n)}
+# 課本範例5.12a
+# 因為 X 是一個超幾何隨機變數，且 S = 2，N = 20（所以 20 − 2 = 18），以及 n = 5，我們可以通過輸入以下程式碼來找到 P(X = 1)：
+dhyper(1, 2, 18, 5)
+```
+
+
+# Chapter 6
+
+## 1.均勻分布
+**使用 punif(x, a, b, lower.tail = FALSE or TRUE) 函數來計算連續均勻隨機變數 X 在區間 [a, b] 內取某個範圍值的機率**<br>
+**其中 x 是我們希望評估機率的值，a 是連續均勻分布的下界，b 是上界**<br>
+**對於函數中的最後一個參數，如果我們輸入 lower.tail = FALSE，則 R 返回 P(X>x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)**
+```{r punif(x, a, b)}
+# 課本範例6.1b
+# 因為 X 是一個連續均勻隨機變數，且 a = 2500 和 b = 5000，我們可以通過輸入以下程式碼來找到 P(X>4000)：
+punif(4000, 2500, 5000, lower.tail = FALSE)
+```
+
+## 2.常態分佈
+**使用 pnorm(x, μ, σ, lower.tail = FALSE or TRUE) 函數來計算常態隨機變數 X 小於或等於 x 或大於 x 的機率**<br>
+**其中 x 是我們希望評估機率的值，μ 是總體平均數，σ 是總體標準差**<br>
+**對於函數中的最後一個參數，如果輸入 lower.tail = FALSE，則 R 返回 P(X>x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)**
+
+```{r pnorm}
+# 課本範例6.8a
+# 因為X 是一個正態隨機變數，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到 P(X>20)
+pnorm(20, 12, 3.2, lower.tail = FALSE)
+```
+
+### 逆轉換
+**使用 qnorm(probability, μ, σ) 函數來找到對應於給定累積正態機率的特定 x 值**<br>
+**其中 probability 是給定的累積機率，μ 是總體平均數，σ 是總體標準差**
+```{r inverse}
+# 課本範例6.8c
+# 希望找到 x 使得 P(X≤x)=0.90，且 μ = 12 和 σ = 3.2，我們可以通過輸入以下程式碼來找到該 x 值
+qnorm(0.90, 12, 3.2)
+```
+
+## 3.指數分佈
+**使用 pexp(x, λ, lower.tail = FALSE or TRUE) 函數來計算指數隨機變數 X 小於或等於 x 或大於 x 的機率**<br>
+**其中 x 是我們希望評估機率的值，λ 是速率參數**<br>
+**對於函數中的最後一個參數如果我們輸入 lower.tail = FALSE，則 R 返回 P(X>x)；如果輸入 lower.tail = TRUE，則 R 返回 P(X≤x)**
+```{r pexp}
+# 課本範例6.9b
+# 因為 X 是一個指數隨機變數，且 λ = 1/25，我們可以通過輸入以下程式碼來找到 P(X>60)
+pexp(60, rate = 1/25, lower.tail = FALSE)
+```
+
+## 4.對數常態分布
+**使用 plnorm(y, μ, σ) 函數來計算對數常態隨機變數 Y 小於或等於 y 的機率**<br>
+**其中 y 是我們希望評估機率的值，μ 是潛在正態分布的平均數，σ 是潛在正態分布的標準差**
+```{r plnorm}
+# 課本範例6.11a
+# 因為 Y 是一個對數正態隨機變數，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到 P(Y≤200)
+plnorm(200, 5, 1.2)
+```
+
+### 逆轉換
+**使用 qlnorm(probability, μ, σ) 函數來找到對應於給定累積對數正態機率的特定 y 值**<br>
+**其中 probability 是給定的累積機率，μ 是潛在正態分布的平均數，σ 是潛在正態分布的標準差**
+```{r qlnorm}
+# 課本範例6.11b
+# 因為我們希望找到 y 使得 P(Y≤y)=0.90，且 μ = 5 和 σ = 1.2，我們可以通過輸入以下程式碼來找到該 y 值
+qlnorm(0.90, 5, 1.2)
+```
+
+# Chapter 7
+Chapter7.xlsx [下載點](https://docs.google.com/spreadsheets/d/1jitup-4jbbFoG0NeH8cqt6HqMdsfd0WC/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r load, message=FALSE, warning=FALSE}
+## 安裝套件
+# install.packages(c("openxlsx", "qcc"))
+## 載入套件
+library(openxlsx)
+library(qcc)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter7.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Lux_Hotel" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+lux.hotel.df <- read.xlsx(file_path, sheet = sheet_name_1)
+
+print(lux.hotel.df)
+```
+
+## 2.生成隨機樣本
+**（重現範例7.1）**
+
+### 使用抽樣
+#### A. 使用 sample() 函數
+```{r sample}
+# 從 20,000 名學生中隨機選擇 100 名學生
+sample(1:20000, 100, replace = FALSE)
+```
+#### B. 使用 sample.int() 函數
+```{r sample.int}
+# 使用 replace = FALSE 因為我們希望不放回抽樣
+sample.int(20000, 100, replace = FALSE)
+```
+
+### 從分布中生成樣本
+#### A. 使用 runif() 函數從均勻分布中生成樣本
+```{r runif()}
+values <- runif(100, 1, 20000)
+values
+```
+#### B. 將生成的值四捨五入到整數，獲得隨機整數樣本
+```{r random}
+round(values, 0)
+```
+
+## 3.構建 x̄ 圖
+### A. 從 lux.hotel.df 數據文件中提取等待時間的列
+```{r lux.hotel.df}
+wait.times <- lux.hotel.df[, 3:6]
+head(wait.times)
+```
+### B. 使用 qcc 函數創建 x̄ 圖
+```{r graph, message=FALSE, warning=FALSE}
+# 創建 x̄ 圖
+qcc(wait.times, type = "xbar", center = 60, std.dev = 30, nsigmas = 3)
+```
+
+# Chapter 8
+
+Chapter8.xlsx [下載點](https://docs.google.com/spreadsheets/d/1irH4-_QJqi5AL4mJRuc-se3b9fUuP9fa/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r ch8-1, message=FALSE, warning=FALSE}
+# 安裝套件
+# install.packages(c("openxlsx", "BSDA"))
+
+# 載入套件
+library(openxlsx)
+library(BSDA)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter8.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Hockey_Pucks" #這裡輸入您要讀取的sheet的名稱
+sheet_name_2 <- "Lottery" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+hockey.pucks.df <- read.xlsx(file_path, sheet = sheet_name_1)
+lottery.df <- read.xlsx(file_path, sheet = sheet_name_2)
+
+```
+
+```{r ch8-2, message=FALSE, warning=FALSE}
+# 用head() 函數用於查看資料的前幾行，默認值為6 行
+head(hockey.pucks.df)
+```
+
+```{r ch8-3, message=FALSE, warning=FALSE}
+# 調整查看的行數為前7行
+head(lottery.df, 7)
+```
+
+### 對dataframe使用summary()函數
+
+```{r 8-4}
+summary(hockey.pucks.df)
+```
+
+```{r 8-5}
+summary(lottery.df)
+```
+
+## 2. σ 已知時， 估計 μ
+```{r 8-6, message=FALSE, warning=FALSE}
+# 使用 hockey.pucks.df 數據文件來說明如何在已知 σ 的情況下估計 μ 的方法
+# 使用 BSDA 包中的 z.test() 函數
+# 將總體標準差 sigma.x 設置為 7.5，將信賴區間 conf.level 設置為 0.92
+
+# 執行 z 檢驗
+z.test(hockey.pucks.df[, "Weight"], sigma.x = 7.5, conf.level = 0.92)
+```
+
+## 3. σ 未知時， 估計 μ
+```{r 8-7, message=FALSE, warning=FALSE}
+# 使用 lottery.df 數據文件來說明如何在未知 σ 的情況下估計 μ 的方法
+# 使用 BSDA 包中的 t.test() 函數
+# 信賴區間 conf.level 的默認值為 0.95，但為了讓程式碼更清楚，在這裡仍然明確寫入程式碼中
+
+# 執行 z 檢驗
+t.test(lottery.df[, "Expenditures"], conf.level = 0.95)
+```
+
+## 4.估計 p
+**使用範例8.7來說明如何估計 p**<br>
+
+### A. 計算樣本比例
+```{r 8-8A, message=FALSE, warning=FALSE}
+# 設定成功次數 successes 為 7，試驗次數 trials 為 25，然後通過將 successes 除以 trials 來獲得樣本比例
+successes <- 7
+trials <- 25
+pbar <- successes / trials
+```
+
+### B. 計算臨界值和誤差範圍
+```{r 8-8B, message=FALSE, warning=FALSE}
+# 使用 qnorm() 函數來找到臨界值 z
+# 由於我們希望信賴區間為 90%，因此 α = 1 − 0.90 =0.10，我們使用 α/2 = 0.05
+z <- -qnorm(0.05)
+# 計算誤差範圍
+margin.of.error <- z * sqrt(pbar * (1 - pbar) / trials)
+```
+
+### C. 計算信賴區間
+```{r 8-8C, message=FALSE, warning=FALSE}
+# 通過從樣本比例中加上和減去誤差範圍來找到信賴區間
+conf.interval <- c(pbar - margin.of.error, pbar + margin.of.error)
+conf.interval
+```
+
+# Chapter 9 Hypothesis Testing
+
+Chapter9.xlsx [下載點](https://docs.google.com/spreadsheets/d/1KyHUSv7p4YvgKpVaQGBZrQhVcQZd0Xyh/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r ch9-1, message=FALSE, warning=FALSE}
+# 安裝套件
+# install.packages(c("openxlsx", "BSDA"))
+
+# 載入套件
+library(openxlsx)
+library(BSDA)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter9.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Debit_Spending" #這裡輸入您要讀取的sheet的名稱
+sheet_name_2 <- "MI_Life" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+debit.spending.df <- read.xlsx(file_path, sheet = sheet_name_1)
+mi.life.expectancy.df <- read.xlsx(file_path, sheet = sheet_name_2)
+```
+
+### 用head()查看dataframe前六筆資料
+
+```{r 9-2}
+head(debit.spending.df)
+```
+
+```{r 9-3}
+head(mi.life.expectancy.df)
+```
+
+## 2. σ 已知時， 檢驗 μ
+#### I.假設
+```
+H_0(虛無假設):  μ = 8000
+H_A(對立假設) : μ < 8000 (左尾檢定)
+```
+#### II. 設定 α 值
+```
+α = 0.05
+```
+#### III. 計算z統計量
+```{r 9-4, message=FALSE, warning=FALSE}
+# 使用 debit.spending.df 數據文件來說明如何在已知 σ 的情況下檢驗 μ 的方法
+# 使用 BSDA 包中的 z.test() 函數
+# 因為對立假設是μ < 8000 (左尾檢定)，所以我們設置 μ = 8000 並將 alternative 選項設置為 "less"
+# 將標準差 sigma.x 設置為 500
+
+# 執行 z 檢驗
+z.test(debit.spending.df[, "Spending"], 
+       mu = 8000, sigma.x = 500, 
+       alternative = "less")
+```
+#### IV. 是否拒絕H_0
+```
+p-value = 0.1149 > 0.05 = α
+我們無法拒絕H_0
+```
+#### V. 結論
+```
+根據檢定結果，我們無法拒絕H_0，這意味著目前的數據不足以支持H_A。
+換句話說，我們沒有足夠的證據表明Spending的母體平均數 μ 小於 8000。
+```
+## 3. σ 未知時， 檢驗 μ
+#### I.假設
+```
+H_0(虛無假設):  μ = 81.48
+H_A(對立假設) : μ < 81.48 (左尾檢定)
+```
+#### II. 設定 α 值
+```
+α = 0.05
+```
+#### III. 計算z統計量
+```{r 9-5, message=FALSE, warning=FALSE}
+# 使用 mi.life.expectancy.df 數據文件來說明如何在未知 σ 的情況下估計 μ 的方法
+# 使用 BSDA 包中的 t.test() 函數
+# 因為對立假設是 H_A : μ < 81.48，所以我們設置 μ = 81.48 並將 alternative 選項設置為 "less"
+
+# 執行 t 檢驗
+t.test(mi.life.expectancy.df[, "Age"], mu = 81.48, alternative = "less")
+```
+#### IV. 是否拒絕H_0
+```
+p-value = 9.136e-06 < 0.05 = α
+我們拒絕H_0，並接受對立假設
+```
+#### V. 結論
+```
+根據檢定結果，我們拒絕H_0，這意味著目前的數據足以支持H_A。
+換句話說，我們沒有足夠的證據表明Age的母體平均數 μ 小於 81.48。
+```
+
+## 4.檢驗 p
+**使用範例9.14來說明如何檢驗 p**<br>
+
+
+
+### A. 計算樣本比例
+```{r 9-6A, message=FALSE, warning=FALSE}
+# 設定成功次數 successes 為 67，試驗次數 trials 為 180，然後通過將 successes 除以 trials 來獲得樣本比例
+successes <- 67
+trials <- 180
+pbar <- successes / trials
+```
+
+### B. 計算 z 統計量
+使用公式計算 z 統計量：
+![公式1](/Users/bear/dev/R/Statistics/zfor.png "統計量")
+```{r 9-6B, message=FALSE, warning=FALSE}
+# p=0.40 是在對立假設中的比例
+z.statistic <- (pbar - 0.40) / sqrt(0.40 * (1 - 0.40) / trials)
+```
+
+### C. 計算 p 值
+```{r 9-6C, message=FALSE, warning=FALSE}
+# 使用 pnorm() 函數來計算與樣本 z 統計量相關的 p 值
+# 由於對立假設是 HA : p<0.40，因此需要計算左尾 p 值
+p.value <- pnorm(z.statistic)
+p.value
+```
+
+# Chapter 10 Statistical Inference Concerning Two Populations
+
+Chapter10.xlsx [下載點](https://docs.google.com/spreadsheets/d/1McirZ6yGPMRtXTL0bSDElsu5fHRfaMau/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r 10-1}
+library(openxlsx)
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter10.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Gold_Oil" #這裡輸入您要讀取的sheet的名稱
+sheet_name_2 <- "Food_Calories" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+gold.oil.df <- read.xlsx(file_path, sheet = sheet_name_1)
+food.calories.df <- read.xlsx(file_path, sheet = sheet_name_2)
+```
+
+```{r 10-2}
+head(gold.oil.df)
+```
+
+```{r 10-3}
+head(food.calories.df)
+```
+
+## 2.測試 μ1 - μ2 的方法
+
+
+#### I.假設
+```
+H_0(虛無假設):  μ1 - μ2 = 0 
+H_A(對立假設) : μ1 - μ2 ≠ 0 （雙尾檢定）
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 計算 t 統計量
+
+```{r 10-4}
+# 範例 10.4
+# 使用 gold.oil.df 數據文件來檢驗 Gold 和 Oil 兩個變數的均值是否存在顯著差異
+# 使用 t.test() 函數進行雙尾 t 檢驗，假設樣本獨立且方差不相等
+# 選取 gold.oil.df 數據框中的 Gold 列和 Oil 列進行比較
+
+# 執行 t 檢驗
+t.test(gold.oil.df[, "Gold"], gold.oil.df[, "Oil"])
+```
+
+#### IV. 是否拒絕 H_0
+```
+根據 t 檢驗的結果，檢查輸出的 p 值：0.7661
+p 值 ≥ 0.05，無法拒絕 H_0，表示目前的數據不足以支持兩組數據均值有顯著差異。
+```
+
+#### V. 結論
+```
+如果我們無法拒絕 H_0，則表示我們沒有足夠的證據表明 Gold 和 Oil 的均值有顯著差異。
+```
+
+## 2.測試 μ_0 的方法
+
+我們使用範例 10.8 和 food.calories.df 數據文件來演示如何測試 μ_0。以下是步驟和 R 語言程式碼：<br>
+
+
+#### I. 假設
+```
+我們的目標是檢驗兩組相關樣本（Before 和 After）之間的均值差異是否大於零。
+具體來說，我們的虛無假設 (H0) 是 μ_0 ≤ 0，而對立假設 (HA) 是 μ_0 > 0。
+這表示我們希望檢查 After 階段的均值是否顯著高於 Before 階段的均值。
+
+H_0(虛無假設):  μ_0 ≤ 0
+H_A(對立假設) : μ_0 > 0 （右尾檢定）
+```
+
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 計算 t 統計量
+
+```{r 10-5}
+# 使用範例 10.8 和 food.calories.df 數據文件來檢驗 Before 和 After 階段的均值差異是否大於零
+# 使用 t.test() 函數進行配對樣本 t 檢驗
+# 設置 paired = TRUE 表示配對樣本，alternative = "greater" 表示右尾檢驗
+
+# 執行 t 檢驗
+t.test(food.calories.df[, "Before"], food.calories.df[, "After"], 
+       paired = TRUE, alternative = "greater")
+
+```
+
+#### IV. 是否拒絕 H_0
+```
+根據 p 值（遠小於顯著性水平 0.05），我們可以拒絕虛無假設。
+```
+#### V. 結論
+```
+根據檢定結果，我們拒絕 H_0，得出結論，After 階段的均值顯著高於 Before 階段的均值。
+```
+
+# Chapter 11 Statistical Inference Concerning Variance
+
+Chapter11.xlsx [下載點](https://docs.google.com/spreadsheets/d/1BK8N8Ghh0gokco88COP-PzTWVTNFWP1-/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r 11-1}
+library(openxlsx)
+library(EnvStats)
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter11.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Fund_Returns" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+fund.returns.df <- read.xlsx(file_path, sheet = sheet_name_1)
+head(fund.returns.df)
+```
+
+## 2. σ² 的信賴區間
+使用 varTest() 函數來計算變異數的信賴區間：
+```{r 11-2}
+result <- varTest(fund.returns.df[, "Metals"])
+print(result)
+```
+
+```
+varTest() 函數的主要輸入值：
+1. x:
+  數據向量，表示需要進行方差檢定的樣本。
+  如果是雙樣本檢定，這裡可以是第一個樣本數據的向量。
+2. y (可選):
+  另一個數據向量，用於雙樣本檢定。如果提供了這個向量，則檢驗兩個樣本的方差是否相等。
+  sigma.squared (可選):
+  變異數的理論值，用於單樣本檢定。默認值為 1。
+3. alternative (可選):
+  定義備擇假設的類型。選項有：
+  "two.sided"（雙側檢定，默認）
+  "less"（左側檢定）
+  "greater"（右側檢定）
+4. conf.level (可選):
+  * Note that the confidence level is set at 95% by default, but it can be changed by adjusting
+  the conf.level argument (i.e. for 99% we would include conf.level = 0.99 in the function).
+```
+## 3.檢驗 σ²
+
+#### I. 假設
+```
+H_0(虛無假設):  σ² = 72.25
+H_A(對立假設) : σ² ≠ 72.25 （雙尾檢定）
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 計算檢驗統計量
+
+```{r 11-3}
+# 使用範例 11.4 和 fund.returns.df 數據文件中的 "Income" 變量進行變異數檢驗
+# 使用 varTest() 函數進行變異數檢驗，檢驗變異數是否等於 72.25
+
+# 執行變異數檢驗
+result <- varTest(fund.returns.df[, "Income"], sigma.squared = 72.25)
+print(result)
+```
+
+#### IV. 是否拒絕 H_0
+```
+P-value: 0.1682017
+p 值 ≥ 0.05，無法拒絕 H_0
+```
+
+#### V. 結論
+```
+我們無法拒絕 H_0，沒有足夠的證據表明 "Income" 變量的變異數顯著不同於 72.25。
+```
+
+## 4.變異數比值的信賴區間計算
+我們使用範例 11.6 和 fund.returns.df 數據文件來構造兩個母體之間的變異數比值的信賴區間。<br>
+```{r 11-4}
+# 計算樣本方差比值
+prop.var <- 182.25 / 457.96
+
+# 計算自由度
+df1 <- 11 - 1
+df2 <- 16 - 1
+
+# 計算信賴區間的下限
+lower.bound <- prop.var / qf(0.975, df1, df2)
+
+# 計算信賴區間的上限
+upper.bound <- prop.var * qf(0.975, df2, df1)
+
+# 顯示結果
+print(lower.bound)
+print(upper.bound)
+```
+
+## 5.變異數比值檢驗
+我們使用範例 11.8 和 fund.returns.df 數據文件來進行變異數比值的假設檢驗。具體來說，我們將檢驗以下假設：
+
+#### I. 假設
+![ ](/Users/bear/dev/R/Statistics/截圖 2024-08-24 凌晨1.47.40.png "假設")
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 計算檢驗統計量
+```{r 11-5}
+# 計算樣本 F 統計量，它是兩個樣本變異數的比值
+sample.F <- var(fund.returns.df[,"Metals"]) / var(fund.returns.df[,"Income"])
+
+# 顯示樣本 F 統計量
+print(sample.F)
+```
+
+##### 計算 p 值
+```{r 11-6}
+# 使用 pf() 函數來計算與樣本 F 統計量相關的 p 值
+# lower.tail = TRUE（默認值）計算的是在 F 統計量左側的累積概率，即從 0 到統計量的累積概率。
+# 使用 lower.tail = FALSE 是為了確保我們獲得正確的右尾概率，再進行雙尾檢定的計算。
+# 由於這是雙尾檢驗，我們需要將計算出的概率乘以 2
+
+# 計算 p 值
+pvalue <- 2 * pf(sample.F, 9, 9, lower.tail = FALSE)
+
+# 顯示 p 值
+print(pvalue)
+```
+
+#### IV. 是否拒絕 H_0
+```
+P-value: 0.001317916
+p 值 < 0.05，拒絕 H_0
+```
+
+#### V. 結論
+```
+我們拒絕 H_0，得出結論，Metals 和 Income 兩組數據的方差顯著不同。
+```
+
+# Chapter 12 Chi-Square Tests
+
+Chapter12.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r 12-1}
+library(openxlsx)
+library(nortest)
+library(fBasics)
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter12.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Household_Income" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+household.income.df <- read.xlsx(file_path, sheet = sheet_name_1)
+head(household.income.df)
+```
+
+## 2.適配度檢驗(Goodness-of-Fit Test)
+使用範例 12.1 來進行適配度檢驗，檢查觀察到的數據是否符合假設的分布。<br/>
+
+
+#### I. 輸入數據、假設
+```{r 12-2A}
+# 輸入觀察到的客戶數量
+number.customers <- c(70, 60, 54, 16)
+
+# 輸入市場份額分布
+market.share <- c(0.40, 0.32, 0.24, 0.04)
+```
+```
+H_0: p_1 = 0.40, p_2 = 0.32, p_3 = 0.24, p_4 = 0.04
+H_A: At least one p_i differs from its hypothesized value.
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+##### III. 進行卡方適配度檢驗
+
+1. 準備數據: 我們已經在上一部分中準備好了 number.customers 和 market.share 兩個向量。<br>
+2. 運行檢驗: 在這裡，我們將 number.customers 作為第一個參數，並將 p 設置為 market.share，這樣 R 會將這些預期概率用於檢驗。<br>
+```{r 12-2B}
+
+# 進行卡方適配度檢驗
+chisq.test.result <- chisq.test(number.customers, p = market.share)
+
+# 顯示結果
+print(chisq.test.result)
+```
+
+#### IV.是否拒絕 H_0
+```
+P-value: 0.01655632
+p 值 < 0.05，拒絕 H_0
+```
+
+#### V. 結論
+```
+At least one p_i differs from its hypothesized value.
+```
+
+## 3.獨立性檢驗(Test for Independence)
+基於表 12.8 中的數據，使用卡方檢驗來檢查性別和車輛類型之間是否存在獨立性。<br>
+
+
+#### I. 構建列聯表(contingency table)、假設
+```{r 12-3A}
+# 輸入數據
+female <- c(50, 60)
+male <- c(120, 170)
+
+# 創建列聯表(contingency table)
+table <- rbind(female, male)
+
+# 為列聯表命名列
+colnames(table) <- c("economy.car", "noneconomy.car")
+
+# 顯示列聯表
+print(table)
+```
+```
+H_0(虛無假設):  性別和車輛類型之間是獨立的
+H_A(對立假設) : 性別和車輛類型之間存在關聯（即不獨立）
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 進行卡方獨立性檢驗
+```{r 12-3B}
+# 進行卡方獨立性檢驗
+chisq.test.result <- chisq.test(table, correct = FALSE)
+
+# 顯示結果
+print(chisq.test.result)
+```
+
+#### IV.是否拒絕 H_0
+```
+P-value: 0.4616154
+p 值 ≥ 0.05，則無法拒絕 H_0，表示目前的數據不足以支持性別和車輛類型之間存在關聯。
+```
+
+#### V. 結論
+```
+我們無法拒絕 H_0，沒有足夠的證據表明性別和車輛類型之間存在關聯。
+```
+
+## 4. 常態性檢驗(Tests for Normality)
+
+#### I. 假設
+```
+H_0(虛無假設):  數據服從常態分布
+H_A(對立假設) : 數據不服從常態分布
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 使用 Pearson 卡方檢驗進行常態性檢驗
+```{r 12-4A}
+# 使用 nortest 包中的 pearson.test() 函數來進行常態性檢驗
+pearson.test(household.income.df[, "Household.Income"])
+```
+
+##### 結果解讀
+```
+檢驗名稱: Pearson 卡方常態性檢驗
+檢驗統計量: P = 22
+p 值: 0.002540414
+
+根據 p 值（0.002540414），我們拒絕 H_0，表示數據不服從常態分布。
+```
+
+#### IV. 使用 Jarque-Bera 檢驗進行常態性檢驗
+```{r 12-4B}
+# 使用 fBasics 包中的 jarqueberaTest() 函數來進行常態性檢驗
+jarqueberaTest(household.income.df[, "Household.Income"])
+```
+
+##### 結果解讀
+```
+檢驗名稱: Jarque-Bera 常態性檢驗
+檢驗統計量: X-squared = 116.1437
+p 值: < 2.2e-16
+
+根據 p 值（< 2.2e-16），我們拒絕 H_0，表示數據不服從常態分布。
+```
+
+#### V. 使用 Anderson-Darling 檢驗進行常態性檢驗
+```{r 12-4C}
+# 使用 nortest 包中的 ad.test() 函數來進行常態性檢驗
+ad.test(household.income.df[, "Household.Income"])
+```
+
+##### 結果解讀
+```
+檢驗名稱: Anderson-Darling 常態性檢驗
+檢驗統計量: A = 2.925133
+p 值: 1.842161e-07
+
+根據 p 值（1.842161e-07），我們拒絕 H_0，表示數據不服從常態分布。
+
+```
+
+#### VI. 結論
+```
+根據以上三種常態性檢驗結果，我們均拒絕 H_0，表示 Household.Income 數據不服從常態分布。
+無論使用哪一種檢驗方法，結論都是一致的：該數據集不符合常態分布。
+```
+
+# Chapter 14 Regression Analysis
+
+Chapter14.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r 14-1}
+# 載入套件
+library(openxlsx)
+library(ggplot2)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter14.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Debt_Payments" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+debt.payments.df <- read.xlsx(file_path, sheet = sheet_name_1)
+head(debt.payments.df)
+```
+
+## 2.簡單線性迴歸分析(Simple Linear Regression)
+範例14.4，使用 debt.payments.df 數據文件來估計一個簡單線性迴歸模型，並生成相關的回歸和 ANOVA 表。<br/>
+
+#### I. 假設
+```
+H_0(虛無假設):  自變量 (Income) 對應變量 (Debt) 沒有顯著影響
+H_A(對立假設) : 自變量 (Income) 對應變量 (Debt) 有顯著影響
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 輸入數據並構建線性迴歸模型
+```{r 14-2A}
+# 構建線性迴歸模型
+# 使用 lm() 函數來構建一個線性模型對象。這個模型將債務 (Debt) 作為應變量，收入 (Income) 作為自變量。
+debt.income.lm <- lm(Debt ~ Income, data = debt.payments.df)
+```
+
+#### IV. 獲取回歸模型摘要
+```{r 14-2B}
+# 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和顯著性水平等信息。
+summary(debt.income.lm)
+```
+
+#### V. 進行 ANOVA 分析
+```{r, 14-2C}
+# 使用 anova() 函數來生成 ANOVA 表，以檢查模型的總體顯著性
+anova(debt.income.lm)
+```
+
+#### VI. 結果解讀
+```
+1. 迴歸係數：
+  截距 (估計值 = 210.298, p 值 = 0.0303)：
+      這表示當收入為零時，預計債務為 210.298 單位。
+  收入 (估計值 = 10.441, p 值 = 9.66e-09)：
+      此係數非常顯著（p 值 < 0.001），表明收入對債務有強烈且正向的影響。
+2. 模型擬合度：
+  R 平方 = 0.7526，調整後的 R 平方 = 0.7423：
+      這表示約 75.26% 的債務變異可以由收入解釋。
+3. ANOVA F 統計量：
+  F 統計量 = 73，p 值 = 9.66e-09：
+      整體模型具有統計顯著性，表明收入對債務具有顯著的預測能力。
+```
+
+#### VII. 結論
+```
+根據回歸分析和 ANOVA 結果，我們拒絕 H_0，這表明收入對債務有顯著影響。
+正向的迴歸係數表明隨著收入增加，債務也會增加。
+```
+
+## 3.多元迴歸分析(Multiple Regression)
+範例14.6<br/>
+
+#### I. 假設
+```
+H_0 (虛無假設): 收入和失業率對債務沒有顯著影響。
+H_A (對立假設): 收入和/或失業率對債務有顯著影響。
+```
+
+#### II. 設定 α 值
+```
+α = 0.05
+```
+
+#### III. 輸入數據並構建多元線性迴歸模型
+```{r 14-3A}
+# 構建多元線性迴歸模型
+# 使用 lm() 函數來創建一個多元線性模型對象，將債務 (Debt) 作為應變量，收入 (Income) 和失業率 (Unemployment) 作為自變量。
+debt.multiple.lm <- lm(Debt ~ Income + Unemployment, data = debt.payments.df)
+# 注意：lm() 函數執行後不會立即輸出結果，您需要使用其他函數來查看結果。
+```
+
+#### IV. 獲取回歸模型摘要
+```{r 14-3B}
+# 使用 summary() 函數來獲取回歸模型的摘要，包括係數估計、標準誤差、t 值和 p 值等信息。
+summary(debt.multiple.lm)
+```
+
+#### V. 進行 ANOVA 分析
+```{r, 14-3C}
+# 使用 anova() 函數生成 ANOVA 表，以評估模型的整體顯著性。
+anova(debt.multiple.lm)
+```
+
+#### VI. 結果解讀
+```
+1. 迴歸係數：
+    截距 (估計值 = 198.9956, p 值 = 0.216)：
+        這表示當收入和失業率為零時，預計債務為 198.9956 單位，但 p 值不顯著，無法得出明確結論。
+    收入 (估計值 = 10.5122, p 值 = 2.98e-07)：
+        此係數非常顯著（p 值 < 0.001），表明收入對債務有強烈且正向的影響。
+    失業率 (估計值 = 0.6186, p 值 = 0.929)：
+        失業率的影響不顯著（p 值 > 0.05），因此我們無法確認失業率對債務的顯著影響。
+2.模型擬合度：
+    R 平方 = 0.7527，調整後的 R 平方 = 0.7312：
+        這表示約 75.27% 的債務變異可以由收入和失業率解釋。
+3.ANOVA F 統計量：
+    F 統計量 = 35，p 值 = 1.054e-07：
+        整體模型具有統計顯著性，表明收入和/或失業率對債務具有顯著的預測能力。
+```
+
+#### VII. 結論
+```
+根據多元迴歸分析和 ANOVA 結果，我們拒絕 H_0，這表明收入對債務有顯著影響。
+雖然失業率的影響不顯著，但整體模型還是具有顯著性。
+```
+
+## 4. 構建帶有趨勢線的散佈圖
+### I. 使用 plot() 函數構建散佈圖
+```{r, 14-4-1}
+# 使用 debt.payments.df 數據文件來構建散佈圖。
+# 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。
+plot(debt.payments.df[,"Debt"] ~ debt.payments.df[,"Income"],
+     ylab = "債務支付 ($)", xlab = "收入 ($1,000s)")
+```
+
+### II. 添加趨勢線
+```{r, 14-4-2}
+# 使用 debt.payments.df 數據文件來構建散佈圖。
+# 使用 plot() 函數創建散佈圖，並且自定義 x 軸和 y 軸的標籤。
+plot(debt.payments.df[,"Debt"] ~ debt.payments.df[,"Income"],
+     ylab = "債務支付 ($)", xlab = "收入 ($1,000s)")
+
+# 使用 lm() 函數來構建一個簡單的線性回歸模型
+# 然後使用 abline() 函數將趨勢線添加到散佈圖中
+debt.income.lm <- lm(Debt ~ Income, data = debt.payments.df)
+abline(debt.income.lm)
+```
+
+### III. 使用 ggplot2 函數構建更精美的散佈圖
+```{r, 14-4-3}
+# 載入 ggplot2
+library(ggplot2)
+
+# 使用 ggplot2 創建帶有趨勢線的散佈圖
+debt.income.plot <- ggplot(debt.payments.df, aes(Income, Debt)) +
+                    geom_point() +  # 添加數據點
+                    geom_smooth(method = "lm", se = FALSE) +  # 添加趨勢線
+                    labs(x = "收入 ($1,000s)", y = "債務支付 ($)")  # 添加自定義標籤
+
+# 顯示圖表
+print(debt.income.plot)
+```
+
+# Chapter 13
+
+Chapter13.xlsx [下載點](https://docs.google.com/spreadsheets/d/1ZkKtaNMsz2UGI0MjJycjSKdwVxVKkTcu/edit?usp=share_link&ouid=110553448349846752071&rtpof=true&sd=true)
+
+## 1.安裝、載入套件&讀檔
+```{r 13-1}
+# 載入套件
+# install.packages(c("openxlsx", "reshape2", "agricolae"))
+library(openxlsx)
+library(reshape2)
+library(agricolae)
+
+# 讀取檔案
+file_path <- "/Users/bear/dev/R/Statistics/Data Files/Chapter13.xlsx" # 更改成您要讀取之xlsx的路徑
+sheet_name_1 <- "Public_Transportation" #這裡輸入您要讀取的sheet的名稱
+sheet_name_2 <- "TwoFactor_Income" #這裡輸入您要讀取的sheet的名稱
+sheet_name_3 <- "Income_Interaction" #這裡輸入您要讀取的sheet的名稱
+
+# 使用read.xlsx函數讀取指定的工作表
+public.transportation.df <- read.xlsx(file_path, sheet = sheet_name_1)
+two.factor.income.df <- read.xlsx(file_path, sheet = sheet_name_2)
+income.interaction.df<- read.xlsx(file_path, sheet = sheet_name_3)
+
+# head
+head(public.transportation.df)
+head(two.factor.income.df)
+head(income.interaction.df)
+```
+
+## 2. One-Way ANOVA; Fisher and Tukey Confidence Intervals
+(Replicating Table 13.4 and Table 13.5)
+
+### A. 數據準備
+```
+首先，我們需要將城市名稱和成本數值進行堆疊。為此，我們使用 reshape2 包中的 melt() 函數來重新配置數據，並將結果儲存為 melted.df。這裡 melt() 函數將數據堆疊成兩列：一列表示城市名稱（City），另一列表示相應的交通成本（Cost）。
+```
+```{r 13-2}
+# 加載reshape2包
+library(reshape2)
+
+# 堆疊城市名稱和成本數據
+melted.df <- melt(public.transportation.df)
+
+# 將堆疊後的數據列命名
+colnames(melted.df) <- c("City", "Cost")
+
+# 查看堆疊後的數據
+print(melted.df)
+```
+
+### B. 建立變異數分析模型(variance model)
+```
+我們使用 aov() 函數來構建一個變異數分析模型(variance model)，並將該模型儲存為 transit.aov。
+這個模型將交通成本 (Cost) 作為應變量，城市 (City) 作為自變量。
+```
+
+```{r 13-3}
+# 建立變異數分析模型
+transit.aov <- aov(Cost ~ City, data = melted.df)
+```
+
+### C. 生成 ANOVA 表
+```{r 13-4}
+# 生成 ANOVA 表
+anova_result <- anova(transit.aov)
+print(anova_result)
+```
+```
+使用 anova() 函數來生成 ANOVA 表，該表顯示了不同城市間的成本差異是否具有統計顯著性。
+
+解釋：
+  City: P 值（Pr(>F)）小於 0.001，表明城市之間的成本差異具有顯著性。
+```
+
+### D. 使用 TukeyHSD 進行多重比較檢驗
+```
+我們使用 TukeyHSD() 函數來進行 Tukey HSD 檢驗，這是一種多重比較方法，用於比較多個組別之間的均值差異。我們將置信水平（conf.level）設為 95%。
+```
+
+```{r 13-5}
+# 進行 Tukey 檢驗
+tukey_result <- TukeyHSD(transit.aov, conf.level = 0.95)
+print(tukey_result)
+```
+
+### E. 使用 LSD.test 進行 Fisher 檢驗
+```
+R 中沒有直接計算 Fisher 置信區間的函數，
+但我們可以使用 argicolae 包中的 LSD.test() 函數來計算 Fisher 的 LSD 檢驗所需的所有值。
+```
+
+```{r 13-6}
+# 加載 agricolae 包
+library(agricolae)
+
+# 進行 Fisher 檢驗
+fisher.lsd <- LSD.test(transit.aov, "City")
+print(fisher.lsd)
+```
+
+## 3. Two-Way ANOVA (No Interaction) 
+(Replicating Table 13.14)
+
+### A. 重新配置數據
+```{r 13-7}
+# 使用 melt() 函數重新配置數據
+melted2.df <- melt(two.factor.income.df, id.vars = "X1")
+# 命名列
+colnames(melted2.df) <- c("Education", "Field", "Salary")
+```
+
+### B. 建立變異數分析模型(variance model)
+```
+接著，我們使用 aov() 函數來構建一個加法模型（即沒有交互作用的模型），並將該模型儲存為 income.aov。
+這個模型將薪資 (Salary) 作為應變量，教育程度 (Education) 和專業領域 (Field) 作為自變量。
+```
+
+```{r 13-8}
+# 建立雙因子變異數分析模型
+income.aov <- aov(Salary ~ Education + Field, data = melted2.df)
+```
+
+### C. 生成 ANOVA 表
+```{r 13-9}
+# 生成 ANOVA 表
+anova_result <- anova(income.aov)
+print(anova_result)
+```
+```
+解釋：
+  Education: F 值為 56.5750，P 值（Pr(>F)）小於 0.001，表明教育程度對薪資的影響具有高度顯著性。
+  Field: F 值為 6.4429，P 值為 0.03207，表明專業領域對薪資的影響具有顯著性。
+  Residuals: 殘差的自由度為 6，Sum Sq 為 269.8。
+```
+
+## 4. Two-Way ANOVA (with Interaction) 
+(Replicating Table 13.17)
+
+### A. 數據清理
+```
+首先，我們需要清理數據。由於原始數據框 income.interaction.df 的第一列中某些欄位缺少資料，
+因此我們使用 c() 和 rep() 函數來創建一個新的列，並替換原始的第一列。
+這樣做可以確保每個教育程度的名稱正確地對應於每組數據。
+```
+```{r 13-10}
+# 清理數據，替換第一列
+income.interaction.df[, 1] <- c(rep("High School", 3),
+                                rep("Bachelor's", 3),
+                                rep("Master's", 3),
+                                rep("Ph.D.", 3))
+```
+
+### B. 重新配置數據
+```{r 13-11}
+# 使用 melt() 函數重新配置數據，將教育程度、專業領域和薪資值堆疊在一起。
+melted3.df <- melt(income.interaction.df, id.vars = "X1")
+# 命名列
+colnames(melted3.df) <- c("Education", "Field", "Salary")
+```
+
+### C. 建立基於交互作用的變異數分析模型
+```
+接著，我們使用 aov() 函數來構建一個有交互作用的模型，並將該模型儲存為 income2.aov。
+這個模型將薪資 (Salary) 作為應變量，並考慮教育程度 (Education)、專業領域 (Field) 及其交互作用。
+```
+
+```{r 13-12}
+# 構建基於交互作用的方差分析模型
+income2.aov <- aov(Salary ~ Education * Field, data = melted3.df)
+```
+
+### D. 生成 ANOVA 表
+```{r 13-13}
+# 生成 ANOVA 表
+anova_result <- anova(income2.aov)
+print(anova_result)
+```
+```
+解釋：
+  Education: F 值為 658.5205，P 值（Pr(>F)）小於 0.001，表明教育程度對薪資的影響具有高度顯著性。
+  Field: F 值為 44.0963，P 值小於 0.001，表明專業領域對薪資的影響具有顯著性。
+  教育程度與專業領域之間的交互作用的自由度為 6，Sum Sq 為 318.4，Mean Sq 為 53.1，
+    F 值為 5.1087，P 值為 0.001659，表明這個交互作用對薪資的影響也具有統計顯著性。
+```
+
+# 參考資料
+
+**Textbook**<br>
+*Jaggia, S., & Kelly, A. (2019). Business statistics: Communicating with numbers (3th ed.). McGraw-Hill Education. *
