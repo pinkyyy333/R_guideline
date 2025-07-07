@@ -497,6 +497,13 @@ R 提供了豐富的統計和圖形功能，使得用戶能夠進行複雜的數
 <div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="getting-started-with-r.html#cb59-1" tabindex="-1"></a><span class="co"># ? 跟 help()，這兩個指令的作用相同可以查詢單一函式文件</span></span>
 <span id="cb59-2"><a href="getting-started-with-r.html#cb59-2" tabindex="-1"></a>?c</span>
 <span id="cb59-3"><a href="getting-started-with-r.html#cb59-3" tabindex="-1"></a><span class="fu">help</span>(c)</span></code></pre></div>
+<ol start="3" style="list-style-type: decimal">
+<li>避免中文路徑與檔名：請使用英文命名檔案、資料夾、變數和使用者名稱，以減少編碼相容性問題。</li>
+<li>先檢查資料型態：讀入資料後，務必以 class() 或 str() 確認欄位屬性正確，再進行後續分析。</li>
+<li>注意大小寫敏感：R 對大小寫非常嚴格，如遇「找不到物件」的錯誤，請先檢查拼寫與大小寫是否一致。</li>
+<li>命名要有意義：在處理大型資料或研究專案時，具描述性的變數名稱能快速辨識欄位並降低出錯機率。</li>
+<li>Warning 不必驚慌：只要不是 error，就可以先忽略，warning 僅提醒可能的潛在問題。</li>
+</ol>
 </div>
 </div>
             </section>
